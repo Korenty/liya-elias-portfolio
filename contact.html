@@ -18,76 +18,88 @@
             }
         }
     </script>
+    <style>
+        /* Custom hide scrollbar for a cleaner look */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-brand-dark text-white overflow-hidden h-screen flex flex-col md:flex-row">
+<body class="bg-brand-dark text-white opacity-0 overflow-hidden h-screen flex flex-col md:flex-row">
 
-    <nav class="absolute top-0 w-full z-50 px-6 py-8 flex justify-between items-center">
-        <a href="index.html" class="text-2xl font-serif italic font-bold">LE.</a>
-        <a href="index.html" class="text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</a>
+    <nav class="absolute top-0 w-full z-50 px-6 py-8 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="z-50 block">
+            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain transition-opacity hover:opacity-80">
+        </a>
+        <a href="index.html" class="text-[10px] uppercase tracking-luxury border border-white/20 px-8 py-2.5 rounded-full hover:bg-white hover:text-black transition-all duration-500">
+            Close
+        </a>
     </nav>
 
-    <div class="hidden md:block w-1/2 h-full relative overflow-hidden">
-        <img src="asset/images/liya8.jpg" class="w-full h-full object-cover filter brightness-75">
-        <div class="absolute bottom-12 left-12">
-            <h2 class="text-5xl font-serif italic">Global Access.</h2>
-            <p class="text-brand-gold text-xs tracking-luxury mt-2 uppercase">Addis Ababa &bull; Worldwide</p>
+    <div class="hidden md:block w-1/2 h-full relative overflow-hidden group">
+        <img src="asset/images/liya8.jpg" class="w-full h-full object-cover filter brightness-50 grayscale hover:grayscale-0 transition duration-[2000ms] scale-105 group-hover:scale-100">
+        <div class="absolute bottom-16 left-16 max-w-sm">
+            <span class="text-brand-gold text-[10px] uppercase tracking-luxury mb-4 block">Private Office</span>
+            <h2 class="text-6xl font-serif italic leading-tight">Global <br> Access.</h2>
+            <div class="w-12 h-[1px] bg-brand-gold mt-6"></div>
         </div>
     </div>
 
-    <div class="w-full md:w-1/2 h-full bg-brand-dark flex flex-col justify-center px-8 md:px-24 relative overflow-y-auto">
-        <div class="max-w-lg w-full py-20">
-            <h1 class="text-3xl font-serif mb-2">Initiate Request</h1>
-            <p class="text-gray-500 text-sm font-light mb-12">Please specify the nature of your inquiry. Our management team reviews all requests within 48 hours.</p>
+    <div class="w-full md:w-1/2 h-full bg-brand-dark flex flex-col justify-center px-8 md:px-24 relative overflow-y-auto no-scrollbar">
+        <div class="max-w-lg w-full py-32">
+            <div id="form-container">
+                <h1 class="text-4xl font-serif mb-3">Initiate Inquiry</h1>
+                <p class="text-gray-500 text-sm font-light mb-12 leading-relaxed">Please select your department of interest. Our executive team curates all responses within 48 business hours.</p>
 
-            <form id="cms-form" class="space-y-8" onsubmit="handleSubmit(event)">
-                
-                <div class="space-y-4">
-                    <label class="text-xs uppercase tracking-luxury text-brand-gold">I am interested in</label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="type" class="peer sr-only" checked>
-                            <div class="border border-white/20 p-4 text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition text-sm">Brand Partnership</div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="type" class="peer sr-only">
-                            <div class="border border-white/20 p-4 text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition text-sm">Interior Design</div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="type" class="peer sr-only">
-                            <div class="border border-white/20 p-4 text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition text-sm">Media / TV</div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="type" class="peer sr-only">
-                            <div class="border border-white/20 p-4 text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition text-sm">Other</div>
-                        </label>
+                <form id="cms-form" class="space-y-10" onsubmit="handleSubmit(event)">
+                    
+                    <div class="space-y-4">
+                        <label class="text-[10px] uppercase tracking-luxury text-brand-gold">Department</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="type" class="peer sr-only" checked>
+                                <div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition-all duration-500">Liyu Branding</div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="type" class="peer sr-only">
+                                <div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition-all duration-500">Liyu Interiors</div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="type" class="peer sr-only">
+                                <div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition-all duration-500">Media & TV</div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="type" class="peer sr-only">
+                                <div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition-all duration-500">General</div>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="space-y-6">
-                    <div class="relative group">
-                        <input type="text" required class="w-full bg-transparent border-b border-white/20 py-3 text-lg outline-none focus:border-brand-gold transition">
-                        <label class="absolute left-0 top-3 text-gray-500 text-sm pointer-events-none group-focus-within:-top-4 group-focus-within:text-xs group-focus-within:text-brand-gold transition-all">Full Name</label>
+                    <div class="space-y-8">
+                        <div class="relative group">
+                            <input type="text" required placeholder=" " class="peer w-full bg-transparent border-b border-white/10 py-3 text-lg outline-none focus:border-brand-gold transition-colors duration-500">
+                            <label class="absolute left-0 top-3 text-gray-500 text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-4 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-4 transition-all duration-500">Legal Name</label>
+                        </div>
+                        <div class="relative group">
+                            <input type="email" required placeholder=" " class="peer w-full bg-transparent border-b border-white/10 py-3 text-lg outline-none focus:border-brand-gold transition-colors duration-500">
+                            <label class="absolute left-0 top-3 text-gray-500 text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-4 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-4 transition-all duration-500">Professional Email</label>
+                        </div>
+                        <div class="relative group">
+                            <textarea rows="2" placeholder=" " class="peer w-full bg-transparent border-b border-white/10 py-3 text-lg outline-none focus:border-brand-gold transition-colors duration-500"></textarea>
+                            <label class="absolute left-0 top-3 text-gray-500 text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-4 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-4 transition-all duration-500">Scope of Vision</label>
+                        </div>
                     </div>
-                    <div class="relative group">
-                        <input type="email" required class="w-full bg-transparent border-b border-white/20 py-3 text-lg outline-none focus:border-brand-gold transition">
-                        <label class="absolute left-0 top-3 text-gray-500 text-sm pointer-events-none group-focus-within:-top-4 group-focus-within:text-xs group-focus-within:text-brand-gold transition-all">Official Email</label>
-                    </div>
-                    <div class="relative group">
-                        <input type="text" class="w-full bg-transparent border-b border-white/20 py-3 text-lg outline-none focus:border-brand-gold transition">
-                        <label class="absolute left-0 top-3 text-gray-500 text-sm pointer-events-none group-focus-within:-top-4 group-focus-within:text-xs group-focus-within:text-brand-gold transition-all">Budget / Scope (Optional)</label>
-                    </div>
-                </div>
 
-                <button type="submit" id="submit-btn" class="w-full bg-white text-black py-4 uppercase tracking-luxury text-xs font-bold hover:bg-brand-gold transition duration-500 mt-8">
-                    Send Request
-                </button>
-            </form>
+                    <button type="submit" id="submit-btn" class="w-full bg-white text-black py-5 uppercase tracking-luxury text-[10px] font-bold hover:bg-brand-gold hover:tracking-[0.4em] transition-all duration-700 mt-8">
+                        Transmit Request
+                    </button>
+                </form>
+            </div>
 
-            <div id="success-msg" class="hidden text-center py-12">
-                <div class="text-6xl mb-4">✨</div>
-                <h3 class="text-2xl font-serif italic text-brand-gold">Request Received.</h3>
-                <p class="text-gray-400 mt-2 font-light">Thank you. We will be in touch shortly.</p>
-                <a href="index.html" class="block mt-8 text-xs underline uppercase tracking-widest">Return Home</a>
+            <div id="success-msg" class="hidden text-center py-20">
+                <div class="w-12 h-[1px] bg-brand-gold mx-auto mb-10"></div>
+                <h3 class="text-4xl font-serif italic text-white mb-4">Connection <br> Established.</h3>
+                <p class="text-gray-500 text-sm font-light tracking-wide">Your inquiry has been logged in our secure system. <br> Expect a response within the appropriate window.</p>
+                <a href="index.html" class="inline-block mt-12 text-[10px] border-b border-brand-gold pb-1 uppercase tracking-widest text-brand-gold hover:text-white transition-colors">Return to Showcase</a>
             </div>
 
         </div>
@@ -95,27 +107,31 @@
 
     <script>
         // PAGE FADE IN
-        gsap.to("body", { opacity: 1, duration: 1 });
+        gsap.to("body", { opacity: 1, duration: 1.5, ease: "power2.out" });
 
-        // FORM HANDLING SIMULATION
+        // FORM HANDLING
         function handleSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
-            const form = document.getElementById('cms-form');
+            const formContainer = document.getElementById('form-container');
             const msg = document.getElementById('success-msg');
 
-            // Button Loading State
-            btn.innerHTML = "Processing...";
+            // Feedback State
+            btn.innerHTML = "Authenticating...";
             btn.classList.add('opacity-50', 'cursor-not-allowed');
             
-            // Simulate Server Delay
             setTimeout(() => {
-                gsap.to(form, { opacity: 0, height: 0, duration: 0.5, onComplete: () => {
-                    form.style.display = 'none';
-                    msg.classList.remove('hidden');
-                    gsap.from(msg, { opacity: 0, y: 20, duration: 0.8 });
-                }});
-            }, 1500);
+                gsap.to(formContainer, { 
+                    opacity: 0, 
+                    y: -20, 
+                    duration: 0.8, 
+                    onComplete: () => {
+                        formContainer.classList.add('hidden');
+                        msg.classList.remove('hidden');
+                        gsap.from(msg, { opacity: 0, y: 30, duration: 1, ease: "power3.out" });
+                    }
+                });
+            }, 1800);
         }
     </script>
 </body>
