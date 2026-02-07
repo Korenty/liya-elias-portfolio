@@ -1,0 +1,67 @@
+/* IMPORTS */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+
+/* BASE SETTINGS */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #FAFAFA;
+    color: #111111;
+    overflow-x: hidden;
+}
+
+/* CUSTOM SCROLLBAR (Luxurious & Minimal) */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #FAFAFA;
+}
+::-webkit-scrollbar-thumb {
+    background: #C0A080;
+    border-radius: 3px;
+}
+
+/* UTILITIES */
+.clip-text-image {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    /* We use a fallback image here, can be overridden inline */
+    background-image: url('asset/images/liya9.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+.text-stroke-gold {
+    -webkit-text-stroke: 1px #C0A080;
+    color: transparent;
+}
+
+/* IMAGE & VIDEO HOVERS */
+.media-hover-zoom {
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.group:hover .media-hover-zoom {
+    transform: scale(1.03);
+}
+
+/* NAVIGATION LINK ANIMATION */
+.nav-link {
+    position: relative;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: #C0A080;
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
