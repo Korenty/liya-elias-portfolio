@@ -34,7 +34,9 @@
     </div>
 
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
-        <a href="index.html" class="text-2xl font-serif italic font-bold">LE.</a>
+        <a href="index.html" class="z-50 block">
+            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain transition-opacity hover:opacity-80">
+        </a>
         <div class="hidden md:flex space-x-12 text-xs tracking-luxury uppercase">
             <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
             <a href="branding.html" class="text-brand-gold">Branding</a>
@@ -43,9 +45,9 @@
     </nav>
 
     <header class="relative w-full h-[90vh] flex items-center px-6 md:px-24 bg-brand-dark text-white overflow-hidden">
-        <div class="absolute right-0 top-0 w-2/3 h-full opacity-40">
-            <img src="asset/images/liyabranding1.jpg" class="w-full h-full object-cover parallax-media">
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
+        <div class="absolute right-0 top-0 w-2/3 h-full group cursor-pointer">
+            <img src="asset/images/liyabranding1.jpg" class="w-full h-full object-cover parallax-media transition duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/40 to-transparent transition-opacity duration-700 group-hover:opacity-0 group-active:opacity-0"></div>
         </div>
         
         <div class="relative z-10 max-w-2xl space-y-8">
@@ -98,7 +100,7 @@
         </div>
     </section>
 
-    <footer class="bg-brand-dark text-white py-12 text-center">
+    <footer class="bg-brand-dark text-white py-12 text-center border-t border-white/10">
         <a href="contact.html" class="text-xl font-serif italic hover:text-brand-gold transition">Start Your Transformation</a>
     </footer>
 
