@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leyu Interiors | Architecture by Liya Elias</title>
+    <title>Leyu Branding | Identity Engineering by Liya Elias</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -12,7 +12,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#111111', 'brand-gold': '#C0A080', 'brand-grey': '#6B7280' },
+                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#111111', 'brand-gold': '#C0A080' },
                     fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
                     letterSpacing: { 'luxury': '0.25em' }
                 }
@@ -20,7 +20,7 @@
         }
     </script>
 </head>
-<body class="bg-brand-bg opacity-0">
+<body class="bg-white opacity-0">
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
@@ -44,90 +44,93 @@
         <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Menu</button>
     </nav>
 
-    <header class="relative w-full h-[80vh] flex items-center justify-center bg-brand-dark overflow-hidden">
-        <img src="asset/images/liyadesigns1.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 parallax-media">
-        <div class="z-10 text-center space-y-6">
-            <p class="text-brand-gold tracking-luxury text-xs uppercase reveal-text">Addis Ababa &bull; Global</p>
-            <h1 class="text-6xl md:text-9xl text-white font-serif italic reveal-text">Liyu Branding</h1>
+    <header class="relative w-full h-[90vh] flex items-center px-6 md:px-24 bg-brand-dark text-white overflow-hidden">
+        <div class="absolute right-0 top-0 w-2/3 h-full group cursor-pointer">
+            <img src="asset/images/liyabranding1.jpg" class="w-full h-full object-cover parallax-media transition duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/40 to-transparent transition-opacity duration-700 group-hover:opacity-0 group-active:opacity-0"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-2xl space-y-8">
+            <p class="text-brand-gold tracking-luxury text-xs uppercase reveal-text">Leyu Branding Agency</p>
+            <h1 class="text-6xl md:text-8xl font-serif italic leading-none reveal-text">
+                Identity. <br> Influence. <br> Impact.
+            </h1>
+            <p class="text-gray-400 font-light text-lg reveal-text">
+                We engineer digital souls for the world's most ambitious personalities and companies.
+            </p>
         </div>
     </header>
 
-    <section class="py-24 px-6 md:px-24 bg-white">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-            <div class="space-y-8">
-                <h2 class="text-4xl font-serif text-brand-dark reveal-text">
-                    "A brand should not just be seen. <br> <span class="italic text-brand-gold">It should be felt.</span>"
-                </h2>
-                <div class="draw-line w-full h-[1px] bg-black/10"></div>
-                <p class="text-brand-dark/70 font-light reveal-text leading-relaxed">
-                    Leveraging my background in <strong class="text-black">Construction Management and Architectural Engineering</strong> from AAU, I approach every project with a dual lens: the precision of an engineer and the soul of an artist.
-                </p>
-                <p class="text-brand-dark/70 font-light reveal-text leading-relaxed">
-                    At Liyu Branding, we don't follow trends. We study the identity. We study the impact. We create narratives that elevate the human experience, blending Ethiopian heritage with contemporary luxury.
-                </p>
+    <section class="py-24 px-6 md:px-24 bg-brand-bg">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-12 shadow-sm hover:shadow-xl transition duration-500 group">
+                <span class="text-4xl text-brand-gold font-serif italic">01.</span>
+                <h3 class="text-xl font-bold mt-4 mb-2 uppercase tracking-widest">Discovery</h3>
+                <p class="text-gray-500 text-sm font-light">We dig deep into the psychometrics of your brand. Who are you? Who do you want to be?</p>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="h-64 bg-gray-100 overflow-hidden">
-                    <img src="asset/images/liyadesigns2.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-1000">
-                </div>
-                <div class="h-64 bg-gray-100 overflow-hidden translate-y-8">
-                    <img src="asset/images/liyadesigns3.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-1000">
-                </div>
+            <div class="bg-white p-12 shadow-sm hover:shadow-xl transition duration-500 group">
+                <span class="text-4xl text-brand-gold font-serif italic">02.</span>
+                <h3 class="text-xl font-bold mt-4 mb-2 uppercase tracking-widest">Design</h3>
+                <p class="text-gray-500 text-sm font-light">We translate your essence into visual language. Logos, typography, and color palettes that command attention.</p>
+            </div>
+            <div class="bg-white p-12 shadow-sm hover:shadow-xl transition duration-500 group">
+                <span class="text-4xl text-brand-gold font-serif italic">03.</span>
+                <h3 class="text-xl font-bold mt-4 mb-2 uppercase tracking-widest">Delivery</h3>
+                <p class="text-gray-500 text-sm font-light">We launch your digital self. Websites, social strategies, and campaigns that convert.</p>
             </div>
         </div>
     </section>
 
-    <section class="pb-32 px-6 md:px-24 bg-white">
-        <div class="relative w-full h-[60vh] md:h-[85vh] overflow-hidden group shadow-2xl">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 transition duration-1000 scale-105 group-hover:scale-100">
-                <source src="asset/images/liyabrandingvideo1.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/20 group-hover:bg-transparent transition duration-700 pointer-events-none">
-                 <div class="text-center">
-                    <p class="text-white text-[10px] tracking-luxury uppercase reveal-text mb-4 opacity-80">Branding Motion</p>
-                    <h2 class="text-white text-5xl md:text-8xl font-serif italic reveal-text">Identity in Motion.</h2>
-                 </div>
+    <section class="relative w-full h-[70vh] md:h-[85vh] overflow-hidden bg-brand-dark">
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            class="absolute inset-0 w-full h-full object-cover opacity-60 scale-105"
+        >
+            <source src="asset/images/liyabrandingvideo1.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
+            <div class="reveal-text">
+                <p class="text-brand-gold tracking-luxury text-[10px] uppercase mb-4">Motion Identity</p>
+                <h2 class="text-5xl md:text-8xl font-serif italic mb-6">The Soul in Motion.</h2>
+                <div class="w-20 h-[1px] bg-brand-gold mx-auto"></div>
             </div>
-            <div class="absolute bottom-10 left-10 text-white/50 text-[10px] uppercase tracking-widest hidden md:block">
-                Visual Strategy &bull; 2026
-            </div>
+        </div>
+        <div class="absolute bottom-12 left-6 md:left-12 flex items-center space-x-4 opacity-50">
+            <div class="w-8 h-[1px] bg-white"></div>
+            <p class="text-[10px] uppercase tracking-widest">Visual Fluidity &bull; 2026</p>
         </div>
     </section>
 
-    <section class="py-24 bg-brand-bg">
-        <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-3xl font-serif italic mb-12 text-center">Selected Environments</h3>
-            
-            <div class="space-y-32">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center group">
-                    <div class="md:col-span-8 h-[60vh] overflow-hidden">
-                        <img src="asset/images/liyadesigns1.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-1000">
-                    </div>
-                    <div class="md:col-span-4 space-y-4">
-                        <span class="text-xs uppercase tracking-widest text-brand-gold">Residential</span>
-                        <h4 class="text-4xl font-serif">The Bole Penthouse</h4>
-                        <p class="text-gray-500 font-light text-sm">A minimalist sanctuary in the heart of the city. Use of local stone and imported Italian velvet.</p>
-                    </div>
+    <section class="py-12 px-4 md:px-12 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="relative h-[600px] group overflow-hidden">
+                <img src="asset/images/liyabranding2.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="text-3xl font-serif italic">Fashion Week '25</h3>
+                    <p class="text-xs uppercase tracking-luxury">Campaign Strategy</p>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center group">
-                    <div class="md:col-span-4 order-2 md:order-1 space-y-4 text-right">
-                        <span class="text-xs uppercase tracking-widest text-brand-gold">Commercial</span>
-                        <h4 class="text-4xl font-serif">Avocado Bistro</h4>
-                        <p class="text-gray-500 font-light text-sm">Biophilic design integration. Bringing nature indoors to create a restorative dining experience.</p>
-                    </div>
-                    <div class="md:col-span-8 order-1 md:order-2 h-[60vh] overflow-hidden">
-                        <img src="asset/images/liyadesigns2.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-1000">
-                    </div>
+            </div>
+            <div class="relative h-[600px] group overflow-hidden">
+                <img src="asset/images/liyabranding3.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="text-3xl font-serif italic">Eco-Luxe Cosmetics</h3>
+                    <p class="text-xs uppercase tracking-luxury">Brand Identity</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-brand-dark text-white py-12 text-center border-t border-white/10">
-        <a href="contact.html" class="text-xl font-serif italic hover:text-brand-gold transition">Inquire for Design Consultation</a>
+        <a href="contact.html" class="text-xl font-serif italic hover:text-brand-gold transition">Start Your Transformation</a>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Ensure smooth entrance as per other pages
+        gsap.to("body", { opacity: 1, duration: 1.5, ease: "power2.out" });
+    </script>
 </body>
 </html>
