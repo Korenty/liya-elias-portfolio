@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Works | Liya Elias</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-bg': '#FAFAFA',
+                        'brand-dark': '#111111',
+                        'brand-gold': '#C0A080',
+                        'brand-grey': '#6B7280',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'luxury': '0.25em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="opacity-0"> <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
+        <a href="index.html" class="text-2xl font-serif italic font-bold z-50 hover:text-brand-gold transition">LE.</a>
+        
+        <div class="hidden md:flex space-x-12 text-xs tracking-luxury uppercase z-50">
+            <a href="index.html" class="nav-link text-white transition-colors duration-300">Profile</a>
+            <a href="work.html" class="text-brand-gold transition-colors duration-300">Selected Works</a>
+            <a href="contact.html" class="nav-link text-white transition-colors duration-300">Inquire</a>
+        </div>
+        
+        <div class="md:hidden space-y-1.5 cursor-pointer">
+            <div class="w-8 h-0.5 bg-white"></div>
+            <div class="w-6 h-0.5 bg-white ml-auto"></div>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-20 px-6 md:px-12 bg-brand-bg">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-brand-gold text-xs tracking-luxury uppercase mb-4 reveal-text">Portfolio</p>
+            <h1 class="text-6xl md:text-8xl font-serif italic text-brand-dark reveal-text">
+                Visual <br> Narratives
+            </h1>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 md:px-12 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+            
+            <div class="md:col-span-5 order-2 md:order-1 space-y-8">
+                <span class="text-xs font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-3 py-1 rounded-full">Hospitality & Lifestyle</span>
+                
+                <h2 class="text-4xl md:text-5xl font-serif text-brand-dark reveal-text">
+                    Avocado Luxury Spa <span class="italic text-brand-gold">& Bistro</span>
+                </h2>
+                
+                <p class="text-brand-dark/70 font-light leading-relaxed reveal-text">
+                    A journey into sensory indulgence. We take you inside the stunning Avocado Luxury Spa & Bistro, where culinary art meets restorative wellness. From avocado-infused delicacies to the owner's exclusive vision, this campaign captured the essence of pure indulgence.
+                </p>
+                
+                <div class="draw-line w-full h-[1px] bg-brand-gold/30"></div>
+                
+                <div class="flex justify-between text-xs uppercase tracking-luxury text-brand-dark">
+                    <span>Role: Host & Creative</span>
+                    <span>Client: Avocado Spa</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-7 order-1 md:order-2 h-[60vh] md:h-[80vh] overflow-hidden relative group">
+                <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover filter brightness-95 group-hover:brightness-100 transition duration-700">
+                    <source src="asset/images/liyavideo1avocado" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12 bg-brand-bg">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+            
+            <div class="md:col-span-7 h-[60vh] md:h-[80vh] overflow-hidden relative group">
+                <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover filter brightness-95 group-hover:brightness-100 transition duration-700">
+                    <source src="asset/images/liyavideo2needs24" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="md:col-span-5 space-y-8">
+                <span class="text-xs font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-3 py-1 rounded-full">E-Commerce & Diaspora</span>
+                
+                <h2 class="text-4xl md:text-5xl font-serif text-brand-dark reveal-text">
+                    Needs-24: <br><span class="italic text-brand-gold">Love Borders No More</span>
+                </h2>
+                
+                <p class="text-brand-dark/70 font-light leading-relaxed reveal-text">
+                    Bridging the gap between the Ethiopian diaspora and home. For the Fasika holiday campaign, we emphasized that distance shouldn't stop care. This digital narrative highlights the seamless joy of sending global brands to loved ones in Addis Ababa.
+                </p>
+                
+                <div class="draw-line w-full h-[1px] bg-brand-gold/30"></div>
+                
+                <div class="flex justify-between text-xs uppercase tracking-luxury text-brand-dark">
+                    <span>Role: Brand Ambassador</span>
+                    <span>Campaign: Fasika '24</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+            
+            <div class="md:col-span-5 order-2 md:order-1 space-y-8">
+                <span class="text-xs font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-3 py-1 rounded-full">Wellness & Hotel</span>
+                
+                <h2 class="text-4xl md:text-5xl font-serif text-brand-dark reveal-text">
+                    Bellevue Fit: <span class="italic text-brand-gold">The Kinetic Glow</span>
+                </h2>
+                
+                <p class="text-brand-dark/70 font-light leading-relaxed reveal-text">
+                    Where structure meets sweat. A high-energy collaboration with Bellevue Hotel & Spa, showcasing the intersection of luxury lifestyle and peak performance. The visual language captures the "Glow-Up" transformation in the heart of Addis Ababa.
+                </p>
+                
+                <div class="draw-line w-full h-[1px] bg-brand-gold/30"></div>
+                
+                <div class="flex justify-between text-xs uppercase tracking-luxury text-brand-dark">
+                    <span>Role: Influencer</span>
+                    <span>Location: Bellevue Hotel</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-7 order-1 md:order-2 h-[60vh] md:h-[80vh] overflow-hidden relative group">
+                <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover filter brightness-95 group-hover:brightness-100 transition duration-700">
+                    <source src="asset/images/liyavideo3bellevue" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark text-white py-24 px-6 md:px-12 border-t border-white/10">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <h2 class="text-4xl md:text-6xl font-serif italic opacity-80">
+                Next Project?
+            </h2>
+            <a href="mailto:hello@liyaelias.com" class="mt-8 md:mt-0 px-8 py-3 border border-brand-gold text-brand-gold uppercase tracking-luxury hover:bg-brand-gold hover:text-brand-dark transition duration-500">
+                Start Conversation
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
