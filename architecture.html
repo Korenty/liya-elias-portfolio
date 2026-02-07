@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leyu Interiors | Architecture by Liya Elias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#111111', 'brand-gold': '#C0A080', 'brand-grey': '#6B7280' },
+                    fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
+                    letterSpacing: { 'luxury': '0.25em' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#EAEAEA] opacity-0">
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
+        <a href="index.html" class="text-2xl font-serif italic font-bold">LE.</a>
+        <div class="hidden md:flex space-x-12 text-xs tracking-luxury uppercase">
+            <a href="index.html" class="nav-link text-white">Home</a>
+            <a href="architecture.html" class="text-brand-gold">Interiors</a>
+            <a href="branding.html" class="nav-link text-white">Branding</a>
+            <a href="contact.html" class="nav-link text-white">Inquire</a>
+        </div>
+        <div class="md:hidden w-8 h-0.5 bg-white"></div>
+    </nav>
+
+    <header class="relative w-full h-[70vh] flex items-center justify-center bg-brand-dark overflow-hidden">
+        <img src="asset/images/liya4.jpg" class="absolute inset-0 w-full h-full object-cover opacity-40 parallax-media">
+        <div class="z-10 text-center space-y-6">
+            <h1 class="text-6xl md:text-8xl text-white font-serif italic reveal-text">Leyu Interiors</h1>
+            <p class="text-brand-gold tracking-luxury text-xs uppercase reveal-text">Form Follows Feeling</p>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 md:px-24 bg-brand-bg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="space-y-8">
+                <h2 class="text-4xl font-serif text-brand-dark reveal-text">We don't just fill spaces. <br> <span class="italic text-brand-gold">We curate atmospheres.</span></h2>
+                <div class="draw-line w-full h-[1px] bg-black/10"></div>
+                <p class="text-brand-dark/70 font-light reveal-text">
+                    At Leyu Interiors, architecture is not merely about shelter. It is about the choreography of light, texture, and volume. From high-end residential to boutique commercial spaces, we bring a "World Class" standard to Ethiopian design.
+                </p>
+                <ul class="space-y-4 pt-4 text-xs uppercase tracking-widest text-brand-dark reveal-text">
+                    <li class="flex items-center gap-4"><span class="w-2 h-2 bg-brand-gold rounded-full"></span> Spatial Planning</li>
+                    <li class="flex items-center gap-4"><span class="w-2 h-2 bg-brand-gold rounded-full"></span> Interior Architecture</li>
+                    <li class="flex items-center gap-4"><span class="w-2 h-2 bg-brand-gold rounded-full"></span> Bespoke Furniture Curation</li>
+                </ul>
+            </div>
+            <div class="h-[60vh] relative overflow-hidden">
+                <img src="asset/images/liya3.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 parallax-media">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white text-center">
+        <p class="text-xs uppercase tracking-luxury text-brand-grey mb-8">Selected Project</p>
+        <div class="max-w-5xl mx-auto h-[80vh] overflow-hidden relative group cursor-pointer">
+             <img src="asset/images/liya8.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
+             <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition">
+                 <h3 class="text-5xl text-white font-serif italic opacity-0 group-hover:opacity-100 transition duration-500 transform translate-y-4 group-hover:translate-y-0">The Penthouse Edit</h3>
+             </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark text-white py-12 text-center border-t border-white/10">
+        <a href="contact.html" class="text-sm uppercase tracking-widest hover:text-brand-gold transition">Inquire for Consultation &rarr;</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
