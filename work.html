@@ -21,6 +21,10 @@
             }
         }
     </script>
+    <style>
+        .matrix-card:hover .matrix-detail { opacity: 1; transform: translateY(0); }
+        .matrix-detail { opacity: 0; transform: translateY(10px); transition: all 0.5s ease; }
+    </style>
 </head>
 <body class="opacity-0 bg-brand-bg text-brand-dark overflow-x-hidden">
 
@@ -37,7 +41,7 @@
 
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
         <a href="index.html" class="z-50 block">
-            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="w-auto object-contain">
+            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-auto object-contain">
         </a>
         <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition z-50">Menu</button>
     </nav>
@@ -51,6 +55,39 @@
         </div>
     </header>
 
+    <section class="py-20 px-6 md:px-12 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-12">Performance Analytics / Core Legacy</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-white/10 border border-white/10">
+                
+                <div class="matrix-card p-10 bg-brand-dark group cursor-crosshair">
+                    <p class="text-[10px] uppercase tracking-widest text-brand-grey mb-4 group-hover:text-brand-gold transition">Attention Capital</p>
+                    <h3 class="text-5xl font-serif italic mb-4">18.4M+</h3>
+                    <p class="matrix-detail text-xs font-light text-brand-grey leading-relaxed">Cross-platform impressions engineered through strategic visual storytelling and psychological branding.</p>
+                </div>
+
+                <div class="matrix-card p-10 bg-brand-dark group cursor-crosshair">
+                    <p class="text-[10px] uppercase tracking-widest text-brand-grey mb-4 group-hover:text-brand-gold transition">Visual Retention</p>
+                    <h3 class="text-5xl font-serif italic mb-4">88%</h3>
+                    <p class="matrix-detail text-xs font-light text-brand-grey leading-relaxed">Higher dwell-time on brand assets compared to industry standard. We design for the "Unforgettable Pause."</p>
+                </div>
+
+                <div class="matrix-card p-10 bg-brand-dark group cursor-crosshair">
+                    <p class="text-[10px] uppercase tracking-widest text-brand-grey mb-4 group-hover:text-brand-gold transition">Conversion Delta</p>
+                    <h3 class="text-5xl font-serif italic mb-4">+310%</h3>
+                    <p class="matrix-detail text-xs font-light text-brand-grey leading-relaxed">Average increase in premium inquiries for lifestyle brands following a Liyu structural identity shift.</p>
+                </div>
+
+                <div class="matrix-card p-10 bg-brand-dark group cursor-crosshair">
+                    <p class="text-[10px] uppercase tracking-widest text-brand-grey mb-4 group-hover:text-brand-gold transition">Market Dominance</p>
+                    <h3 class="text-5xl font-serif italic mb-4">Elite</h3>
+                    <p class="matrix-detail text-xs font-light text-brand-grey leading-relaxed">Positioning brands in the 'Top 1%' of their niche by blending Architectural precision with Media influence.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <section class="py-32 px-6 md:px-12 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
             <div class="md:col-span-5 order-2 md:order-1 space-y-10">
@@ -59,13 +96,13 @@
                 <p class="text-brand-dark/70 font-light leading-relaxed text-lg reveal-text">Inside the stunning Avocado Luxury Spa & Bistro, where culinary art meets restorative wellness. A campaign captured to convey the essence of pure indulgence.</p>
                 
                 <div class="grid grid-cols-2 gap-8 py-10 border-y border-brand-gold/20">
-                    <div>
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2">Reach Index</p>
-                        <p class="text-3xl font-serif italic">Top Tier</p>
+                    <div class="group cursor-default">
+                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Desire Index</p>
+                        <p class="text-3xl font-serif italic">Top 0.1%</p>
                     </div>
-                    <div>
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2">Engagement</p>
-                        <p class="text-3xl font-serif italic">+42% ROI</p>
+                    <div class="group cursor-default">
+                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Economic ROI</p>
+                        <p class="text-3xl font-serif italic">+42.8%</p>
                     </div>
                 </div>
 
@@ -95,13 +132,13 @@
                 <p class="text-brand-dark/70 font-light leading-relaxed text-lg reveal-text">Bridging the gap between home and the diaspora. A digital narrative highlighting the joy of sending care across borders.</p>
                 
                 <div class="grid grid-cols-2 gap-8 py-10 border-y border-brand-gold/20">
-                    <div>
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2">Campaign Impact</p>
-                        <p class="text-3xl font-serif italic">High Conv.</p>
+                    <div class="group cursor-default">
+                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Trust Quotient</p>
+                        <p class="text-3xl font-serif italic">Institutional</p>
                     </div>
-                    <div>
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2">Sentiment Score</p>
-                        <p class="text-3xl font-serif italic">Elite</p>
+                    <div class="group cursor-default">
+                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Viral Coefficient</p>
+                        <p class="text-3xl font-serif italic">1.8x</p>
                     </div>
                 </div>
 
@@ -121,13 +158,13 @@
                 <p class="text-brand-dark/70 font-light leading-relaxed text-lg reveal-text">Where structure meets sweat. A collaboration capturing the intersection of luxury lifestyle and peak performance.</p>
                 
                 <div class="grid grid-cols-2 gap-8 py-10 border-y border-brand-gold/20">
-                    <div>
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2">Visual Reach</p>
-                        <p class="text-3xl font-serif italic">Viral</p>
+                    <div class="group cursor-default">
+                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Cultural Currency</p>
+                        <p class="text-3xl font-serif italic">Prime</p>
                     </div>
-                    <div>
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2">Brand Equity</p>
-                        <p class="text-3xl font-serif italic">Luxury Alt.</p>
+                    <div class="group cursor-default">
+                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Aesthetic Score</p>
+                        <p class="text-3xl font-serif italic">10/10</p>
                     </div>
                 </div>
 
