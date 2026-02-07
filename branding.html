@@ -22,73 +22,85 @@
 </head>
 <body class="bg-white opacity-0">
 
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
+        <div class="flex flex-col space-y-8 text-center">
+            <a href="index.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Home"><span>Home</span></a>
+            <a href="architecture.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
+            <a href="branding.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Branding"><span>Branding</span></a>
+            <a href="work.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
+            <a href="contact.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Contact"><span>Contact</span></a>
+        </div>
+    </div>
+
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
         <a href="index.html" class="text-2xl font-serif italic font-bold">LE.</a>
         <div class="hidden md:flex space-x-12 text-xs tracking-luxury uppercase">
-            <a href="index.html" class="nav-link text-white">Home</a>
-            <a href="architecture.html" class="nav-link text-white">Interiors</a>
+            <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
             <a href="branding.html" class="text-brand-gold">Branding</a>
-            <a href="contact.html" class="nav-link text-white">Inquire</a>
         </div>
-        <div class="md:hidden w-8 h-0.5 bg-white"></div>
+        <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Menu</button>
     </nav>
 
-    <header class="relative w-full h-[80vh] flex items-center px-6 md:px-24">
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-[#F0F0F0] -z-10"></div>
-        <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-12 items-center">
-            <div class="space-y-6 order-2 md:order-1">
-                <p class="text-brand-gold tracking-luxury text-xs uppercase reveal-text">Leyu Branding Agency</p>
-                <h1 class="text-6xl md:text-7xl text-brand-dark font-serif italic leading-none reveal-text">
-                    We Engineer <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-brand-dark">Influence.</span>
-                </h1>
-                <p class="text-gray-500 max-w-md font-light reveal-text">
-                    In the digital age, your identity is your currency. We craft visual systems for startups, public figures, and luxury entities.
-                </p>
-            </div>
-            <div class="order-1 md:order-2 h-[60vh] relative overflow-hidden">
-                <img src="asset/images/liya5.jpg" class="w-full h-full object-cover parallax-media">
-            </div>
+    <header class="relative w-full h-[90vh] flex items-center px-6 md:px-24 bg-brand-dark text-white overflow-hidden">
+        <div class="absolute right-0 top-0 w-2/3 h-full opacity-40">
+            <img src="asset/images/liyabranding1.jpg" class="w-full h-full object-cover parallax-media">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-2xl space-y-8">
+            <p class="text-brand-gold tracking-luxury text-xs uppercase reveal-text">Leyu Branding Agency</p>
+            <h1 class="text-6xl md:text-8xl font-serif italic leading-none reveal-text">
+                Identity. <br> Influence. <br> Impact.
+            </h1>
+            <p class="text-gray-400 font-light text-lg reveal-text">
+                We engineer digital souls for the world's most ambitious personalities and companies.
+            </p>
         </div>
     </header>
 
-    <section class="py-24 px-6 md:px-24 bg-brand-dark text-white">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-serif italic mb-16 text-center text-brand-gold">Our Expertise</h2>
-            
-            <div class="space-y-12">
-                <div class="group border-b border-white/20 pb-8 hover:border-brand-gold transition duration-500 cursor-pointer">
-                    <div class="flex justify-between items-end">
-                        <h3 class="text-4xl font-light group-hover:pl-4 transition-all duration-500">Identity Design</h3>
-                        <span class="text-xs tracking-luxury opacity-50 group-hover:opacity-100">01</span>
-                    </div>
-                    <p class="mt-4 text-gray-400 font-light max-w-lg hidden group-hover:block transition-all duration-500 fade-in">Logo Suites, Typography Pairing, Color Psychology, and Brand Guidelines.</p>
-                </div>
+    <section class="py-24 px-6 md:px-24 bg-brand-bg">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-12 shadow-sm hover:shadow-xl transition duration-500 group">
+                <span class="text-4xl text-brand-gold font-serif italic">01.</span>
+                <h3 class="text-xl font-bold mt-4 mb-2 uppercase tracking-widest">Discovery</h3>
+                <p class="text-gray-500 text-sm font-light">We dig deep into the psychometrics of your brand. Who are you? Who do you want to be?</p>
+            </div>
+            <div class="bg-white p-12 shadow-sm hover:shadow-xl transition duration-500 group">
+                <span class="text-4xl text-brand-gold font-serif italic">02.</span>
+                <h3 class="text-xl font-bold mt-4 mb-2 uppercase tracking-widest">Design</h3>
+                <p class="text-gray-500 text-sm font-light">We translate your essence into visual language. Logos, typography, and color palettes that command attention.</p>
+            </div>
+            <div class="bg-white p-12 shadow-sm hover:shadow-xl transition duration-500 group">
+                <span class="text-4xl text-brand-gold font-serif italic">03.</span>
+                <h3 class="text-xl font-bold mt-4 mb-2 uppercase tracking-widest">Delivery</h3>
+                <p class="text-gray-500 text-sm font-light">We launch your digital self. Websites, social strategies, and campaigns that convert.</p>
+            </div>
+        </div>
+    </section>
 
-                <div class="group border-b border-white/20 pb-8 hover:border-brand-gold transition duration-500 cursor-pointer">
-                    <div class="flex justify-between items-end">
-                        <h3 class="text-4xl font-light group-hover:pl-4 transition-all duration-500">Digital Marketing</h3>
-                        <span class="text-xs tracking-luxury opacity-50 group-hover:opacity-100">02</span>
-                    </div>
-                    <p class="mt-4 text-gray-400 font-light max-w-lg hidden group-hover:block transition-all duration-500 fade-in">Content Strategy, Social Media Management, and Influencer Alignment.</p>
+    <section class="py-12 px-4 md:px-12 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="relative h-[600px] group overflow-hidden">
+                <img src="asset/images/liyabranding2.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="text-3xl font-serif italic">Fashion Week '25</h3>
+                    <p class="text-xs uppercase tracking-luxury">Campaign Strategy</p>
                 </div>
-
-                <div class="group border-b border-white/20 pb-8 hover:border-brand-gold transition duration-500 cursor-pointer">
-                    <div class="flex justify-between items-end">
-                        <h3 class="text-4xl font-light group-hover:pl-4 transition-all duration-500">Personal Branding</h3>
-                        <span class="text-xs tracking-luxury opacity-50 group-hover:opacity-100">03</span>
-                    </div>
-                    <p class="mt-4 text-gray-400 font-light max-w-lg hidden group-hover:block transition-all duration-500 fade-in">For Public Figures, Models, and CEOs. We craft your digital soul.</p>
+            </div>
+            <div class="relative h-[600px] group overflow-hidden">
+                <img src="asset/images/liyabranding3.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="text-3xl font-serif italic">Eco-Luxe Cosmetics</h3>
+                    <p class="text-xs uppercase tracking-luxury">Brand Identity</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="h-[60vh] w-full relative overflow-hidden">
-        <img src="asset/images/liya7.jpg" class="w-full h-full object-cover grayscale parallax-media">
-        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-             <a href="contact.html" class="border border-white text-white px-12 py-4 text-xs uppercase tracking-luxury hover:bg-white hover:text-black transition duration-500">Start Your Project</a>
-        </div>
-    </section>
+    <footer class="bg-brand-dark text-white py-12 text-center">
+        <a href="contact.html" class="text-xl font-serif italic hover:text-brand-gold transition">Start Your Transformation</a>
+    </footer>
 
     <script src="script.js"></script>
 </body>
