@@ -20,59 +20,93 @@
         }
     </script>
 </head>
-<body class="bg-[#EAEAEA] opacity-0">
+<body class="bg-brand-bg opacity-0">
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
+        <div class="flex flex-col space-y-8 text-center">
+            <a href="index.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Home"><span>Home</span></a>
+            <a href="architecture.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
+            <a href="branding.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Branding"><span>Branding</span></a>
+            <a href="work.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
+            <a href="contact.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Contact"><span>Contact</span></a>
+        </div>
+    </div>
 
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
         <a href="index.html" class="text-2xl font-serif italic font-bold">LE.</a>
         <div class="hidden md:flex space-x-12 text-xs tracking-luxury uppercase">
-            <a href="index.html" class="nav-link text-white">Home</a>
             <a href="architecture.html" class="text-brand-gold">Interiors</a>
-            <a href="branding.html" class="nav-link text-white">Branding</a>
-            <a href="contact.html" class="nav-link text-white">Inquire</a>
+            <a href="branding.html" class="hover:text-brand-gold transition">Branding</a>
         </div>
-        <div class="md:hidden w-8 h-0.5 bg-white"></div>
+        <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Menu</button>
     </nav>
 
-    <header class="relative w-full h-[70vh] flex items-center justify-center bg-brand-dark overflow-hidden">
-        <img src="asset/images/liya4.jpg" class="absolute inset-0 w-full h-full object-cover opacity-40 parallax-media">
+    <header class="relative w-full h-[80vh] flex items-center justify-center bg-brand-dark overflow-hidden">
+        <img src="asset/images/liyadesigns1.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 parallax-media">
         <div class="z-10 text-center space-y-6">
-            <h1 class="text-6xl md:text-8xl text-white font-serif italic reveal-text">Leyu Interiors</h1>
-            <p class="text-brand-gold tracking-luxury text-xs uppercase reveal-text">Form Follows Feeling</p>
+            <p class="text-brand-gold tracking-luxury text-xs uppercase reveal-text">Addis Ababa &bull; Global</p>
+            <h1 class="text-6xl md:text-9xl text-white font-serif italic reveal-text">Liyu Interiors</h1>
         </div>
     </header>
 
-    <section class="py-24 px-6 md:px-24 bg-brand-bg">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+    <section class="py-24 px-6 md:px-24 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
             <div class="space-y-8">
-                <h2 class="text-4xl font-serif text-brand-dark reveal-text">We don't just fill spaces. <br> <span class="italic text-brand-gold">We curate atmospheres.</span></h2>
+                <h2 class="text-4xl font-serif text-brand-dark reveal-text">
+                    "A space should not just be seen. <br> <span class="italic text-brand-gold">It should be felt.</span>"
+                </h2>
                 <div class="draw-line w-full h-[1px] bg-black/10"></div>
-                <p class="text-brand-dark/70 font-light reveal-text">
-                    At Leyu Interiors, architecture is not merely about shelter. It is about the choreography of light, texture, and volume. From high-end residential to boutique commercial spaces, we bring a "World Class" standard to Ethiopian design.
+                <p class="text-brand-dark/70 font-light reveal-text leading-relaxed">
+                    Leveraging my background in <strong class="text-black">Construction Management and Architectural Engineering</strong> from AAU, I approach every project with a dual lens: the precision of an engineer and the soul of an artist.
                 </p>
-                <ul class="space-y-4 pt-4 text-xs uppercase tracking-widest text-brand-dark reveal-text">
-                    <li class="flex items-center gap-4"><span class="w-2 h-2 bg-brand-gold rounded-full"></span> Spatial Planning</li>
-                    <li class="flex items-center gap-4"><span class="w-2 h-2 bg-brand-gold rounded-full"></span> Interior Architecture</li>
-                    <li class="flex items-center gap-4"><span class="w-2 h-2 bg-brand-gold rounded-full"></span> Bespoke Furniture Curation</li>
-                </ul>
+                <p class="text-brand-dark/70 font-light reveal-text leading-relaxed">
+                    At Liyu Interiors, we don't follow trends. We study the inhabitants. We study the light. We create environments that elevate the human experience, blending Ethiopian heritage with contemporary luxury.
+                </p>
             </div>
-            <div class="h-[60vh] relative overflow-hidden">
-                <img src="asset/images/liya3.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 parallax-media">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="h-64 bg-gray-100 overflow-hidden">
+                    <img src="asset/images/liyadesigns2.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-1000">
+                </div>
+                <div class="h-64 bg-gray-100 overflow-hidden translate-y-8">
+                    <img src="asset/images/liyadesigns3.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-1000">
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-white text-center">
-        <p class="text-xs uppercase tracking-luxury text-brand-grey mb-8">Selected Project</p>
-        <div class="max-w-5xl mx-auto h-[80vh] overflow-hidden relative group cursor-pointer">
-             <img src="asset/images/liya8.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
-             <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition">
-                 <h3 class="text-5xl text-white font-serif italic opacity-0 group-hover:opacity-100 transition duration-500 transform translate-y-4 group-hover:translate-y-0">The Penthouse Edit</h3>
-             </div>
+    <section class="py-24 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl font-serif italic mb-12 text-center">Selected Environments</h3>
+            
+            <div class="space-y-32">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center group">
+                    <div class="md:col-span-8 h-[60vh] overflow-hidden">
+                        <img src="asset/images/liyadesigns1.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-1000">
+                    </div>
+                    <div class="md:col-span-4 space-y-4">
+                        <span class="text-xs uppercase tracking-widest text-brand-gold">Residential</span>
+                        <h4 class="text-4xl font-serif">The Bole Penthouse</h4>
+                        <p class="text-gray-500 font-light text-sm">A minimalist sanctuary in the heart of the city. Use of local stone and imported Italian velvet.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center group">
+                    <div class="md:col-span-4 order-2 md:order-1 space-y-4 text-right">
+                        <span class="text-xs uppercase tracking-widest text-brand-gold">Commercial</span>
+                        <h4 class="text-4xl font-serif">Avocado Bistro</h4>
+                        <p class="text-gray-500 font-light text-sm">Biophilic design integration. Bringing nature indoors to create a restorative dining experience.</p>
+                    </div>
+                    <div class="md:col-span-8 order-1 md:order-2 h-[60vh] overflow-hidden">
+                        <img src="asset/images/liyadesigns2.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-1000">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-brand-dark text-white py-12 text-center border-t border-white/10">
-        <a href="contact.html" class="text-sm uppercase tracking-widest hover:text-brand-gold transition">Inquire for Consultation &rarr;</a>
+    <footer class="bg-brand-dark text-white py-12 text-center">
+        <a href="contact.html" class="text-xl font-serif italic hover:text-brand-gold transition">Inquire for Design Consultation</a>
     </footer>
 
     <script src="script.js"></script>
