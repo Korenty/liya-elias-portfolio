@@ -43,3 +43,15 @@
     grid-template-rows: repeat(12, 1fr);
     gap: 1rem;
 }
+
+/* --- LOGO GLOBAL SIZING (Doubled) --- */
+nav a img {
+    height: 64px !important; /* Doubled from 32px */
+    width: auto;
+}
+
+@media (min-width: 768px) {
+    nav a img {
+        height: 80px !important; /* Doubled from 40px */
+    }
+}
