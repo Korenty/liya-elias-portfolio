@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leyu Branding | Identity Engineering by Liya Elias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#111111', 'brand-gold': '#C0A080' },
+                    fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
+                    letterSpacing: { 'luxury': '0.25em' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white opacity-0">
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
+        <a href="index.html" class="text-2xl font-serif italic font-bold">LE.</a>
+        <div class="hidden md:flex space-x-12 text-xs tracking-luxury uppercase">
+            <a href="index.html" class="nav-link text-white">Home</a>
+            <a href="architecture.html" class="nav-link text-white">Interiors</a>
+            <a href="branding.html" class="text-brand-gold">Branding</a>
+            <a href="contact.html" class="nav-link text-white">Inquire</a>
+        </div>
+        <div class="md:hidden w-8 h-0.5 bg-white"></div>
+    </nav>
+
+    <header class="relative w-full h-[80vh] flex items-center px-6 md:px-24">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-[#F0F0F0] -z-10"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-12 items-center">
+            <div class="space-y-6 order-2 md:order-1">
+                <p class="text-brand-gold tracking-luxury text-xs uppercase reveal-text">Leyu Branding Agency</p>
+                <h1 class="text-6xl md:text-7xl text-brand-dark font-serif italic leading-none reveal-text">
+                    We Engineer <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-brand-dark">Influence.</span>
+                </h1>
+                <p class="text-gray-500 max-w-md font-light reveal-text">
+                    In the digital age, your identity is your currency. We craft visual systems for startups, public figures, and luxury entities.
+                </p>
+            </div>
+            <div class="order-1 md:order-2 h-[60vh] relative overflow-hidden">
+                <img src="asset/images/liya5.jpg" class="w-full h-full object-cover parallax-media">
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 md:px-24 bg-brand-dark text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-serif italic mb-16 text-center text-brand-gold">Our Expertise</h2>
+            
+            <div class="space-y-12">
+                <div class="group border-b border-white/20 pb-8 hover:border-brand-gold transition duration-500 cursor-pointer">
+                    <div class="flex justify-between items-end">
+                        <h3 class="text-4xl font-light group-hover:pl-4 transition-all duration-500">Identity Design</h3>
+                        <span class="text-xs tracking-luxury opacity-50 group-hover:opacity-100">01</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 font-light max-w-lg hidden group-hover:block transition-all duration-500 fade-in">Logo Suites, Typography Pairing, Color Psychology, and Brand Guidelines.</p>
+                </div>
+
+                <div class="group border-b border-white/20 pb-8 hover:border-brand-gold transition duration-500 cursor-pointer">
+                    <div class="flex justify-between items-end">
+                        <h3 class="text-4xl font-light group-hover:pl-4 transition-all duration-500">Digital Marketing</h3>
+                        <span class="text-xs tracking-luxury opacity-50 group-hover:opacity-100">02</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 font-light max-w-lg hidden group-hover:block transition-all duration-500 fade-in">Content Strategy, Social Media Management, and Influencer Alignment.</p>
+                </div>
+
+                <div class="group border-b border-white/20 pb-8 hover:border-brand-gold transition duration-500 cursor-pointer">
+                    <div class="flex justify-between items-end">
+                        <h3 class="text-4xl font-light group-hover:pl-4 transition-all duration-500">Personal Branding</h3>
+                        <span class="text-xs tracking-luxury opacity-50 group-hover:opacity-100">03</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 font-light max-w-lg hidden group-hover:block transition-all duration-500 fade-in">For Public Figures, Models, and CEOs. We craft your digital soul.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="h-[60vh] w-full relative overflow-hidden">
+        <img src="asset/images/liya7.jpg" class="w-full h-full object-cover grayscale parallax-media">
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+             <a href="contact.html" class="border border-white text-white px-12 py-4 text-xs uppercase tracking-luxury hover:bg-white hover:text-black transition duration-500">Start Your Project</a>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
