@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquire | Liya Elias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#111111', 'brand-gold': '#C0A080' },
+                    fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
+                    letterSpacing: { 'luxury': '0.25em' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-white overflow-hidden h-screen flex flex-col md:flex-row">
+
+    <nav class="absolute top-0 w-full z-50 px-6 py-8 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-serif italic font-bold">LE.</a>
+        <a href="index.html" class="text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</a>
+    </nav>
+
+    <div class="hidden md:block w-1/2 h-full relative overflow-hidden">
+        <img src="asset/images/liya8.jpg" class="w-full h-full object-cover filter brightness-75">
+        <div class="absolute bottom-12 left-12">
+            <h2 class="text-5xl font-serif italic">Global Access.</h2>
+            <p class="text-brand-gold text-xs tracking-luxury mt-2 uppercase">Addis Ababa &bull; Worldwide</p>
+        </div>
+    </div>
+
+    <div class="w-full md:w-1/2 h-full bg-brand-dark flex flex-col justify-center px-8 md:px-24 relative overflow-y-auto">
+        <div class="max-w-lg w-full py-20">
+            <h1 class="text-3xl font-serif mb-2">Initiate Request</h1>
+            <p class="text-gray-500 text-sm font-light mb-12">Please specify the nature of your inquiry. Our management team reviews all requests within 48 hours.</p>
+
+            <form id="cms-form" class="space-y-8" onsubmit="handleSubmit(event)">
+                
+                <div class="space-y-4">
+                    <label class="text-xs uppercase tracking-luxury text-brand-gold">I am interested in</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="type" class="peer sr-only" checked>
+                            <div class="border border-white/20 p-4 text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition text-sm">Brand Partnership</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="type" class="peer sr-only">
+                            <div class="border border-white/20 p-4 text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition text-sm">Interior Design</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="type" class="peer sr-only">
+                            <div class="border border-white/20 p-4 text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition text-sm">Media / TV</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="type" class="peer sr-only">
+                            <div class="border border-white/20 p-4 text-center hover:bg-white/5 peer-checked:bg-brand-gold peer-checked:text-black peer-checked:border-brand-gold transition text-sm">Other</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="relative group">
+                        <input type="text" required class="w-full bg-transparent border-b border-white/20 py-3 text-lg outline-none focus:border-brand-gold transition">
+                        <label class="absolute left-0 top-3 text-gray-500 text-sm pointer-events-none group-focus-within:-top-4 group-focus-within:text-xs group-focus-within:text-brand-gold transition-all">Full Name</label>
+                    </div>
+                    <div class="relative group">
+                        <input type="email" required class="w-full bg-transparent border-b border-white/20 py-3 text-lg outline-none focus:border-brand-gold transition">
+                        <label class="absolute left-0 top-3 text-gray-500 text-sm pointer-events-none group-focus-within:-top-4 group-focus-within:text-xs group-focus-within:text-brand-gold transition-all">Official Email</label>
+                    </div>
+                    <div class="relative group">
+                        <input type="text" class="w-full bg-transparent border-b border-white/20 py-3 text-lg outline-none focus:border-brand-gold transition">
+                        <label class="absolute left-0 top-3 text-gray-500 text-sm pointer-events-none group-focus-within:-top-4 group-focus-within:text-xs group-focus-within:text-brand-gold transition-all">Budget / Scope (Optional)</label>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-white text-black py-4 uppercase tracking-luxury text-xs font-bold hover:bg-brand-gold transition duration-500 mt-8">
+                    Send Request
+                </button>
+            </form>
+
+            <div id="success-msg" class="hidden text-center py-12">
+                <div class="text-6xl mb-4">✨</div>
+                <h3 class="text-2xl font-serif italic text-brand-gold">Request Received.</h3>
+                <p class="text-gray-400 mt-2 font-light">Thank you. We will be in touch shortly.</p>
+                <a href="index.html" class="block mt-8 text-xs underline uppercase tracking-widest">Return Home</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // PAGE FADE IN
+        gsap.to("body", { opacity: 1, duration: 1 });
+
+        // FORM HANDLING SIMULATION
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const form = document.getElementById('cms-form');
+            const msg = document.getElementById('success-msg');
+
+            // Button Loading State
+            btn.innerHTML = "Processing...";
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            // Simulate Server Delay
+            setTimeout(() => {
+                gsap.to(form, { opacity: 0, height: 0, duration: 0.5, onComplete: () => {
+                    form.style.display = 'none';
+                    msg.classList.remove('hidden');
+                    gsap.from(msg, { opacity: 0, y: 20, duration: 0.8 });
+                }});
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
