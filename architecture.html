@@ -43,12 +43,39 @@
         .reveal-frame { overflow: hidden; position: relative; }
         .reveal-img { transform: scale(1.1); transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-frame:hover .reveal-img { transform: scale(1); }
+
+        /* Menu Overlay Styles */
+        #mobile-menu-overlay {
+            clip-path: circle(0% at 90% 5%);
+            transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        #mobile-menu-overlay.active {
+            clip-path: circle(150% at 90% 5%);
+        }
     </style>
 </head>
 <body class="bg-brand-dark text-white opacity-0">
 
     <div id="cursor-label">Expand Experience</div>
-    <div id="media-viewer"><div class="close-viewer"></div><div id="viewer-content" class="w-[85%] h-[85%] flex items-center justify-center"></div></div>
+    
+    <div id="media-viewer">
+        <div class="close-viewer"></div>
+        <div id="viewer-content" class="w-[85%] h-[85%] flex items-center justify-center"></div>
+    </div>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
+        <div class="flex flex-col space-y-6 text-center">
+            <a href="index.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Home</a>
+            <a href="architecture.html" class="menu-link text-4xl md:text-6xl font-serif italic text-brand-gold transition opacity-0">Interiors</a>
+            <a href="branding.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Branding</a>
+            <a href="culture.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Ambassador</a>
+            <a href="modeling.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Modeling</a>
+            <a href="awards.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Awards</a>
+            <a href="work.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Portfolio</a>
+            <a href="contact.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Contact</a>
+        </div>
+    </div>
 
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference">
         <a href="index.html" class="z-50"><img src="asset/images/liyalogo.png" alt="Liya Logo" class="h-8 md:h-10"></a>
@@ -84,7 +111,7 @@
     <section class="py-32 px-6 md:px-24 bg-white text-brand-dark">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <div class="reveal-frame rounded-sm shadow-2xl">
-                <img src="asset/images/liyadesigns1.jpg" class="reveal-img w-full h-[750px] object-cover" alt="Liya Elias BSc Architecture">
+                <img src="asset/images/liya designs1.jpg" class="reveal-img w-full h-[750px] object-cover" alt="Liya Elias BSc Architecture">
                 <div class="absolute bottom-0 right-0 bg-brand-gold text-brand-dark px-10 py-8 max-w-xs">
                     <p class="text-[10px] tracking-luxury uppercase font-bold mb-2">The Pedigree</p>
                     <p class="font-serif italic text-xl">BSc Architecture, Hope University 2021</p>
@@ -181,6 +208,24 @@
     <script>
         gsap.to("body", { opacity: 1, duration: 1.5 });
 
+        // MENU LOGIC
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        menuBtn.addEventListener('click', () => {
+            menuOverlay.classList.add('active');
+            gsap.to(menuLinks, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, delay: 0.3, ease: "power4.out" });
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            gsap.to(menuLinks, { opacity: 0, y: 20, duration: 0.3 });
+            setTimeout(() => {
+                menuOverlay.classList.remove('active');
+            }, 300);
+        });
+
         // Cursor follow
         const cursorLabel = document.getElementById('cursor-label');
         window.addEventListener('mousemove', (e) => {
@@ -192,8 +237,9 @@
         const content = document.getElementById('viewer-content');
 
         document.querySelectorAll('.expandable-media').forEach(item => {
-            item.addEventListener('mouseenter', () => gsap.to(cursorLabel, { opacity: 1, scale: 1 }));
-            item.addEventListener('mouseleave', () => gsap.to(cursorLabel, { opacity: 0, scale: 0.5 }));
+            const container = item.closest('.reveal-frame') || item.parentElement;
+            container.addEventListener('mouseenter', () => gsap.to(cursorLabel, { opacity: 1, scale: 1 }));
+            container.addEventListener('mouseleave', () => gsap.to(cursorLabel, { opacity: 0, scale: 0.5 }));
             
             item.addEventListener('click', () => {
                 content.innerHTML = '';
@@ -216,15 +262,10 @@
         });
 
         viewer.addEventListener('click', () => {
-            gsap.to(viewer, { opacity: 0, duration: 0.5, onComplete: () => viewer.style.display = 'none' });
-        });
-
-        // Scroll reveals
-        gsap.utils.toArray('.reveal-frame').forEach(frame => {
-            gsap.from(frame, {
-                scrollTrigger: { trigger: frame, start: "top 85%" },
-                opacity: 0, y: 50, duration: 1.5, ease: "power3.out"
-            });
+            gsap.to(viewer, { opacity: 0, duration: 0.5, onComplete: () => {
+                viewer.style.display = 'none';
+                content.innerHTML = '';
+            }});
         });
     </script>
 </body>
