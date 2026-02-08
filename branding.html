@@ -22,14 +22,17 @@
 </head>
 <body class="bg-white opacity-0">
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white">
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
-        <div class="flex flex-col space-y-8 text-center">
-            <a href="index.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Home"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
-            <a href="branding.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Branding"><span>Branding</span></a>
-            <a href="work.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
-            <a href="contact.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Contact"><span>Contact</span></a>
+        <div class="flex flex-col space-y-6 text-center">
+            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Home"><span>Home</span></a>
+            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
+            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Branding"><span>Branding</span></a>
+            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
+            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
+            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Awards"><span>Awards</span></a>
+            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
+            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Contact"><span>Contact</span></a>
         </div>
     </div>
 
@@ -37,9 +40,13 @@
         <a href="index.html" class="z-50 block">
             <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain transition-opacity hover:opacity-80">
         </a>
-        <div class="hidden md:flex space-x-12 text-xs tracking-luxury uppercase">
+        <div class="hidden md:flex space-x-8 text-xs tracking-luxury uppercase">
             <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
-            <a href="branding.html" class="text-brand-gold">Branding</a>
+            <a href="branding.html" class="text-brand-gold border-b border-brand-gold">Branding</a>
+            <a href="culture.html" class="hover:text-brand-gold transition">Ambassador</a>
+            <a href="modeling.html" class="hover:text-brand-gold transition">Modeling</a>
+            <a href="awards.html" class="hover:text-brand-gold transition">Awards</a>
+            <a href="work.html" class="hover:text-brand-gold transition">Portfolio</a>
         </div>
         <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Menu</button>
     </nav>
