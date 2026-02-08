@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awards & Achievements | Liya Elias</title>
+    <title>Interiors & Architecture | Liya Elias</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -14,308 +14,193 @@
                 extend: {
                     colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#0a0a0a', 'brand-gold': '#C0A080', 'brand-grey': '#6B7280' },
                     fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
-                    letterSpacing: { 'luxury': '0.25em' }
+                    letterSpacing: { 'luxury': '0.3em' }
                 }
             }
         }
     </script>
     <style>
-        /* Cinematic Lightbox Overlay */
         #media-viewer {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            align-items: center;
-            justify-content: center;
-            cursor: zoom-out;
-            opacity: 0;
+            display: none; position: fixed; inset: 0; z-index: 100;
+            background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(25px);
+            align-items: center; justify-content: center; opacity: 0; cursor: zoom-out;
         }
-
-        /* Luxury Close Icon */
         .close-viewer {
-            position: absolute;
-            top: 2.5rem;
-            right: 2.5rem;
-            width: 60px;
-            height: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 110;
-            background: rgba(255,255,255,0.05);
+            position: absolute; top: 2.5rem; right: 2.5rem; width: 60px; height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; z-index: 110;
         }
+        .close-viewer::before, .close-viewer::after { content: ''; position: absolute; width: 20px; height: 1px; background: white; }
+        .close-viewer::before { transform: rotate(45deg); } .close-viewer::after { transform: rotate(-45deg); }
         
-        .close-viewer::before, .close-viewer::after {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 1px;
-            background: white;
-            transition: transform 0.4s ease;
-        }
-        .close-viewer::before { transform: rotate(45deg); }
-        .close-viewer::after { transform: rotate(-45deg); }
-
-        .close-viewer:hover {
-            background: white;
-            transform: rotate(90deg) scale(1.1);
-        }
-        .close-viewer:hover::before, .close-viewer:hover::after {
-            background: black;
-        }
-
-        #viewer-content {
-            width: 90%;
-            height: 90%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-        }
-
-        #viewer-content img, #viewer-content video {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-        }
-
-        /* Luxury Cursor Tooltip */
         #cursor-label {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 99;
-            padding: 8px 16px;
-            background: #C0A080;
-            color: black;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            border-radius: 20px;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
-            transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99;
+            padding: 8px 18px; background: #C0A080; color: black; font-family: 'Space Grotesk';
+            font-size: 10px; font-weight: bold; text-transform: uppercase; border-radius: 20px;
+            opacity: 0; transform: translate(-50%, -50%) scale(0.5);
         }
+
+        .reveal-frame { overflow: hidden; position: relative; }
+        .reveal-img { transform: scale(1.2); transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-frame:hover .reveal-img { transform: scale(1); }
     </style>
 </head>
 <body class="bg-brand-dark text-white opacity-0">
 
-    <div id="cursor-label">Expand</div>
-
-    <div id="media-viewer">
-        <div class="close-viewer"></div>
-        <div id="viewer-content"></div>
-    </div>
-
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
-        <div class="flex flex-col space-y-6 text-center">
-            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Home"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
-            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Branding"><span>Branding</span></a>
-            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
-            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
-            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Awards"><span>Awards</span></a>
-            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
-            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Contact"><span>Contact</span></a>
-        </div>
-    </div>
+    <div id="cursor-label">View Detail</div>
+    <div id="media-viewer"><div class="close-viewer"></div><div id="viewer-content" class="w-[85%] h-[85%] flex items-center justify-center"></div></div>
 
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference">
-        <a href="index.html" class="z-50 block">
-            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain transition-opacity hover:opacity-80">
-        </a>
-        <div class="hidden md:flex space-x-8 text-xs tracking-luxury uppercase">
-            <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
+        <a href="index.html" class="z-50"><img src="asset/images/liyalogo.png" alt="Liya Logo" class="h-8 md:h-10"></a>
+        <div class="hidden md:flex space-x-10 text-[10px] tracking-luxury uppercase font-medium">
+            <a href="architecture.html" class="text-brand-gold border-b border-brand-gold/40 pb-1">Interiors</a>
             <a href="branding.html" class="hover:text-brand-gold transition">Branding</a>
             <a href="culture.html" class="hover:text-brand-gold transition">Ambassador</a>
             <a href="modeling.html" class="hover:text-brand-gold transition">Modeling</a>
-            <a href="awards.html" class="text-brand-gold border-b border-brand-gold">Awards</a>
+            <a href="awards.html" class="hover:text-brand-gold transition">Awards</a>
             <a href="work.html" class="hover:text-brand-gold transition">Portfolio</a>
         </div>
-        <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Menu</button>
+        <button id="menu-btn" class="text-[10px] uppercase border border-white/40 px-8 py-2.5 rounded-full hover:bg-white hover:text-black transition-all">Menu</button>
     </nav>
 
-    <header class="h-[60vh] flex items-end pb-24 px-6 md:px-24 border-b border-white/10">
-        <div>
-            <p class="text-brand-gold text-xs tracking-luxury uppercase mb-6">Recognition</p>
-            <h1 class="text-6xl md:text-8xl font-serif italic">Excellence & <br> Acclaim.</h1>
+    <header class="relative h-screen w-full flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="asset/images/liyadesignsluxuryhomes3.jpg" class="w-full h-full object-cover opacity-50 scale-105" id="hero-img">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/20 to-brand-dark"></div>
+        </div>
+        <div class="relative z-10 px-6 md:px-24 w-full">
+            <div class="max-w-4xl">
+                <span class="block text-brand-gold text-xs tracking-[0.5em] uppercase mb-6" id="hero-sub">Haute Architecture</span>
+                <h1 class="text-6xl md:text-[120px] font-serif italic leading-none mb-8" id="hero-title">Spatial <br> Elegance.</h1>
+                <p class="text-brand-grey max-w-lg text-sm leading-loose tracking-wide" id="hero-p">
+                    Transforming the architectural landscape of Ethiopia through ultra-premium interior experiences that balance structural integrity with aesthetic soul.
+                </p>
+            </div>
+        </div>
+        <div class="absolute bottom-12 right-12 flex items-center space-x-4">
+            <div class="h-[1px] w-24 bg-brand-gold/30"></div>
+            <span class="text-[9px] tracking-widest uppercase text-brand-gold">Scroll to Explore</span>
         </div>
     </header>
 
-    <section class="py-24 px-6 md:px-24">
-        <h2 class="text-3xl font-serif italic mb-12 text-center text-brand-gold">The Red Carpet</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[60vh]">
-            <div class="relative group overflow-hidden border border-white/10 rounded-sm cursor-pointer">
-                <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700">
-                    <source src="asset/images/liyaredcarpetvideotiktokaward.mp4" type="video/mp4">
-                </video>
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full pointer-events-none">
-                    <p class="text-xs uppercase tracking-luxury text-brand-gold">Gala Event</p>
-                    <h3 class="text-xl font-serif">TikTok Awards</h3>
+    <section class="py-32 px-6 md:px-24 bg-white text-brand-dark">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div class="reveal-frame rounded-sm shadow-2xl">
+                <img src="asset/images/liya designs1.jpg" class="reveal-img w-full h-[700px] object-cover" alt="Liya Elias Architect">
+                <div class="absolute bottom-6 left-6 bg-brand-dark text-white px-6 py-4">
+                    <p class="text-[10px] tracking-luxury uppercase mb-1">Academic Foundation</p>
+                    <p class="font-serif italic text-lg text-brand-gold">BSc in Architecture, 2021</p>
                 </div>
             </div>
-
-            <div class="relative group overflow-hidden border border-white/10 rounded-sm cursor-pointer">
-                <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700">
-                    <source src="asset/images/liyaredcarpetvideogumaawards.mp4" type="video/mp4">
-                </video>
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full pointer-events-none">
-                    <p class="text-xs uppercase tracking-luxury text-brand-gold">Cinema Excellence</p>
-                    <h3 class="text-xl font-serif">Guma Awards</h3>
-                </div>
-            </div>
-
-            <div class="relative group overflow-hidden border border-white/10 rounded-sm cursor-pointer">
-                <img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" class="expandable-media w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700 scale-105 group-hover:scale-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full pointer-events-none">
-                    <p class="text-xs uppercase tracking-luxury text-brand-gold">Fashion Week</p>
-                    <h3 class="text-xl font-serif">Hub of Africa</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-24 bg-white text-brand-dark">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-            <h2 class="text-5xl font-serif">Trophy Cabinet</h2>
-            <p class="text-xs uppercase tracking-widest text-brand-gold">Victory Year 2024</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <div class="border-l-4 border-brand-gold pl-6">
-                    <span class="text-4xl font-serif italic text-brand-gold">Winner</span>
-                    <h3 class="text-5xl md:text-6xl font-bold mt-2">Best Model</h3>
-                    <p class="text-xl mt-4 font-light text-gray-500">SAA 2024 Awards</p>
-                </div>
-                <p class="leading-relaxed text-gray-600">
-                    Recognized for outstanding runway presence, editorial versatility, and influence in the East African fashion industry. A defining moment in a stellar career.
+            <div class="space-y-12">
+                <h2 class="text-5xl md:text-7xl font-serif italic leading-tight">Expertise forged in <br> Academic Excellence.</h2>
+                <div class="h-1 w-20 bg-brand-gold"></div>
+                <p class="text-lg leading-relaxed text-gray-500 font-light">
+                    Graduating from <span class="text-brand-dark font-medium underline decoration-brand-gold underline-offset-8">Hope Enterprises University College</span>, Liya Elias bridges the gap between engineering precision and artistic fluidity. Every project is a testament to her technical rigor and her status as Ethiopia’s premier architectural visionary.
                 </p>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-                <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" class="expandable-media w-full h-80 object-cover shadow-2xl cursor-pointer">
-                <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto2.jpg" class="expandable-media w-full h-80 object-cover shadow-2xl mt-8 cursor-pointer">
+                <div class="grid grid-cols-2 gap-8 border-t border-gray-100 pt-12">
+                    <div>
+                        <p class="text-3xl font-serif text-brand-gold">01.</p>
+                        <h4 class="text-xs uppercase tracking-widest font-bold mt-2">Structural Soul</h4>
+                        <p class="text-sm text-gray-400 mt-2 leading-relaxed">Defining the core skeleton of luxury environments.</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-serif text-brand-gold">02.</p>
+                        <h4 class="text-xs uppercase tracking-widest font-bold mt-2">Interior Couture</h4>
+                        <p class="text-sm text-gray-400 mt-2 leading-relaxed">Bespoke materials and artisanal finishing.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-6 md:px-24 bg-brand-dark border-t border-white/10">
-        <h3 class="text-center text-xs uppercase tracking-luxury text-white mb-16">Distinguished Nominations</h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="text-center group">
-                <div class="relative overflow-hidden rounded-full w-48 h-48 mx-auto mb-8 border border-white/20 group-hover:border-brand-gold transition duration-500">
-                    <img src="asset/images/liyaachievementbestzikomotvhostoftheyear2025photo.jpg" class="w-full h-full object-cover">
+    <section class="py-32 px-6 md:px-24 bg-brand-dark">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+            <div>
+                <span class="text-brand-gold text-xs tracking-luxury uppercase mb-4 block">The Portfolio</span>
+                <h2 class="text-5xl md:text-7xl font-serif italic">Curated Spaces.</h2>
+            </div>
+            <p class="text-brand-grey text-xs tracking-widest hidden md:block uppercase">Top 1% Precision</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-8 reveal-frame h-[600px] cursor-pointer group">
+                <img src="asset/images/liyadesignsluxuryhomes4.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Luxury Home Design">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <p class="text-white tracking-luxury uppercase text-xs border border-white/20 px-6 py-2">Residential Excellence</p>
                 </div>
-                <h4 class="text-2xl font-serif italic text-brand-gold">TV Host of the Year</h4>
-                <p class="text-xs uppercase tracking-widest mt-2">Zikomo Awards 2025</p>
+            </div>
+            
+            <div class="md:col-span-4 space-y-6">
+                <div class="reveal-frame h-[288px] cursor-pointer group">
+                    <img src="asset/images/liyadesignsoffice2.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Office Concept">
+                </div>
+                <div class="reveal-frame h-[288px] cursor-pointer group">
+                    <img src="asset/images/liyadesignsluxuryhomes7.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Minimalist Interior">
+                </div>
             </div>
 
-            <div class="text-center group">
-                <div class="relative overflow-hidden rounded-full w-48 h-48 mx-auto mb-8 border border-white/20 group-hover:border-brand-gold transition duration-500">
-                    <img src="asset/images/liyaachievementbestzikomorisingstarof2025photo.jpg" class="w-full h-full object-cover">
-                </div>
-                <h4 class="text-2xl font-serif italic text-brand-gold">Rising Star</h4>
-                <p class="text-xs uppercase tracking-widest mt-2">Zikomo Awards 2025</p>
+            <div class="md:col-span-4 reveal-frame h-[450px] cursor-pointer group">
+                <img src="asset/images/liyadesignsoffice5.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Corporate Lobby">
             </div>
-
-            <div class="text-center group">
-                <div class="relative overflow-hidden rounded-full w-48 h-48 mx-auto mb-8 border border-white/20 group-hover:border-brand-gold transition duration-500">
-                    <img src="asset/images/liyaachievmentyoungachieversafricaaward.jpg" class="w-full h-full object-cover">
-                </div>
-                <h4 class="text-2xl font-serif italic text-brand-gold">Young Achiever</h4>
-                <p class="text-xs uppercase tracking-widest mt-2">Africa Awards</p>
+            <div class="md:col-span-8 reveal-frame h-[450px] cursor-pointer group">
+                <img src="asset/images/liyadesignsoffice6.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Executive Suite">
             </div>
         </div>
     </section>
 
-    <footer class="bg-black text-white py-12 text-center text-[10px] uppercase tracking-widest text-brand-grey border-t border-white/10">
-        &copy; 2026 Liya Elias. All Rights Reserved.
+    <section class="py-40 bg-brand-bg text-brand-dark text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <h3 class="text-4xl md:text-6xl font-serif italic mb-10">Start your architectural journey.</h3>
+            <a href="contact.html" class="inline-block bg-brand-dark text-white px-12 py-5 rounded-full text-xs tracking-luxury uppercase hover:bg-brand-gold transition-colors">Enquire Now</a>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark py-12 text-center text-[10px] tracking-[0.4em] uppercase text-brand-grey border-t border-white/5">
+        &copy; 2026 Liya Elias Architecture. All Rights Reserved.
     </footer>
 
-    <script src="script.js"></script>
     <script>
+        // Init Page
         gsap.to("body", { opacity: 1, duration: 1.5 });
 
-        const viewer = document.getElementById('media-viewer');
-        const viewerContent = document.getElementById('viewer-content');
-        const expandableItems = document.querySelectorAll('.expandable-media');
-        const cursorLabel = document.getElementById('cursor-label');
-
-        // LUXURY CURSOR FOLLOW LOGIC
-        window.addEventListener('mousemove', (e) => {
-            gsap.to(cursorLabel, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.15,
-                ease: "power2.out"
-            });
+        // Hero Parallax
+        gsap.to("#hero-img", {
+            yPercent: 15,
+            ease: "none",
+            scrollTrigger: { trigger: "header", start: "top top", end: "bottom top", scrub: true }
         });
 
-        expandableItems.forEach(item => {
-            // Hover states for the "Expand" label
-            const container = item.closest('.relative') || item.parentElement;
-            
-            container.addEventListener('mouseenter', () => {
-                gsap.to(cursorLabel, { opacity: 1, scale: 1, duration: 0.3 });
-            });
-            
-            container.addEventListener('mouseleave', () => {
-                gsap.to(cursorLabel, { opacity: 0, scale: 0.5, duration: 0.3 });
-            });
+        // Entrance Text
+        const tl = gsap.timeline({defaults: {ease: "expo.out", duration: 1.5}});
+        tl.from("#hero-sub", { y: 20, opacity: 0, delay: 0.5 })
+          .from("#hero-title", { y: 40, opacity: 0 }, "-=1.2")
+          .from("#hero-p", { y: 20, opacity: 0 }, "-=1.2");
 
+        // Cursor Label Logic
+        const cursorLabel = document.getElementById('cursor-label');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursorLabel, { x: e.clientX, y: e.clientY, duration: 0.15 });
+        });
+
+        document.querySelectorAll('.expandable-media').forEach(item => {
+            item.addEventListener('mouseenter', () => gsap.to(cursorLabel, { opacity: 1, scale: 1 }));
+            item.addEventListener('mouseleave', () => gsap.to(cursorLabel, { opacity: 0, scale: 0.5 }));
+            
             item.addEventListener('click', () => {
-                viewerContent.innerHTML = '';
-                let clone;
-                
-                if (item.tagName === 'VIDEO') {
-                    clone = document.createElement('video');
-                    clone.src = item.querySelector('source').src;
-                    clone.controls = true;
-                    clone.autoplay = true;
-                    clone.loop = true;
-                } else {
-                    clone = document.createElement('img');
-                    clone.src = item.src;
-                }
-                
-                viewerContent.appendChild(clone);
-                
-                // Cinematic Entrance Animation
+                const viewer = document.getElementById('media-viewer');
+                const content = document.getElementById('viewer-content');
+                content.innerHTML = `<img src="${item.src}" class="max-w-full max-h-full object-contain">`;
                 viewer.style.display = 'flex';
                 gsap.to(viewer, { opacity: 1, duration: 0.5 });
-                gsap.fromTo(viewerContent, 
-                    { scale: 0.7, opacity: 0, filter: "blur(20px)" }, 
-                    { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1, ease: "expo.out" }
-                );
-                
-                // Hide cursor label when viewer is open
-                gsap.to(cursorLabel, { opacity: 0, scale: 0.5, duration: 0.2 });
+                gsap.from(content, { scale: 0.8, opacity: 0, duration: 1, ease: "expo.out" });
+                gsap.to(cursorLabel, { opacity: 0 });
             });
         });
 
-        const closeViewer = () => {
-            gsap.to(viewerContent, { scale: 0.8, opacity: 0, filter: "blur(20px)", duration: 0.6, ease: "expo.in" });
-            gsap.to(viewer, { opacity: 0, duration: 0.6, onComplete: () => {
-                viewer.style.display = 'none';
-                viewerContent.innerHTML = '';
-            }});
-        };
-
-        viewer.addEventListener('click', closeViewer);
+        document.getElementById('media-viewer').addEventListener('click', function() {
+            gsap.to(this, { opacity: 0, duration: 0.5, onComplete: () => this.style.display = 'none' });
+        });
     </script>
 </body>
 </html>
