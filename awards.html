@@ -20,23 +20,79 @@
         }
     </script>
     <style>
-        /* Lightbox Overlay Style */
+        /* Cinematic Lightbox Overlay */
         #media-viewer {
             display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
             opacity: 0;
-            transition: opacity 0.4s ease;
         }
-        #media-viewer.active {
+
+        /* Luxury Close Icon */
+        .close-viewer {
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
             display: flex;
-            opacity: 1;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 110;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .close-viewer::before, .close-viewer::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 1px;
+            background: white;
+            transition: transform 0.4s ease;
+        }
+        .close-viewer::before { transform: rotate(45deg); }
+        .close-viewer::after { transform: rotate(-45deg); }
+
+        .close-viewer:hover {
+            background: white;
+            transform: rotate(90deg) scale(1.1);
+        }
+        .close-viewer:hover::before, .close-viewer:hover::after {
+            background: black;
+        }
+
+        #viewer-content {
+            width: 90%;
+            height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        #viewer-content img, #viewer-content video {
+            max-width: 100%;
+            max-height: 100%;
+            object-contain: contain;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
         }
     </style>
 </head>
 <body class="bg-brand-dark text-white opacity-0">
 
-    <div id="media-viewer" class="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-12 cursor-zoom-out">
-        <div id="viewer-content" class="max-w-5xl max-h-full w-full h-full flex items-center justify-center">
-            </div>
+    <div id="media-viewer">
+        <div class="close-viewer"></div>
+        <div id="viewer-content"></div>
     </div>
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
@@ -171,14 +227,13 @@
     <script>
         gsap.to("body", { opacity: 1, duration: 1.5 });
 
-        // Lightbox Logic
         const viewer = document.getElementById('media-viewer');
         const viewerContent = document.getElementById('viewer-content');
         const expandableItems = document.querySelectorAll('.expandable-media');
 
         expandableItems.forEach(item => {
             item.addEventListener('click', () => {
-                viewerContent.innerHTML = ''; // Clear previous
+                viewerContent.innerHTML = '';
                 let clone;
                 
                 if (item.tagName === 'VIDEO') {
@@ -186,22 +241,33 @@
                     clone.src = item.querySelector('source').src;
                     clone.controls = true;
                     clone.autoplay = true;
-                    clone.className = "max-w-full max-h-full";
+                    clone.loop = true;
                 } else {
                     clone = document.createElement('img');
                     clone.src = item.src;
-                    clone.className = "max-w-full max-h-full object-contain";
                 }
                 
                 viewerContent.appendChild(clone);
-                viewer.classList.add('active');
+                
+                // Cinematic Entrance Animation
+                viewer.style.display = 'flex';
+                gsap.to(viewer, { opacity: 1, duration: 0.5 });
+                gsap.fromTo(viewerContent, 
+                    { scale: 0.7, opacity: 0, filter: "blur(20px)" }, 
+                    { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1, ease: "expo.out" }
+                );
             });
         });
 
-        viewer.addEventListener('click', () => {
-            viewer.classList.remove('active');
-            viewerContent.innerHTML = '';
-        });
+        const closeViewer = () => {
+            gsap.to(viewerContent, { scale: 0.8, opacity: 0, filter: "blur(20px)", duration: 0.6, ease: "expo.in" });
+            gsap.to(viewer, { opacity: 0, duration: 0.6, onComplete: () => {
+                viewer.style.display = 'none';
+                viewerContent.innerHTML = '';
+            }});
+        };
+
+        viewer.addEventListener('click', closeViewer);
     </script>
 </body>
 </html>
