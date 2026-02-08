@@ -45,7 +45,7 @@
 
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
         <a href="index.html" class="z-50 block">
-            <img src="https://dammix.com/wp-content/uploads/2026/01/Original-DAMMIX-full-Logo-Horizontal-HIGH-QUALITY-JPG-scaled.jpg" alt="Liya Logo" class="h-8 md:h-10 w-auto object-contain">
+            <img src="asset/images/liyalogo.png" alt="Liya Logo" class="h-8 md:h-10 w-auto object-contain">
         </a>
         <div class="hidden md:flex space-x-8 text-[10px] tracking-luxury uppercase font-medium">
             <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
@@ -60,8 +60,8 @@
 
     <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0">
-            <img src="asset/images/liyabranding1.jpg" class="w-full h-full object-cover opacity-50 parallax-bg" alt="Branding Concept">
-            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark via-transparent to-brand-dark"></div>
+            <img src="asset/images/liyabranding1.jpg" class="w-full h-full object-cover opacity-70 parallax-bg" alt="Branding Concept">
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/40 via-transparent to-brand-dark/80"></div>
         </div>
         
         <div class="relative z-10 text-center px-6">
@@ -69,7 +69,7 @@
             <h1 class="text-6xl md:text-[10rem] font-serif italic text-white leading-[0.85] hero-title-scroll">
                 Beyond <br> <span class="text-outline">Prestige.</span>
             </h1>
-            <p class="mt-12 text-brand-grey text-sm tracking-widest uppercase max-w-xl mx-auto leading-loose">
+            <p class="mt-12 text-white/90 text-sm tracking-widest uppercase max-w-xl mx-auto leading-loose">
                 We don't build logos. We manufacture the invisible force that makes a name immortal.
             </p>
         </div>
@@ -125,7 +125,7 @@
     </section>
 
     <section class="relative h-[90vh] bg-black overflow-hidden">
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-60">
             <source src="asset/images/liyabrandingvideo1.mp4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-gradient-to-t from-brand-dark to-transparent"></div>
@@ -193,7 +193,6 @@
     <script>
         gsap.to("body", { opacity: 1, duration: 1.5 });
 
-        // Hero Title Parallax
         gsap.to(".hero-title-scroll", {
             y: -50,
             scrollTrigger: {
@@ -204,7 +203,6 @@
             }
         });
 
-        // Background zoom on scroll
         gsap.to(".parallax-bg", {
             scale: 1,
             scrollTrigger: {
@@ -216,4 +214,4 @@
         });
     </script>
 </body>
-        </html>
+</html>
