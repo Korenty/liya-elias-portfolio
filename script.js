@@ -1,71 +1,67 @@
-gsap.registerPlugin(ScrollTrigger);
+/* --- NEW ADDITIONS FOR FULL NAVIGATION --- */
 
-// 1. MENU TOGGLE LOGIC
-const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-menu-btn');
-const overlay = document.getElementById('mobile-menu-overlay');
-
-function toggleMenu() {
-    overlay.classList.toggle('open');
-    // Animate links when opening
-    if (overlay.classList.contains('open')) {
-        gsap.from(".menu-link-item", {
-            y: 50,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 0.8,
-            delay: 0.2,
-            ease: "power3.out"
-        });
-    }
+/* Full Screen Menu Overlay */
+#mobile-menu-overlay {
+    transform: translateY(-100%);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex; /* Ensure it's flex even when 'hidden' is removed */
 }
 
-if(menuBtn) menuBtn.addEventListener('click', toggleMenu);
-if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+#mobile-menu-overlay.open {
+    transform: translateY(0%);
+}
 
-// 2. PAGE LOAD FADE
-window.addEventListener("load", () => {
-    gsap.to("body", { opacity: 1, duration: 0.8, ease: "power2.out" });
-});
+/* Menu Link Hover Effect */
+.menu-link-item {
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
 
-// 3. GLOBAL SCROLL ANIMATIONS
-// Reveal Text
-gsap.utils.toArray(".reveal-text").forEach(el => {
-    gsap.from(el, {
-        y: 40,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-        }
-    });
-});
+.menu-link-item span {
+    display: inline-block;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
 
-// Parallax Images
-gsap.utils.toArray(".parallax-media").forEach(media => {
-    gsap.to(media, {
-        yPercent: 15,
-        ease: "none",
-        scrollTrigger: {
-            trigger: media.parentElement,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-        }
-    });
-});
+.menu-link-item:hover span {
+    transform: translateY(-100%);
+}
 
-// Line Drawing
-gsap.utils.toArray(".draw-line").forEach(line => {
-    gsap.from(line, {
-        width: "0%",
-        duration: 1.5,
-        ease: "power3.inOut",
-        scrollTrigger: {
-            trigger: line,
-            start: "top 90%"
-        }
-    });
-});
+.menu-link-item::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    color: #C0A080; /* Gold Hover */
+}
+
+.menu-link-item:hover::after {
+    transform: translateY(0%);
+}
+
+/* Magazine Layout Grids */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+/* --- LOGO GLOBAL SIZING (Doubled) --- */
+nav a img {
+    height: 64px !important; /* Doubled from 32px */
+    width: auto;
+}
+
+@media (min-width: 768px) {
+    nav a img {
+        height: 80px !important; /* Doubled from 40px */
+    }
+}
