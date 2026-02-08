@@ -3,12 +3,16 @@
 /* Full Screen Menu Overlay */
 #mobile-menu-overlay {
     transform: translateY(-100%);
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex; /* Ensure it's flex even when 'hidden' is removed */
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+    display: flex; 
+    visibility: hidden;      /* Prevents blocking clicks when closed */
+    pointer-events: none;    /* Prevents blocking clicks when closed */
 }
 
 #mobile-menu-overlay.open {
     transform: translateY(0%);
+    visibility: visible;     /* Allows interaction when open */
+    pointer-events: auto;    /* Allows interaction when open */
 }
 
 /* Menu Link Hover Effect */
