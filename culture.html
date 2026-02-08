@@ -243,20 +243,40 @@
         gsap.to("body", { opacity: 1, duration: 2 });
         gsap.registerPlugin(ScrollTrigger);
 
-        // Menu Toggle
+        // REFINED MENU LOGIC
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-menu-btn');
         const menuOverlay = document.getElementById('mobile-menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link-item');
 
         menuBtn.addEventListener('click', () => {
             menuOverlay.classList.remove('hidden');
-            gsap.from(".menu-link-item", { y: 60, opacity: 0, stagger: 0.1, duration: 0.8, ease: "power4.out" });
+            gsap.fromTo(menuLinks, 
+                { y: 60, opacity: 0 }, 
+                { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power4.out" }
+            );
         });
 
-        closeBtn.addEventListener('click', () => {
-            gsap.to(".menu-link-item", { y: -40, opacity: 0, stagger: 0.05, duration: 0.4, onComplete: () => {
-                menuOverlay.classList.add('hidden');
-            }});
+        const closeMenu = () => {
+            gsap.to(menuLinks, { 
+                y: -40, 
+                opacity: 0, 
+                stagger: 0.05, 
+                duration: 0.4, 
+                ease: "power2.in",
+                onComplete: () => {
+                    menuOverlay.classList.add('hidden');
+                    // Reset positions for next open
+                    gsap.set(menuLinks, { y: 60, opacity: 0 });
+                }
+            });
+        };
+
+        closeBtn.addEventListener('click', closeMenu);
+        
+        // Also close menu if a link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
 
         // Reveal effect
@@ -271,4 +291,4 @@
         });
     </script>
 </body>
-    </html>
+                </html>
