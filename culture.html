@@ -32,7 +32,7 @@
 </head>
 <body class="bg-brand-bg text-white opacity-0 overflow-x-hidden">
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[70] flex flex-col items-center justify-center hidden">
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[100] flex flex-col items-center justify-center hidden">
         <button id="close-menu-btn" class="absolute top-10 right-10 text-[10px] uppercase tracking-luxury border border-white/20 px-10 py-3 rounded-full hover:bg-white hover:text-black transition-all">Close</button>
         <div class="flex flex-col space-y-4 text-center">
             <a href="index.html" class="menu-link-item text-5xl md:text-8xl font-serif italic py-2"><span>Home</span></a>
@@ -57,7 +57,7 @@
             <a href="awards.html" class="hover:text-brand-gold transition">Awards</a>
             <a href="work.html" class="hover:text-brand-gold transition">Portfolio</a>
         </div>
-        <button id="menu-btn" class="text-[10px] uppercase border border-white/20 px-8 py-2.5 rounded-full hover:bg-white hover:text-black transition-all">Menu</button>
+        <button id="menu-btn" class="relative z-50 text-[10px] uppercase border border-white/20 px-8 py-2.5 rounded-full hover:bg-white hover:text-black transition-all">Menu</button>
     </nav>
 
     <header class="relative w-full h-screen flex items-center justify-center bg-black overflow-hidden">
@@ -171,7 +171,7 @@
             <div class="order-1 md:order-2 space-y-8">
                 <span class="text-brand-gold text-[10px] tracking-luxury uppercase">03 / Sacred Ceremony</span>
                 <h2 class="text-6xl md:text-8xl font-serif italic text-brand-dark leading-none">The <br> Epiphany.</h2>
-                <p class="text-gray-500 text-lg font-light leading-relaxed max-w-sm">
+                <p class="text-gray-500 text-lg font-light leading-relaxed max-sm">
                     Timket: A visual tapestry of spirituality and ancient Orthodoxy. I stand as a witness to the timeless rituals that define our national character, where the sacred meets the monumental.
                 </p>
             </div>
@@ -240,55 +240,50 @@
     </footer>
 
     <script>
-        gsap.to("body", { opacity: 1, duration: 2 });
-        gsap.registerPlugin(ScrollTrigger);
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to("body", { opacity: 1, duration: 2 });
+            gsap.registerPlugin(ScrollTrigger);
 
-        // REFINED MENU LOGIC
-        const menuBtn = document.getElementById('menu-btn');
-        const closeBtn = document.getElementById('close-menu-btn');
-        const menuOverlay = document.getElementById('mobile-menu-overlay');
-        const menuLinks = document.querySelectorAll('.menu-link-item');
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const menuOverlay = document.getElementById('mobile-menu-overlay');
+            const menuLinks = document.querySelectorAll('.menu-link-item');
 
-        menuBtn.addEventListener('click', () => {
-            menuOverlay.classList.remove('hidden');
-            gsap.fromTo(menuLinks, 
-                { y: 60, opacity: 0 }, 
-                { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power4.out" }
-            );
-        });
-
-        const closeMenu = () => {
-            gsap.to(menuLinks, { 
-                y: -40, 
-                opacity: 0, 
-                stagger: 0.05, 
-                duration: 0.4, 
-                ease: "power2.in",
-                onComplete: () => {
-                    menuOverlay.classList.add('hidden');
-                    // Reset positions for next open
-                    gsap.set(menuLinks, { y: 60, opacity: 0 });
-                }
+            menuBtn.addEventListener('click', () => {
+                menuOverlay.classList.remove('hidden');
+                gsap.fromTo(menuLinks, 
+                    { y: 60, opacity: 0 }, 
+                    { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power4.out" }
+                );
             });
-        };
 
-        closeBtn.addEventListener('click', closeMenu);
-        
-        // Also close menu if a link is clicked
-        menuLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
+            const closeMenu = () => {
+                gsap.to(menuLinks, { 
+                    y: -40, 
+                    opacity: 0, 
+                    stagger: 0.05, 
+                    duration: 0.4, 
+                    ease: "power2.in",
+                    onComplete: () => {
+                        menuOverlay.classList.add('hidden');
+                        gsap.set(menuLinks, { y: 60, opacity: 0 });
+                    }
+                });
+            };
 
-        // Reveal effect
-        gsap.utils.toArray('.reveal-up').forEach(elem => {
-            gsap.to(elem, {
-                scrollTrigger: { trigger: elem, start: "top 90%" },
-                y: 0,
-                opacity: 1,
-                duration: 1.5,
-                ease: "power4.out"
+            closeBtn.addEventListener('click', closeMenu);
+            menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+            gsap.utils.toArray('.reveal-up').forEach(elem => {
+                gsap.to(elem, {
+                    scrollTrigger: { trigger: elem, start: "top 90%" },
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: "power4.out"
+                });
             });
         });
     </script>
 </body>
-                </html>
+                                                                               </html>
