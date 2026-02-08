@@ -44,17 +44,11 @@
         .reveal-img { transform: scale(1.1); transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-frame:hover .reveal-img { transform: scale(1); }
 
-        /* Menu Overlay Styles */
-        #mobile-menu-overlay {
-            clip-path: circle(0% at 90% 5%);
-            transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        #mobile-menu-overlay.active {
-            clip-path: circle(150% at 90% 5%);
-        }
+        /* Syncing visibility with JS toggle */
+        .hidden { display: none !important; }
     </style>
 </head>
-<body class="bg-brand-dark text-white opacity-0">
+<body class="bg-brand-dark text-white opacity-0 overflow-x-hidden">
 
     <div id="cursor-label">Expand Experience</div>
     
@@ -63,17 +57,17 @@
         <div id="viewer-content" class="w-[85%] h-[85%] flex items-center justify-center"></div>
     </div>
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-[10px] uppercase tracking-luxury border border-white/30 px-8 py-2.5 rounded-full hover:bg-white hover:text-black transition">Close</button>
         <div class="flex flex-col space-y-6 text-center">
-            <a href="index.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Home</a>
-            <a href="architecture.html" class="menu-link text-4xl md:text-6xl font-serif italic text-brand-gold transition opacity-0">Interiors</a>
-            <a href="branding.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Branding</a>
-            <a href="culture.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Ambassador</a>
-            <a href="modeling.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Modeling</a>
-            <a href="awards.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Awards</a>
-            <a href="work.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Portfolio</a>
-            <a href="contact.html" class="menu-link text-4xl md:text-6xl font-serif italic hover:text-brand-gold transition opacity-0">Contact</a>
+            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Home"><span>Home</span></a>
+            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic text-brand-gold" data-text="Interiors"><span>Interiors</span></a>
+            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Branding"><span>Branding</span></a>
+            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
+            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
+            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Awards"><span>Awards</span></a>
+            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
+            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Contact"><span>Contact</span></a>
         </div>
     </div>
 
@@ -205,34 +199,16 @@
         &copy; 2026 Liya Elias. All Rights Reserved.
     </footer>
 
+    <script src="script.js"></script>
     <script>
         gsap.to("body", { opacity: 1, duration: 1.5 });
 
-        // MENU LOGIC
-        const menuBtn = document.getElementById('menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const menuOverlay = document.getElementById('mobile-menu-overlay');
-        const menuLinks = document.querySelectorAll('.menu-link');
-
-        menuBtn.addEventListener('click', () => {
-            menuOverlay.classList.add('active');
-            gsap.to(menuLinks, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, delay: 0.3, ease: "power4.out" });
-        });
-
-        closeMenuBtn.addEventListener('click', () => {
-            gsap.to(menuLinks, { opacity: 0, y: 20, duration: 0.3 });
-            setTimeout(() => {
-                menuOverlay.classList.remove('active');
-            }, 300);
-        });
-
-        // Cursor follow
+        // Local page logic (Cursor label & Media Viewer)
         const cursorLabel = document.getElementById('cursor-label');
         window.addEventListener('mousemove', (e) => {
             gsap.to(cursorLabel, { x: e.clientX, y: e.clientY, duration: 0.15 });
         });
 
-        // Media Viewer Interaction
         const viewer = document.getElementById('media-viewer');
         const content = document.getElementById('viewer-content');
 
@@ -257,7 +233,6 @@
                 
                 viewer.style.display = 'flex';
                 gsap.to(viewer, { opacity: 1, duration: 0.6 });
-                gsap.from(content, { scale: 0.85, filter: "blur(20px)", opacity: 0, duration: 1, ease: "expo.out" });
             });
         });
 
@@ -269,4 +244,4 @@
         });
     </script>
 </body>
-</html>
+                </html>
