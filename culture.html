@@ -27,6 +27,7 @@
         .reveal-up { transform: translateY(80px); opacity: 0; }
         .menu-link-item span { display: inline-block; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .menu-link-item:hover span { transform: skewX(-10deg) translateX(20px); }
+        .cta-gradient { background: linear-gradient(135deg, #C0A080 0%, #E0C0A0 100%); }
     </style>
 </head>
 <body class="bg-brand-bg text-white opacity-0 overflow-x-hidden">
@@ -99,22 +100,15 @@
             <span class="text-brand-gold text-[10px] tracking-luxury uppercase">02 / Divine Feminine</span>
             <h2 class="text-6xl md:text-8xl font-serif italic text-white mt-4">Shadey & Ashenda</h2>
         </div>
-
         <div class="flex overflow-x-auto gap-8 px-6 md:px-24 pb-12 snap-x snap-mandatory hide-scrollbar">
             <div class="min-w-[85vw] md:min-w-[55vw] h-[80vh] snap-center relative group overflow-hidden">
                 <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-1000">
                     <source src="asset/images/liyaculturevideoshadey.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center">
-                <img src="asset/images/liyaculturephotoashenda1.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
-            </div>
-            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center">
-                <img src="asset/images/liyaculturephotoashenda2.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
-            </div>
-            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center">
-                <img src="asset/images/liyaculturephotoashenda3.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
-            </div>
+            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center"><img src="asset/images/liyaculturephotoashenda1.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"></div>
+            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center"><img src="asset/images/liyaculturephotoashenda2.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"></div>
+            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center"><img src="asset/images/liyaculturephotoashenda3.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"></div>
         </div>
     </section>
 
@@ -129,14 +123,9 @@
                 </div>
             </div>
             <div class="w-full md:w-1/2 h-full relative overflow-hidden">
-                <img src="asset/images/liyaculturephotoramadan.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 scale-105 hover:scale-100">
-                <div class="absolute bottom-12 left-12 max-w-xs">
-                    <p class="text-brand-gold text-[10px] tracking-luxury uppercase mb-4">The Grace of Faith</p>
-                    <p class="text-white/60 text-xs leading-loose">Representing the architectural elegance and spiritual silence of Islamic heritage.</p>
-                </div>
+                <img src="asset/images/liyaculturephotoramadan.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
             </div>
         </div>
-
         <div class="flex flex-col md:flex-row-reverse h-screen">
             <div class="w-full md:w-1/2 h-full relative group overflow-hidden">
                 <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30 group-hover:opacity-60 transition duration-1000">
@@ -147,72 +136,106 @@
                 </div>
             </div>
             <div class="w-full md:w-1/2 h-full relative overflow-hidden">
-                <img src="asset/images/liyaculturephotoirrecha.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 scale-105 hover:scale-100">
-                <div class="absolute bottom-12 right-12 text-right max-w-xs">
-                    <p class="text-brand-gold text-[10px] tracking-luxury uppercase mb-4">Gratitude & Earth</p>
-                    <p class="text-white/60 text-xs leading-loose">Embodying the ancient Oromo connection between people, water, and life.</p>
-                </div>
+                <img src="asset/images/liyaculturephotoirrecha.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
             </div>
         </div>
     </section>
 
-    <section class="py-60 bg-white px-6 md:px-24">
-        <div class="text-center mb-32">
-            <span class="text-brand-gold text-[10px] tracking-luxury uppercase">04 / The Daily Sacred</span>
-            <h2 class="text-7xl md:text-[10rem] font-serif italic text-brand-dark leading-none">The Ritual.</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-[120vh]">
-            <div class="h-full overflow-hidden">
-                <img src="asset/images/liyaculturephotoepiphany.jpg" class="w-full h-full object-cover">
+    <section class="py-40 bg-white px-6 md:px-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 flex gap-4 h-[80vh]">
+                <div class="w-1/2 overflow-hidden h-full"><img src="asset/images/liyaculturephotoepiphany.jpg" class="w-full h-full object-cover"></div>
+                <div class="w-1/2 overflow-hidden h-full mt-12 md:mt-24"><img src="asset/images/liyaculturephotoepiphany2.jpg" class="w-full h-full object-cover"></div>
             </div>
-            <div class="flex flex-col gap-6">
-                <div class="h-1/2 overflow-hidden">
-                    <img src="asset/images/liyaculturephotocoffee1.jpg" class="w-full h-full object-cover">
-                </div>
-                <div class="h-1/2 overflow-hidden">
-                    <img src="asset/images/liyaculturephotocoffee2.jpg" class="w-full h-full object-cover">
-                </div>
-            </div>
-            <div class="h-full overflow-hidden">
-                <img src="asset/images/liyaculturephotoepiphany2.jpg" class="w-full h-full object-cover">
+            <div class="order-1 md:order-2 space-y-8">
+                <span class="text-brand-gold text-[10px] tracking-luxury uppercase">03 / Sacred Ceremony</span>
+                <h2 class="text-6xl md:text-8xl font-serif italic text-brand-dark leading-none">The <br> Epiphany.</h2>
+                <p class="text-gray-500 text-lg font-light leading-relaxed max-w-sm">
+                    Timket: A visual tapestry of spirituality and ancient Orthodoxy, captured through the lens of high-impact cultural representation.
+                </p>
             </div>
         </div>
     </section>
 
-    <footer class="bg-brand-dark pt-60 pb-20 px-6 md:px-24 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl md:text-9xl font-serif italic mb-20">Modern <br> Legacy.</h2>
-            <a href="contact.html" class="inline-block bg-white text-black px-16 py-6 rounded-full text-[10px] tracking-luxury uppercase font-bold hover:bg-brand-gold hover:text-white transition-all duration-700">Initiate Representation</a>
+    <section class="py-40 bg-brand-dark px-6 md:px-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-center md:text-left">
+            <img src="asset/images/liyaculturephotocoffee1.jpg" class="w-full h-[60vh] object-cover opacity-60">
+            <img src="asset/images/liyaculturephotocoffee2.jpg" class="w-full h-[60vh] object-cover opacity-60">
+        </div>
+        <div class="mt-12 flex justify-center">
+            <h2 class="text-white text-7xl md:text-[10rem] font-serif italic opacity-10">The Ritual.</h2>
+        </div>
+    </section>
+
+    <section class="py-60 px-6 md:px-24 bg-white text-brand-dark relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none">
+            <h2 class="text-[30rem] font-serif italic leading-none rotate-12 -translate-y-20">LEGACY</h2>
+        </div>
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <span class="text-brand-gold text-[12px] tracking-[1em] uppercase mb-12 block reveal-up">State-Level Partnership</span>
+            <h2 class="text-6xl md:text-9xl font-serif italic leading-[0.9] mb-16 reveal-up">
+                Projecting the <br> <span class="text-brand-gold">National Narrative.</span>
+            </h2>
+            <p class="text-gray-600 text-xl md:text-2xl font-light leading-relaxed max-w-4xl mx-auto mb-20 reveal-up">
+                Liya Elias partners with <strong>Ministries of Tourism, Global Embassies, and Regional Governments</strong> to curate high-stakes visual identities that resonate across borders. We don't just showcase heritage; we engineer the cultural soft power of a nation.
+            </p>
             
-            <div class="mt-60 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between text-[9px] uppercase tracking-[0.4em] text-brand-grey">
-                <p>&copy; 2026 Liya Elias. Cultural Diplomacy.</p>
-                <p>Addis Ababa &bull; Global Missions</p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 reveal-up">
+                <a href="contact.html" class="group relative px-20 py-8 bg-brand-dark text-white rounded-full overflow-hidden transition-all duration-700 hover:scale-105 hover:shadow-2xl">
+                    <span class="relative z-10 text-[11px] tracking-luxury uppercase font-bold">Initiate Diplomatic Inquiry</span>
+                    <div class="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                </a>
+            </div>
+            
+            <div class="mt-32 grid grid-cols-1 md:grid-cols-3 gap-12 text-left border-t border-gray-100 pt-20">
+                <div class="space-y-4">
+                    <h4 class="text-[10px] tracking-widest uppercase font-bold">Governmental</h4>
+                    <p class="text-xs text-gray-400 leading-loose">Visual infrastructure for regional branding and tourism campaigns.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-[10px] tracking-widest uppercase font-bold">Diplomatic</h4>
+                    <p class="text-xs text-gray-400 leading-loose">Representation for international missions and cultural exchange summits.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-[10px] tracking-widest uppercase font-bold">Institutional</h4>
+                    <p class="text-xs text-gray-400 leading-loose">Heritage preservation through high-fashion storytelling and archive development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark py-20 px-6 md:px-24 border-t border-white/5">
+        <div class="flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.4em] text-brand-grey">
+            <p>&copy; 2026 Liya Elias. Cultural Ambassador & Identity Architect.</p>
+            <div class="flex space-x-8 mt-6 md:mt-0">
+                <span>Addis Ababa</span>
+                <span>London</span>
+                <span>Dubai</span>
             </div>
         </div>
     </footer>
 
     <script>
-        // INITIALIZE GSAP
         gsap.to("body", { opacity: 1, duration: 2 });
         gsap.registerPlugin(ScrollTrigger);
 
-        // MENU LOGIC
+        // Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-menu-btn');
         const menuOverlay = document.getElementById('mobile-menu-overlay');
 
         menuBtn.addEventListener('click', () => {
             menuOverlay.classList.remove('hidden');
-            gsap.from(".menu-link-item", { y: 50, opacity: 0, stagger: 0.1, duration: 0.8, ease: "power4.out" });
+            gsap.from(".menu-link-item", { y: 60, opacity: 0, stagger: 0.1, duration: 0.8, ease: "power4.out" });
         });
 
         closeBtn.addEventListener('click', () => {
-            gsap.to(".menu-link-item", { y: -30, opacity: 0, stagger: 0.05, duration: 0.4, onComplete: () => {
+            gsap.to(".menu-link-item", { y: -40, opacity: 0, stagger: 0.05, duration: 0.4, onComplete: () => {
                 menuOverlay.classList.add('hidden');
             }});
         });
 
-        // REVEAL ANIMATIONS
+        // Reveal effect
         gsap.utils.toArray('.reveal-up').forEach(elem => {
             gsap.to(elem, {
                 scrollTrigger: { trigger: elem, start: "top 90%" },
@@ -224,4 +247,4 @@
         });
     </script>
 </body>
-                    </html>
+</html>
