@@ -19,8 +19,25 @@
             }
         }
     </script>
+    <style>
+        /* Lightbox Overlay Style */
+        #media-viewer {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        #media-viewer.active {
+            display: flex;
+            opacity: 1;
+        }
+    </style>
 </head>
 <body class="bg-brand-dark text-white opacity-0">
+
+    <div id="media-viewer" class="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-12 cursor-zoom-out">
+        <div id="viewer-content" class="max-w-5xl max-h-full w-full h-full flex items-center justify-center">
+            </div>
+    </div>
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
@@ -62,29 +79,29 @@
         <h2 class="text-3xl font-serif italic mb-12 text-center text-brand-gold">The Red Carpet</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[60vh]">
-            <div class="relative group overflow-hidden border border-white/10 rounded-sm">
-                <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700">
+            <div class="relative group overflow-hidden border border-white/10 rounded-sm cursor-pointer">
+                <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700">
                     <source src="asset/images/liyaredcarpetvideotiktokaward.mp4" type="video/mp4">
                 </video>
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full pointer-events-none">
                     <p class="text-xs uppercase tracking-luxury text-brand-gold">Gala Event</p>
                     <h3 class="text-xl font-serif">TikTok Awards</h3>
                 </div>
             </div>
 
-            <div class="relative group overflow-hidden border border-white/10 rounded-sm">
-                <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700">
+            <div class="relative group overflow-hidden border border-white/10 rounded-sm cursor-pointer">
+                <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700">
                     <source src="asset/images/liyaredcarpetvideogumaawards.mp4" type="video/mp4">
                 </video>
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full pointer-events-none">
                     <p class="text-xs uppercase tracking-luxury text-brand-gold">Cinema Excellence</p>
                     <h3 class="text-xl font-serif">Guma Awards</h3>
                 </div>
             </div>
 
-            <div class="relative group overflow-hidden border border-white/10 rounded-sm">
-                <img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700 scale-105 group-hover:scale-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
+            <div class="relative group overflow-hidden border border-white/10 rounded-sm cursor-pointer">
+                <img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" class="expandable-media w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700 scale-105 group-hover:scale-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full pointer-events-none">
                     <p class="text-xs uppercase tracking-luxury text-brand-gold">Fashion Week</p>
                     <h3 class="text-xl font-serif">Hub of Africa</h3>
                 </div>
@@ -110,8 +127,8 @@
                 </p>
             </div>
             <div class="grid grid-cols-2 gap-4">
-                <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" class="w-full h-80 object-cover shadow-2xl">
-                <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto2.jpg" class="w-full h-80 object-cover shadow-2xl mt-8">
+                <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" class="expandable-media w-full h-80 object-cover shadow-2xl cursor-pointer">
+                <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto2.jpg" class="expandable-media w-full h-80 object-cover shadow-2xl mt-8 cursor-pointer">
             </div>
         </div>
     </section>
@@ -153,6 +170,38 @@
     <script src="script.js"></script>
     <script>
         gsap.to("body", { opacity: 1, duration: 1.5 });
+
+        // Lightbox Logic
+        const viewer = document.getElementById('media-viewer');
+        const viewerContent = document.getElementById('viewer-content');
+        const expandableItems = document.querySelectorAll('.expandable-media');
+
+        expandableItems.forEach(item => {
+            item.addEventListener('click', () => {
+                viewerContent.innerHTML = ''; // Clear previous
+                let clone;
+                
+                if (item.tagName === 'VIDEO') {
+                    clone = document.createElement('video');
+                    clone.src = item.querySelector('source').src;
+                    clone.controls = true;
+                    clone.autoplay = true;
+                    clone.className = "max-w-full max-h-full";
+                } else {
+                    clone = document.createElement('img');
+                    clone.src = item.src;
+                    clone.className = "max-w-full max-h-full object-contain";
+                }
+                
+                viewerContent.appendChild(clone);
+                viewer.classList.add('active');
+            });
+        });
+
+        viewer.addEventListener('click', () => {
+            viewer.classList.remove('active');
+            viewerContent.innerHTML = '';
+        });
     </script>
 </body>
 </html>
