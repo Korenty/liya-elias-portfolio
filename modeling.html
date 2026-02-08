@@ -12,145 +12,144 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#111111', 'brand-gold': '#C0A080', 'brand-grey': '#6B7280' },
+                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#0a0a0a', 'brand-gold': '#C0A080', 'brand-grey': '#6B7280' },
                     fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
-                    letterSpacing: { 'luxury': '0.25em' }
+                    letterSpacing: { 'luxury': '0.3em' }
                 }
             }
         }
     </script>
+    <style>
+        .parallax-video { transform: scale(1.1); }
+        .masonry-item { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .masonry-item:hover { transform: translateY(-10px); }
+        .critique-box { border-left: 1px solid rgba(192, 160, 128, 0.3); }
+    </style>
 </head>
-<body class="bg-white opacity-0">
+<body class="bg-white opacity-0 overflow-x-hidden">
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
-        <div class="flex flex-col space-y-6 text-center">
-            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Home"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
-            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Branding"><span>Branding</span></a>
-            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
-            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
-            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Awards"><span>Awards</span></a>
-            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
-            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Contact"><span>Contact</span></a>
-        </div>
-    </div>
-
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-exclusion text-white">
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
         <a href="index.html" class="z-50 block">
             <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain">
         </a>
-        <div class="hidden md:flex space-x-8 text-xs tracking-luxury uppercase text-black">
+        <div class="hidden md:flex space-x-8 text-[10px] tracking-luxury uppercase font-medium">
             <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
             <a href="branding.html" class="hover:text-brand-gold transition">Branding</a>
             <a href="culture.html" class="hover:text-brand-gold transition">Ambassador</a>
-            <a href="modeling.html" class="text-brand-gold border-b border-brand-gold">Modeling</a>
+            <a href="modeling.html" class="text-brand-gold border-b border-brand-gold/40">Modeling</a>
             <a href="awards.html" class="hover:text-brand-gold transition">Awards</a>
             <a href="work.html" class="hover:text-brand-gold transition">Portfolio</a>
         </div>
-        <button id="menu-btn" class="text-xs uppercase border border-black text-black px-6 py-2 rounded-full hover:bg-black hover:text-white transition">Menu</button>
+        <button id="menu-btn" class="text-[10px] uppercase border border-white/40 px-8 py-2.5 rounded-full hover:bg-white hover:text-black transition-all">Menu</button>
     </nav>
 
-    <header class="pt-48 pb-24 px-6 text-center">
-        <p class="text-brand-gold text-xs tracking-luxury uppercase mb-4">Portfolio 2026</p>
-        <h1 class="text-8xl md:text-[10rem] font-serif italic text-brand-dark leading-none">The Muse.</h1>
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-brand-dark">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-60 parallax-video">
+            <source src="asset/images/liyamodelvideo2.mp4" type="video/mp4">
+        </video>
+        <div class="relative z-10 text-center">
+            <span class="block text-brand-gold text-xs tracking-[0.5em] uppercase mb-6" id="hero-tag">The Visionary Muse</span>
+            <h1 class="text-7xl md:text-[12rem] font-serif italic text-white leading-none mix-blend-overlay" id="hero-title">Aesthete.</h1>
+        </div>
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
+            <div class="w-[1px] h-20 bg-gradient-to-b from-transparent to-brand-gold/50"></div>
+        </div>
     </header>
 
-    <section class="px-4 md:px-12 pb-32">
-        <div class="columns-1 md:columns-3 gap-4 space-y-4">
-            
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto1.jpg" class="w-full object-cover">
-                <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+    <section class="py-32 px-6 md:px-24 bg-white text-brand-dark">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
+            <div class="md:col-span-5">
+                <span class="text-brand-gold text-[10px] tracking-luxury uppercase mb-4 block">Professional Profile</span>
+                <h2 class="text-5xl md:text-7xl font-serif italic leading-tight mb-8">The Alchemy of Presence.</h2>
+                <div class="critique-box pl-8 space-y-6">
+                    <p class="text-lg leading-relaxed text-gray-700 italic font-light">
+                        "Liya Elias possesses a rare, architectural approach to the frame. Her presence is not merely visual; it is structural. She understands the geometry of shadow and the narrative weight of a single glance."
+                    </p>
+                    <p class="text-sm leading-loose text-gray-500">
+                        Analyzing her portfolio reveals a chameleon-like ability to bridge high-fashion severity with ethereal, natural warmth. Whether draped in traditional Ethiopian couture or modern minimalist silks, Liya doesn't just 'wear' the concept—she anchors it. Her potential to elevate a brand lies in her innate understanding of spatial harmony, a gift likely sharpened by her architectural background, making her the ultimate vessel for luxury storytelling.
+                    </p>
+                </div>
             </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto2.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group p-8 bg-brand-bg text-center flex flex-col justify-center">
-                <h3 class="font-serif italic text-2xl text-brand-dark">Versatility</h3>
-                <p class="text-[10px] uppercase tracking-widest text-brand-grey mt-2">Commercial & High Fashion</p>
-            </div>
-
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto3.jpg" class="w-full object-cover grayscale hover:grayscale-0 transition duration-700">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto4.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto5.jpg" class="w-full object-cover">
-            </div>
-
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto6.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto7.jpg" class="w-full object-cover grayscale hover:grayscale-0 transition duration-700">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto8.jpg" class="w-full object-cover">
-            </div>
-
-             <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto9.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto10.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group bg-brand-dark text-white p-12 text-center">
-                <span class="text-6xl font-serif italic text-brand-gold">"</span>
-                <p class="font-light text-sm italic">Liya transforms fabric into emotion. She doesn't just wear the clothes; she tells their story.</p>
-            </div>
-
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto11.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto12.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto13.jpg" class="w-full object-cover">
-            </div>
-             <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto14.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto15.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto16.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto17.jpg" class="w-full object-cover">
-            </div>
-            <div class="break-inside-avoid relative group">
-                <img src="asset/images/liyamodelphoto18.jpg" class="w-full object-cover">
+            <div class="md:col-span-7 flex flex-col space-y-4">
+                <div class="reveal-frame overflow-hidden rounded-sm">
+                    <img src="asset/images/liyamodelphoto17.jpg" class="w-full h-[600px] object-cover hover:scale-105 transition duration-1000" alt="Liya Elias Portrait">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="reveal-frame overflow-hidden rounded-sm">
+                        <img src="asset/images/liyamodelphoto16.jpg" class="w-full h-[300px] object-cover hover:scale-110 transition duration-1000" alt="Liya Elias Editorial">
+                    </div>
+                    <div class="flex items-center justify-center border border-gray-100 p-8">
+                        <p class="text-[10px] tracking-widest uppercase text-center text-brand-grey leading-loose">
+                            Height: 1.76m<br>Bust: 84<br>Waist: 60<br>Eyes: Amber-Brown
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="fixed bottom-0 w-full bg-brand-dark/95 backdrop-blur text-white py-6 border-t border-brand-gold/20 flex justify-between items-center px-6 md:px-12 z-40">
-        <div>
-            <p class="text-[10px] uppercase tracking-widest text-brand-gold">Measurements</p>
-            <p class="text-xs">Height: 1.76m &bull; Bust: 84 &bull; Waist: 60</p>
+    <section class="pb-40 px-4 md:px-12">
+        <div class="columns-1 md:columns-3 gap-6 space-y-6">
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto1.jpg" class="w-full grayscale hover:grayscale-0 transition duration-700"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto2.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid p-12 bg-brand-bg flex flex-col items-center justify-center text-center">
+                <h4 class="font-serif italic text-2xl">Versatility</h4>
+                <div class="w-12 h-[1px] bg-brand-gold my-4"></div>
+                <p class="text-[9px] tracking-widest uppercase text-brand-grey">Commercial & High Fashion</p>
+            </div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto3.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto4.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto5.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto6.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto7.jpg" class="w-full grayscale hover:grayscale-0 transition duration-700"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto8.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto9.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto10.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto11.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto12.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto13.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto14.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto15.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto18.jpg" class="w-full"></div>
         </div>
-        <a href="contact.html" class="uppercase tracking-luxury text-xs border border-white px-8 py-3 hover:bg-brand-gold hover:border-brand-gold hover:text-black transition">Book Now</a>
+    </section>
+
+    <footer class="fixed bottom-0 w-full bg-brand-dark/95 backdrop-blur-xl text-white py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center px-6 md:px-12 z-40">
+        <div class="mb-4 md:mb-0">
+            <p class="text-[8px] uppercase tracking-[0.4em] text-brand-gold mb-1">Inquiry & Representation</p>
+            <p class="text-[10px] font-light">Direct: info@liyaelias.com &bull; Global Availability 2026</p>
+        </div>
+        <div class="flex items-center space-x-12">
+            <span class="text-[9px] tracking-widest text-brand-grey uppercase">&copy; 2026 Liya Elias. All Rights Reserved.</span>
+            <a href="contact.html" class="uppercase tracking-luxury text-[10px] bg-white text-black px-10 py-3 rounded-full hover:bg-brand-gold hover:text-black transition duration-500">Secure Booking</a>
+        </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        gsap.to("body", { opacity: 1, duration: 1.2 });
-        // Subtle scroll animation for images
-        gsap.utils.toArray('img').forEach(img => {
-            gsap.from(img, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: img,
-                    start: "top 90%",
-                }
-            });
+        gsap.to("body", { opacity: 1, duration: 1.5 });
+
+        // Parallax Effect for Video
+        gsap.to(".parallax-video", {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "header",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Entrance animation for Profiling section
+        gsap.from(".critique-box", {
+            opacity: 0,
+            x: -30,
+            duration: 1.5,
+            scrollTrigger: {
+                trigger: ".critique-box",
+                start: "top 80%"
+            }
         });
     </script>
 </body>
