@@ -24,8 +24,7 @@
         .masonry-item { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .masonry-item:hover { transform: translateY(-10px); }
         .critique-box { border-left: 1px solid rgba(192, 160, 128, 0.3); }
-        
-        /* Ensures the menu is hidden by default as per script.js logic */
+        /* Critical for JS visibility toggle */
         .hidden { display: none !important; }
     </style>
 </head>
@@ -65,8 +64,11 @@
             <source src="asset/images/liyamodelvideo2.mp4" type="video/mp4">
         </video>
         <div class="relative z-10 text-center">
-            <span class="block text-brand-gold text-xs tracking-[0.5em] uppercase mb-6">The Visionary Muse</span>
-            <h1 class="text-7xl md:text-[12rem] font-serif italic text-white leading-none mix-blend-overlay">Aesthete.</h1>
+            <span class="block text-brand-gold text-xs tracking-[0.5em] uppercase mb-6" id="hero-tag">The Visionary Muse</span>
+            <h1 class="text-7xl md:text-[12rem] font-serif italic text-white leading-none mix-blend-overlay" id="hero-title">Aesthete.</h1>
+        </div>
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
+            <div class="w-[1px] h-20 bg-gradient-to-b from-transparent to-brand-gold/50"></div>
         </div>
     </header>
 
@@ -80,13 +82,23 @@
                         "Liya Elias possesses a rare, architectural approach to the frame. Her presence is not merely visual; it is structural. She understands the geometry of shadow and the narrative weight of a single glance."
                     </p>
                     <p class="text-sm leading-loose text-gray-500">
-                        Analyzing her portfolio reveals a chameleon-like ability to bridge high-fashion severity with ethereal, natural warmth. Whether draped in traditional Ethiopian couture or modern minimalist silks, Liya doesn't just 'wear' the concept—she anchors it.
+                        Analyzing her portfolio reveals a chameleon-like ability to bridge high-fashion severity with ethereal, natural warmth. Whether draped in traditional Ethiopian couture or modern minimalist silks, Liya doesn't just 'wear' the concept—she anchors it. Her potential to elevate a brand lies in her innate understanding of spatial harmony, a gift likely sharpened by her architectural background, making her the ultimate vessel for luxury storytelling.
                     </p>
                 </div>
             </div>
             <div class="md:col-span-7 flex flex-col space-y-4">
-                <div class="overflow-hidden rounded-sm">
+                <div class="reveal-frame overflow-hidden rounded-sm">
                     <img src="asset/images/liyamodelphoto17.jpg" class="w-full h-[600px] object-cover hover:scale-105 transition duration-1000" alt="Liya Elias Portrait">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="reveal-frame overflow-hidden rounded-sm">
+                        <img src="asset/images/liyamodelphoto16.jpg" class="w-full h-[300px] object-cover hover:scale-110 transition duration-1000" alt="Liya Elias Editorial">
+                    </div>
+                    <div class="flex items-center justify-center border border-gray-100 p-8">
+                        <p class="text-[10px] tracking-widest uppercase text-center text-brand-grey leading-loose">
+                            Height: 1.76m<br>Bust: 84<br>Waist: 60<br>Eyes: Amber-Brown
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,21 +108,44 @@
         <div class="columns-1 md:columns-3 gap-6 space-y-6">
             <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto1.jpg" class="w-full grayscale hover:grayscale-0 transition duration-700"></div>
             <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto2.jpg" class="w-full"></div>
-            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto16.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid p-12 bg-brand-bg flex flex-col items-center justify-center text-center">
+                <h4 class="font-serif italic text-2xl">Versatility</h4>
+                <div class="w-12 h-[1px] bg-brand-gold my-4"></div>
+                <p class="text-[9px] tracking-widest uppercase text-brand-grey">Commercial & High Fashion</p>
+            </div>
             <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto3.jpg" class="w-full"></div>
             <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto4.jpg" class="w-full"></div>
             <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto5.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto6.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto7.jpg" class="w-full grayscale hover:grayscale-0 transition duration-700"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto8.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto9.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto10.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto11.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto12.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto13.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto14.jpg" class="w-full"></div>
+            <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto15.jpg" class="w-full"></div>
             <div class="masonry-item break-inside-avoid"><img src="asset/images/liyamodelphoto18.jpg" class="w-full"></div>
         </div>
     </section>
 
-    <footer class="bg-black text-white py-12 text-center text-[10px] uppercase tracking-widest text-brand-grey border-t border-white/10">
-        &copy; 2026 Liya Elias. All Rights Reserved.
+    <footer class="fixed bottom-0 w-full bg-brand-dark/95 backdrop-blur-xl text-white py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center px-6 md:px-12 z-40">
+        <div class="mb-4 md:mb-0">
+            <p class="text-[8px] uppercase tracking-[0.4em] text-brand-gold mb-1">Inquiry & Representation</p>
+            <p class="text-[10px] font-light">Direct: info@liyaelias.com &bull; Global Availability 2026</p>
+        </div>
+        <div class="flex items-center space-x-12">
+            <span class="text-[9px] tracking-widest text-brand-grey uppercase">&copy; 2026 Liya Elias. All Rights Reserved.</span>
+            <a href="contact.html" class="uppercase tracking-luxury text-[10px] bg-white text-black px-10 py-3 rounded-full hover:bg-brand-gold hover:text-black transition duration-500">Secure Booking</a>
+        </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        // Local Page Animations
+        gsap.to("body", { opacity: 1, duration: 1.5 });
+
+        // Parallax Effect for Video
         gsap.to(".parallax-video", {
             yPercent: 20,
             ease: "none",
@@ -121,6 +156,17 @@
                 scrub: true
             }
         });
+
+        // Entrance animation for Profiling section
+        gsap.from(".critique-box", {
+            opacity: 0,
+            x: -30,
+            duration: 1.5,
+            scrollTrigger: {
+                trigger: ".critique-box",
+                start: "top 80%"
+            }
+        });
     </script>
 </body>
-</html>
+            </html>
