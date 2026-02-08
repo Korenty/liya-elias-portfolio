@@ -4,7 +4,9 @@
 #mobile-menu-overlay {
     transform: translateY(-100%);
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex; /* Ensure it's flex even when 'hidden' is removed */
 }
+
 #mobile-menu-overlay.open {
     transform: translateY(0%);
 }
@@ -13,27 +15,35 @@
 .menu-link-item {
     position: relative;
     overflow: hidden;
+    display: block;
 }
+
 .menu-link-item span {
     display: inline-block;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
+
 .menu-link-item:hover span {
     transform: translateY(-100%);
 }
+
 .menu-link-item::after {
     content: attr(data-text);
     position: absolute;
-    top: 100%;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    transform: translateY(0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(100%);
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     color: #C0A080; /* Gold Hover */
 }
+
 .menu-link-item:hover::after {
-    transform: translateY(-100%);
+    transform: translateY(0%);
 }
 
 /* Magazine Layout Grids */
