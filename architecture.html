@@ -41,18 +41,18 @@
         }
 
         .reveal-frame { overflow: hidden; position: relative; }
-        .reveal-img { transform: scale(1.2); transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-img { transform: scale(1.1); transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal-frame:hover .reveal-img { transform: scale(1); }
     </style>
 </head>
 <body class="bg-brand-dark text-white opacity-0">
 
-    <div id="cursor-label">View Detail</div>
+    <div id="cursor-label">Expand Experience</div>
     <div id="media-viewer"><div class="close-viewer"></div><div id="viewer-content" class="w-[85%] h-[85%] flex items-center justify-center"></div></div>
 
     <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference">
         <a href="index.html" class="z-50"><img src="asset/images/liyalogo.png" alt="Liya Logo" class="h-8 md:h-10"></a>
-        <div class="hidden md:flex space-x-10 text-[10px] tracking-luxury uppercase font-medium">
+        <div class="hidden md:flex space-x-10 text-[10px] tracking-luxury uppercase font-medium text-white">
             <a href="architecture.html" class="text-brand-gold border-b border-brand-gold/40 pb-1">Interiors</a>
             <a href="branding.html" class="hover:text-brand-gold transition">Branding</a>
             <a href="culture.html" class="hover:text-brand-gold transition">Ambassador</a>
@@ -65,49 +65,51 @@
 
     <header class="relative h-screen w-full flex items-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="asset/images/liyadesignsluxuryhomes3.jpg" class="w-full h-full object-cover opacity-50 scale-105" id="hero-img">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/20 to-brand-dark"></div>
+            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40 scale-105" id="hero-vid">
+                <source src="asset/images/liyadesignsluxuryhomevideo1.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/30 to-brand-dark"></div>
         </div>
         <div class="relative z-10 px-6 md:px-24 w-full">
-            <div class="max-w-4xl">
-                <span class="block text-brand-gold text-xs tracking-[0.5em] uppercase mb-6" id="hero-sub">Haute Architecture</span>
-                <h1 class="text-6xl md:text-[120px] font-serif italic leading-none mb-8" id="hero-title">Spatial <br> Elegance.</h1>
+            <div class="max-w-5xl">
+                <span class="block text-brand-gold text-xs tracking-[0.5em] uppercase mb-6" id="hero-sub">Liyu Interior Design</span>
+                <h1 class="text-6xl md:text-[110px] font-serif italic leading-[0.9] mb-8" id="hero-title">Sculpting <br> Atmosphere.</h1>
                 <p class="text-brand-grey max-w-lg text-sm leading-loose tracking-wide" id="hero-p">
-                    Transforming the architectural landscape of Ethiopia through ultra-premium interior experiences that balance structural integrity with aesthetic soul.
+                    Ethiopia’s premier interior destination for high-profile visionaries. We don't just design rooms; we curate the legacy of your private and professional world.
                 </p>
             </div>
-        </div>
-        <div class="absolute bottom-12 right-12 flex items-center space-x-4">
-            <div class="h-[1px] w-24 bg-brand-gold/30"></div>
-            <span class="text-[9px] tracking-widest uppercase text-brand-gold">Scroll to Explore</span>
         </div>
     </header>
 
     <section class="py-32 px-6 md:px-24 bg-white text-brand-dark">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <div class="reveal-frame rounded-sm shadow-2xl">
-                <img src="asset/images/liya designs1.jpg" class="reveal-img w-full h-[700px] object-cover" alt="Liya Elias Architect">
-                <div class="absolute bottom-6 left-6 bg-brand-dark text-white px-6 py-4">
-                    <p class="text-[10px] tracking-luxury uppercase mb-1">Academic Foundation</p>
-                    <p class="font-serif italic text-lg text-brand-gold">BSc in Architecture, 2021</p>
+                <img src="asset/images/liya designs1.jpg" class="reveal-img w-full h-[750px] object-cover" alt="Liya Elias BSc Architecture">
+                <div class="absolute bottom-0 right-0 bg-brand-gold text-brand-dark px-10 py-8 max-w-xs">
+                    <p class="text-[10px] tracking-luxury uppercase font-bold mb-2">The Pedigree</p>
+                    <p class="font-serif italic text-xl">BSc Architecture, Hope University 2021</p>
                 </div>
             </div>
             <div class="space-y-12">
-                <h2 class="text-5xl md:text-7xl font-serif italic leading-tight">Expertise forged in <br> Academic Excellence.</h2>
-                <div class="h-1 w-20 bg-brand-gold"></div>
-                <p class="text-lg leading-relaxed text-gray-500 font-light">
-                    Graduating from <span class="text-brand-dark font-medium underline decoration-brand-gold underline-offset-8">Hope Enterprises University College</span>, Liya Elias bridges the gap between engineering precision and artistic fluidity. Every project is a testament to her technical rigor and her status as Ethiopia’s premier architectural visionary.
+                <h2 class="text-5xl md:text-7xl font-serif italic leading-tight">Precision in <br> Every Detail.</h2>
+                <p class="text-lg leading-relaxed text-gray-500 font-light italic">
+                    "Great design is the intersection of structural intelligence and sensory luxury."
                 </p>
-                <div class="grid grid-cols-2 gap-8 border-t border-gray-100 pt-12">
-                    <div>
-                        <p class="text-3xl font-serif text-brand-gold">01.</p>
-                        <h4 class="text-xs uppercase tracking-widest font-bold mt-2">Structural Soul</h4>
-                        <p class="text-sm text-gray-400 mt-2 leading-relaxed">Defining the core skeleton of luxury environments.</p>
+                <p class="leading-loose text-gray-600">
+                    Liya’s approach is rooted in her architectural foundation. Every curve, material choice, and lighting scheme is engineered to provide a seamless transition between functional space and high-art living. For the top 1%, she is the architect of peace and prestige.
+                </p>
+                <div class="pt-8 border-t border-gray-100 flex flex-col space-y-6">
+                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
+                        <span class="text-xs uppercase tracking-widest font-bold">Residential Couture</span>
+                        <span class="text-brand-gold font-serif text-lg">01</span>
                     </div>
-                    <div>
-                        <p class="text-3xl font-serif text-brand-gold">02.</p>
-                        <h4 class="text-xs uppercase tracking-widest font-bold mt-2">Interior Couture</h4>
-                        <p class="text-sm text-gray-400 mt-2 leading-relaxed">Bespoke materials and artisanal finishing.</p>
+                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
+                        <span class="text-xs uppercase tracking-widest font-bold">Executive Office Systems</span>
+                        <span class="text-brand-gold font-serif text-lg">02</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
+                        <span class="text-xs uppercase tracking-widest font-bold">Hospitality & Business</span>
+                        <span class="text-brand-gold font-serif text-lg">03</span>
                     </div>
                 </div>
             </div>
@@ -115,91 +117,114 @@
     </section>
 
     <section class="py-32 px-6 md:px-24 bg-brand-dark">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-20">
-            <div>
-                <span class="text-brand-gold text-xs tracking-luxury uppercase mb-4 block">The Portfolio</span>
-                <h2 class="text-5xl md:text-7xl font-serif italic">Curated Spaces.</h2>
-            </div>
-            <p class="text-brand-grey text-xs tracking-widest hidden md:block uppercase">Top 1% Precision</p>
+        <div class="text-center mb-24">
+            <span class="text-brand-gold text-xs tracking-luxury uppercase mb-4 block">The Showcase</span>
+            <h2 class="text-5xl md:text-8xl font-serif italic">Living Portfolios.</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div class="md:col-span-8 reveal-frame h-[600px] cursor-pointer group">
-                <img src="asset/images/liyadesignsluxuryhomes4.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Luxury Home Design">
-                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <p class="text-white tracking-luxury uppercase text-xs border border-white/20 px-6 py-2">Residential Excellence</p>
-                </div>
-            </div>
-            
-            <div class="md:col-span-4 space-y-6">
-                <div class="reveal-frame h-[288px] cursor-pointer group">
-                    <img src="asset/images/liyadesignsoffice2.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Office Concept">
-                </div>
-                <div class="reveal-frame h-[288px] cursor-pointer group">
-                    <img src="asset/images/liyadesignsluxuryhomes7.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Minimalist Interior">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <div class="md:col-span-7 relative reveal-frame h-[700px] group cursor-pointer">
+                <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-1000 scale-105 group-hover:scale-100">
+                    <source src="asset/images/liyadesignsofficevideo8.mp4" type="video/mp4">
+                </video>
+                <div class="absolute bottom-10 left-10">
+                    <h3 class="text-3xl font-serif italic">The Executive Suite</h3>
+                    <p class="text-brand-gold text-[10px] tracking-luxury uppercase">Command & Comfort</p>
                 </div>
             </div>
 
-            <div class="md:col-span-4 reveal-frame h-[450px] cursor-pointer group">
-                <img src="asset/images/liyadesignsoffice5.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Corporate Lobby">
+            <div class="md:col-span-5 grid grid-cols-1 gap-8">
+                <div class="reveal-frame h-[334px] group cursor-pointer">
+                    <img src="asset/images/liyadesignsoffice2.jpg" class="expandable-media reveal-img w-full h-full object-cover">
+                </div>
+                <div class="reveal-frame h-[334px] group cursor-pointer">
+                    <img src="asset/images/liyadesignsluxuryhomes7.jpg" class="expandable-media reveal-img w-full h-full object-cover">
+                </div>
             </div>
-            <div class="md:col-span-8 reveal-frame h-[450px] cursor-pointer group">
-                <img src="asset/images/liyadesignsoffice6.jpg" class="expandable-media reveal-img w-full h-full object-cover" alt="Executive Suite">
+
+            <div class="md:col-span-12 relative reveal-frame h-[600px] group cursor-pointer">
+                <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-1000">
+                    <source src="asset/images/liyadesignshospitalitybusinessvideo9.mp4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center">
+                        <p class="text-brand-gold text-xs tracking-widest uppercase mb-4">High-Performance Environments</p>
+                        <h3 class="text-5xl md:text-7xl font-serif italic">Hospitality & Business</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 reveal-frame h-[400px] cursor-pointer">
+                <img src="asset/images/liyadesignsoffice5.jpg" class="expandable-media reveal-img w-full h-full object-cover">
+            </div>
+            <div class="md:col-span-4 reveal-frame h-[400px] cursor-pointer">
+                <img src="asset/images/liyadesignsluxuryhomes4.jpg" class="expandable-media reveal-img w-full h-full object-cover">
+            </div>
+            <div class="md:col-span-4 reveal-frame h-[400px] cursor-pointer">
+                <img src="asset/images/liyadesignsoffice6.jpg" class="expandable-media reveal-img w-full h-full object-cover">
             </div>
         </div>
     </section>
 
-    <section class="py-40 bg-brand-bg text-brand-dark text-center">
-        <div class="max-w-2xl mx-auto px-6">
-            <h3 class="text-4xl md:text-6xl font-serif italic mb-10">Start your architectural journey.</h3>
-            <a href="contact.html" class="inline-block bg-brand-dark text-white px-12 py-5 rounded-full text-xs tracking-luxury uppercase hover:bg-brand-gold transition-colors">Enquire Now</a>
+    <section class="py-48 bg-white text-brand-dark text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <span class="text-brand-gold text-xs tracking-[0.5em] uppercase mb-8 block">Inquire for 2026 Residency</span>
+            <h3 class="text-5xl md:text-[85px] font-serif italic leading-tight mb-12">Manifest your world <br> through Liyu.</h3>
+            <a href="contact.html" class="inline-block bg-brand-dark text-white px-16 py-6 rounded-full text-xs tracking-luxury uppercase hover:bg-brand-gold hover:scale-105 transition-all duration-500 shadow-xl">Secure Your Private Consultation</a>
         </div>
     </section>
 
-    <footer class="bg-brand-dark py-12 text-center text-[10px] tracking-[0.4em] uppercase text-brand-grey border-t border-white/5">
-        &copy; 2026 Liya Elias Architecture. All Rights Reserved.
+    <footer class="bg-black text-white py-12 text-center text-[10px] uppercase tracking-widest text-brand-grey border-t border-white/10">
+        &copy; 2026 Liya Elias. All Rights Reserved.
     </footer>
 
     <script>
-        // Init Page
         gsap.to("body", { opacity: 1, duration: 1.5 });
 
-        // Hero Parallax
-        gsap.to("#hero-img", {
-            yPercent: 15,
-            ease: "none",
-            scrollTrigger: { trigger: "header", start: "top top", end: "bottom top", scrub: true }
-        });
-
-        // Entrance Text
-        const tl = gsap.timeline({defaults: {ease: "expo.out", duration: 1.5}});
-        tl.from("#hero-sub", { y: 20, opacity: 0, delay: 0.5 })
-          .from("#hero-title", { y: 40, opacity: 0 }, "-=1.2")
-          .from("#hero-p", { y: 20, opacity: 0 }, "-=1.2");
-
-        // Cursor Label Logic
+        // Cursor follow
         const cursorLabel = document.getElementById('cursor-label');
         window.addEventListener('mousemove', (e) => {
             gsap.to(cursorLabel, { x: e.clientX, y: e.clientY, duration: 0.15 });
         });
+
+        // Media Viewer Interaction
+        const viewer = document.getElementById('media-viewer');
+        const content = document.getElementById('viewer-content');
 
         document.querySelectorAll('.expandable-media').forEach(item => {
             item.addEventListener('mouseenter', () => gsap.to(cursorLabel, { opacity: 1, scale: 1 }));
             item.addEventListener('mouseleave', () => gsap.to(cursorLabel, { opacity: 0, scale: 0.5 }));
             
             item.addEventListener('click', () => {
-                const viewer = document.getElementById('media-viewer');
-                const content = document.getElementById('viewer-content');
-                content.innerHTML = `<img src="${item.src}" class="max-w-full max-h-full object-contain">`;
+                content.innerHTML = '';
+                let media;
+                if (item.tagName === 'VIDEO') {
+                    media = document.createElement('video');
+                    media.src = item.querySelector('source').src;
+                    media.autoplay = true; media.controls = true; media.loop = true;
+                } else {
+                    media = document.createElement('img');
+                    media.src = item.src;
+                }
+                media.className = "max-w-full max-h-full object-contain shadow-2xl";
+                content.appendChild(media);
+                
                 viewer.style.display = 'flex';
-                gsap.to(viewer, { opacity: 1, duration: 0.5 });
-                gsap.from(content, { scale: 0.8, opacity: 0, duration: 1, ease: "expo.out" });
-                gsap.to(cursorLabel, { opacity: 0 });
+                gsap.to(viewer, { opacity: 1, duration: 0.6 });
+                gsap.from(content, { scale: 0.85, filter: "blur(20px)", opacity: 0, duration: 1, ease: "expo.out" });
             });
         });
 
-        document.getElementById('media-viewer').addEventListener('click', function() {
-            gsap.to(this, { opacity: 0, duration: 0.5, onComplete: () => this.style.display = 'none' });
+        viewer.addEventListener('click', () => {
+            gsap.to(viewer, { opacity: 0, duration: 0.5, onComplete: () => viewer.style.display = 'none' });
+        });
+
+        // Scroll reveals
+        gsap.utils.toArray('.reveal-frame').forEach(frame => {
+            gsap.from(frame, {
+                scrollTrigger: { trigger: frame, start: "top 85%" },
+                opacity: 0, y: 50, duration: 1.5, ease: "power3.out"
+            });
         });
     </script>
 </body>
