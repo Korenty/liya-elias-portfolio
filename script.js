@@ -1,62 +1,45 @@
-/* Liya Elias Global Interaction Script 
-   Powered by GSAP & ScrollTrigger
-*/
+/* Liya Elias Global Interaction Script */
 
 gsap.registerPlugin(ScrollTrigger);
 
-// 1. MANIFESTATION GATE LOGIC (The Welcome Note)
-const welcomeGate = document.getElementById('welcome-gate');
-const enterBtn = document.getElementById('enter-manifestation');
+// 0. WELCOME NOTE LOGIC (Manifestation Portal)
+document.addEventListener("DOMContentLoaded", () => {
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    const enterBtn = document.getElementById('enter-manifestation');
 
-function initManifestationGate() {
-    // Check if the user has seen the gate already
-    const hasSeenGate = localStorage.getItem('liya_manifested_seen');
-
-    if (hasSeenGate) {
-        // If they've seen it, hide it immediately
-        welcomeGate.classList.add('hidden-gate');
-        startMainExperience();
+    // Check if it's the first visit
+    if (!localStorage.getItem('liya_manifested_seen')) {
+        welcomeOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Lock scroll
     } else {
-        // First time entry
-        gsap.from("#welcome-gate .max-w-2xl", {
-            opacity: 0,
-            y: 30,
-            duration: 2,
-            ease: "power3.out",
-            delay: 0.5
+        // If already seen, just show the page normally
+        gsap.to("body", { opacity: 1, duration: 1.2 });
+    }
+
+    if(enterBtn) {
+        enterBtn.addEventListener('click', () => {
+            // Mark as seen
+            localStorage.setItem('liya_manifested_seen', 'true');
+            
+            // Elegant exit: Slide up and fade
+            welcomeOverlay.classList.add('welcome-hidden');
+            
+            // Unlock scroll
+            document.body.style.overflow = '';
+
+            // Trigger main page reveal
+            gsap.to("body", { 
+                opacity: 1, 
+                duration: 1.5,
+                onComplete: () => {
+                    welcomeOverlay.remove(); // Clean up DOM
+                }
+            });
         });
     }
-}
+});
 
-function startMainExperience() {
-    gsap.to("body", { 
-        opacity: 1, 
-        duration: 1.2, 
-        ease: "power2.out" 
-    });
-}
-
-if (enterBtn) {
-    enterBtn.addEventListener('click', () => {
-        // Set local storage so it won't show again
-        localStorage.setItem('liya_manifest_seen', 'true');
-        
-        // Animate out
-        gsap.to(welcomeGate, {
-            opacity: 0,
-            scale: 1.1,
-            duration: 1.5,
-            ease: "power4.inOut",
-            onComplete: () => {
-                welcomeGate.classList.add('hidden-gate');
-                startMainExperience();
-            }
-        });
-    });
-}
-
-
-// 2. MENU TOGGLE LOGIC
+// 1. MENU TOGGLE LOGIC
 const menuBtn = document.getElementById('menu-btn');
 const closeBtn = document.getElementById('close-menu-btn');
 const overlay = document.getElementById('mobile-menu-overlay');
@@ -65,29 +48,21 @@ function openMenu() {
     if (overlay.classList.contains('hidden')) {
         overlay.classList.remove('hidden');
     }
-    setTimeout(() => overlay.classList.add('open'), 10);
-    gsap.fromTo(".menu-link-item", 
-        { y: 80, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.1, duration: 1, delay: 0.4, ease: "power4.out" }
-    );
+    setTimeout(() => { overlay.classList.add('open'); }, 10);
+    gsap.fromTo(".menu-link-item", { y: 80, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1, duration: 1, delay: 0.4, ease: "power4.out" });
     document.body.style.overflow = 'hidden';
 }
 
 function closeMenu() {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
-    setTimeout(() => overlay.classList.add('hidden'), 800);
+    setTimeout(() => { overlay.classList.add('hidden'); }, 800);
 }
 
 if(menuBtn) menuBtn.addEventListener('click', openMenu);
 if(closeBtn) closeBtn.addEventListener('click', closeMenu);
 
-
-// 3. PAGE LOAD & GLOBAL REVEALS
-window.addEventListener("load", () => {
-    initManifestationGate();
-});
-
+// 2. SCROLL REVEALS
 gsap.utils.toArray(".reveal-text").forEach(el => {
     gsap.to(el, {
         y: 0,
