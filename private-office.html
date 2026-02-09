@@ -26,7 +26,7 @@
 
     <div id="vault-lock" class="fixed inset-0 z-[100] bg-brand-bg flex flex-col items-center justify-center p-6 text-center">
         <div class="max-w-md w-full space-y-8">
-            <img src="https://dammix.com/wp-content/uploads/2026/01/Original-DAMMIX-full-Logo-Horizontal-HIGH-QUALITY-JPG-scaled.jpg" alt="Logo" class="h-8 mx-auto opacity-40 mb-12 grayscale brightness-200">
+            <img src="https://dammix.com/wp-content/uploads/2026/01/Original-DAMMIX-full-Logo-Horizontal-HIGH-QUALITY-JPG-scaled.jpg" alt="Logo" class="h-8 mx-auto opacity-80 mb-12 grayscale brightness-200">
             <h2 class="text-3xl font-serif italic tracking-wide">Identity Verification</h2>
             <p id="lock-msg" class="text-gray-500 text-[10px] uppercase tracking-[0.4em]">Authorized Access Only</p>
             <input type="password" id="pass-input" placeholder="ACCESS KEY" class="w-full bg-transparent border-b border-white/20 py-4 text-center tracking-[0.5em] focus:outline-none focus:border-brand-gold transition text-sm">
@@ -61,12 +61,14 @@
                 </div>
             </div>
 
-            <div class="glass p-12 text-center rounded-sm">
-                <h3 class="text-2xl font-serif italic mb-2 text-brand-gold">The Muse Letters</h3>
-                <p class="text-gray-400 text-sm mb-8 uppercase tracking-widest text-[10px]">Coming Soon: A Monthly Brief on Space & Style</p>
-                <div class="max-w-md mx-auto flex gap-2">
-                    <input type="email" placeholder="Email Address" class="flex-1 bg-white/5 border border-white/10 px-4 py-3 focus:outline-none focus:border-brand-gold transition text-sm">
-                    <button class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-widest font-bold">Register</button>
+            <div class="flex justify-center w-full">
+                <div class="glass p-12 text-center rounded-sm max-w-2xl w-full">
+                    <h3 class="text-2xl font-serif italic mb-2 text-brand-gold">The Muse Letters</h3>
+                    <p class="text-gray-400 text-sm mb-8 uppercase tracking-widest text-[10px]">Coming Soon: A Monthly Brief on Space & Style</p>
+                    <div class="max-w-md mx-auto flex gap-2">
+                        <input type="email" placeholder="Email Address" class="flex-1 bg-white/5 border border-white/10 px-4 py-3 focus:outline-none focus:border-brand-gold transition text-sm">
+                        <button class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-widest font-bold">Register</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,7 +138,6 @@
             }
         }
 
-        // Live Preview for Admin
         document.getElementById('client-name').addEventListener('input', (e) => {
             document.getElementById('preview-name').innerText = e.target.value || '[Client Name]';
         });
