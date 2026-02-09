@@ -19,40 +19,8 @@
             }
         }
     </script>
-    <style>
-        #welcome-overlay { transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1), opacity 1s ease; }
-        .welcome-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
-    </style>
 </head>
 <body class="opacity-0 bg-brand-bg text-brand-dark overflow-x-hidden m-0 p-0">
-
-    <div id="welcome-overlay" class="fixed inset-0 z-[100] bg-brand-dark flex flex-col items-center justify-center hidden">
-        <div class="absolute inset-0 opacity-40">
-            <img src="asset/images/liyamanifested.jpg" class="w-full h-full object-cover grayscale blur-[1px]">
-        </div>
-        
-        <div class="relative z-10 max-w-3xl px-6 text-center space-y-10">
-            <div class="space-y-3">
-                <span class="text-brand-gold text-[10px] tracking-luxury uppercase block">New Year’s Eve • Dec 29, 2025</span>
-                <div class="h-[1px] w-12 bg-brand-gold mx-auto"></div>
-            </div>
-
-            <h2 class="text-white text-3xl md:text-5xl font-serif italic leading-tight">
-                "Be patient, somebody will give you <br class="hidden md:block"> the world without you even asking."
-            </h2>
-
-            <p class="text-white/80 font-light text-lg md:text-xl leading-relaxed max-w-2xl mx-auto italic">
-                Liya, I remember when you wrote those words. It wasn’t just a post; it felt like a resolution. <br><br>
-                While you were busy being the Muse for everyone else's vision, I decided to build yours. 
-                Welcome to the digital world you manifested.
-            </p>
-
-            <button id="enter-manifestation" class="group relative px-12 py-5 overflow-hidden border border-brand-gold text-brand-gold text-xs uppercase tracking-luxury hover:text-black transition-colors duration-500">
-                <span class="relative z-10">See Your Manifestation</span>
-                <div class="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-            </button>
-        </div>
-    </div>
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
