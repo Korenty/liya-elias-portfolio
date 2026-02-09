@@ -14,7 +14,7 @@
                 extend: {
                     colors: { 'brand-bg': '#0a0a0a', 'brand-dark': '#050505', 'brand-gold': '#C0A080', 'brand-grey': '#888888' },
                     fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
-                    letterSpacing: { 'luxury': '0.4em', 'ethereal': '0.7em' }
+                    letterSpacing: { 'luxury': '0.25em', 'ethereal': '0.7em' }
                 }
             }
         }
@@ -22,42 +22,43 @@
     <style>
         .hidden { display: none !important; }
         .text-outline { -webkit-text-stroke: 1px rgba(192, 160, 128, 0.4); color: transparent; }
-        .vertical-text { writing-mode: vertical-rl; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .reveal-up { transform: translateY(80px); opacity: 0; }
         .menu-link-item span { display: inline-block; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .menu-link-item:hover span { transform: skewX(-10deg) translateX(20px); }
-        .cta-gradient { background: linear-gradient(135deg, #C0A080 0%, #E0C0A0 100%); }
     </style>
 </head>
 <body class="bg-brand-bg text-white opacity-0 overflow-x-hidden">
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[100] flex flex-col items-center justify-center hidden">
-        <button id="close-menu-btn" class="absolute top-10 right-10 text-[10px] uppercase tracking-luxury border border-white/20 px-10 py-3 rounded-full hover:bg-white hover:text-black transition-all">Close</button>
-        <div class="flex flex-col space-y-4 text-center">
-            <a href="index.html" class="menu-link-item text-5xl md:text-8xl font-serif italic py-2"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-5xl md:text-8xl font-serif italic py-2"><span>Interiors</span></a>
-            <a href="branding.html" class="menu-link-item text-5xl md:text-8xl font-serif italic py-2"><span>Branding</span></a>
-            <a href="culture.html" class="menu-link-item text-5xl md:text-8xl font-serif italic py-2 text-brand-gold"><span>Ambassador</span></a>
-            <a href="modeling.html" class="menu-link-item text-5xl md:text-8xl font-serif italic py-2"><span>Modeling</span></a>
-            <a href="awards.html" class="menu-link-item text-5xl md:text-8xl font-serif italic py-2"><span>Awards</span></a>
-            <a href="work.html" class="menu-link-item text-5xl md:text-8xl font-serif italic py-2"><span>Portfolio</span></a>
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[70] flex flex-col items-center justify-center hidden">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
+        <div class="flex flex-col space-y-6 text-center">
+            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Home</span></a>
+            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Interiors</span></a>
+            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Branding</span></a>
+            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic text-brand-gold"><span>Ambassador</span></a>
+            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Modeling</span></a>
+            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Awards</span></a>
+            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Portfolio</span></a>
+            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Contact</span></a>
         </div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-8 md:px-12 flex justify-between items-center mix-blend-difference">
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
         <a href="index.html" class="z-50 block">
             <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain">
         </a>
-        <div class="hidden lg:flex space-x-12 text-[10px] tracking-luxury uppercase font-medium">
+        
+        <div class="hidden md:flex space-x-8 text-xs tracking-luxury uppercase z-50">
             <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
             <a href="branding.html" class="hover:text-brand-gold transition">Branding</a>
-            <a href="culture.html" class="text-brand-gold border-b border-brand-gold/40">Ambassador</a>
+            <a href="culture.html" class="text-brand-gold border-b border-brand-gold">Ambassador</a>
             <a href="modeling.html" class="hover:text-brand-gold transition">Modeling</a>
             <a href="awards.html" class="hover:text-brand-gold transition">Awards</a>
             <a href="work.html" class="hover:text-brand-gold transition">Portfolio</a>
         </div>
-        <button id="menu-btn" class="relative z-50 text-[10px] uppercase border border-white/20 px-8 py-2.5 rounded-full hover:bg-white hover:text-black transition-all">Menu</button>
+
+        <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition z-50">Menu</button>
     </nav>
 
     <header class="relative w-full h-screen flex items-center justify-center bg-black overflow-hidden">
@@ -201,7 +202,7 @@
                 Projecting the <br> <span class="text-brand-gold">National Narrative.</span>
             </h2>
             <p class="text-gray-600 text-xl md:text-2xl font-light leading-relaxed max-w-4xl mx-auto mb-20 reveal-up">
-                Liya Elias is open for partnership with <strong>Ministries of Tourism, Global Embassies, and Regional Governments</strong> to curate high-stakes visual identities that resonate across borders. We don't just showcase heritage; we engineer the cultural soft power of a nation.
+                Liya Elias partners with <strong>Ministries of Tourism, Global Embassies, and Regional Governments</strong> to curate high-stakes visual identities that resonate across borders. We don't just showcase heritage; we engineer the cultural soft power of a nation.
             </p>
             
             <div class="flex flex-col md:flex-row items-center justify-center gap-8 reveal-up">
@@ -209,21 +210,6 @@
                     <span class="relative z-10 text-[11px] tracking-luxury uppercase font-bold">Initiate Diplomatic Inquiry</span>
                     <div class="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                 </a>
-            </div>
-            
-            <div class="mt-32 grid grid-cols-1 md:grid-cols-3 gap-12 text-left border-t border-gray-100 pt-20">
-                <div class="space-y-4">
-                    <h4 class="text-[10px] tracking-widest uppercase font-bold">Governmental</h4>
-                    <p class="text-xs text-gray-400 leading-loose">Visual infrastructure for regional branding and tourism campaigns.</p>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="text-[10px] tracking-widest uppercase font-bold">Diplomatic</h4>
-                    <p class="text-xs text-gray-400 leading-loose">Representation for international missions and cultural exchange summits.</p>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="text-[10px] tracking-widest uppercase font-bold">Institutional</h4>
-                    <p class="text-xs text-gray-400 leading-loose">Heritage preservation through high-fashion storytelling and archive development.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -241,7 +227,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            gsap.to("body", { opacity: 1, duration: 2 });
+            gsap.to("body", { opacity: 1, duration: 1.5 });
             gsap.registerPlugin(ScrollTrigger);
 
             const menuBtn = document.getElementById('menu-btn');
@@ -249,6 +235,7 @@
             const menuOverlay = document.getElementById('mobile-menu-overlay');
             const menuLinks = document.querySelectorAll('.menu-link-item');
 
+            // Standardized Menu Interaction
             menuBtn.addEventListener('click', () => {
                 menuOverlay.classList.remove('hidden');
                 gsap.fromTo(menuLinks, 
@@ -258,15 +245,12 @@
             });
 
             const closeMenu = () => {
-                gsap.to(menuLinks, { 
-                    y: -40, 
-                    opacity: 0, 
-                    stagger: 0.05, 
-                    duration: 0.4, 
-                    ease: "power2.in",
+                gsap.to(menuOverlay, {
+                    opacity: 0,
+                    duration: 0.4,
                     onComplete: () => {
                         menuOverlay.classList.add('hidden');
-                        gsap.set(menuLinks, { y: 60, opacity: 0 });
+                        gsap.set(menuOverlay, { opacity: 1 });
                     }
                 });
             };
@@ -274,6 +258,7 @@
             closeBtn.addEventListener('click', closeMenu);
             menuLinks.forEach(link => link.addEventListener('click', closeMenu));
 
+            // Elements Reveal
             gsap.utils.toArray('.reveal-up').forEach(elem => {
                 gsap.to(elem, {
                     scrollTrigger: { trigger: elem, start: "top 90%" },
@@ -286,4 +271,4 @@
         });
     </script>
 </body>
-                                                                               </html>
+                    </html>
