@@ -19,8 +19,41 @@
             }
         }
     </script>
+    <style>
+        #welcome-overlay { transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1), opacity 1s ease; }
+        .welcome-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+    </style>
 </head>
 <body class="opacity-0 bg-brand-bg text-brand-dark overflow-x-hidden m-0 p-0">
+
+    <div id="welcome-overlay" class="fixed inset-0 z-[100] bg-brand-dark flex flex-col items-center justify-center hidden">
+        <div class="absolute inset-0 opacity-30">
+            <img src="asset/images/liyamanifested.jpg" class="w-full h-full object-cover grayscale blur-[2px]">
+        </div>
+        
+        <div class="relative z-10 max-w-3xl px-6 text-center space-y-8">
+            <div class="space-y-2">
+                <span class="text-brand-gold text-[10px] tracking-luxury uppercase block">Dec 29, 2025 • A New Year's Manifestation</span>
+                <div class="h-[1px] w-12 bg-brand-gold mx-auto"></div>
+            </div>
+
+            <h2 class="text-white text-3xl md:text-5xl font-serif italic leading-tight">
+                "Be patient, somebody will give you the world <br class="hidden md:block"> without you even asking."
+            </h2>
+
+            <p class="text-white/80 font-light text-lg md:text-xl leading-relaxed max-w-2xl mx-auto italic">
+                Liya, you posted those words on New Year's Eve, looking at the future in denim. 
+                I don't believe in coincidences—I believe in vision. <br><br>
+                While you were busy building everyone else's dreams, I spent my nights building yours. 
+                Consider this the world you asked for.
+            </p>
+
+            <button id="enter-manifestation" class="group relative px-12 py-4 overflow-hidden border border-brand-gold text-brand-gold text-xs uppercase tracking-luxury hover:text-black transition-colors duration-500">
+                <span class="relative z-10">See Your Manifestation</span>
+                <div class="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+            </button>
+        </div>
+    </div>
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
@@ -86,91 +119,6 @@
         </div>
     </section>
 
-    <section class="py-32 px-6 md:px-12 bg-brand-dark text-white">
-        <div class="max-w-5xl mx-auto text-center">
-            <span class="text-brand-gold text-xs tracking-luxury uppercase reveal-text mb-6 block">The Scholarly Blueprint</span>
-            <h2 class="text-4xl md:text-6xl font-serif italic mb-12">Honors in Architecture.</h2>
-            <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-12">
-                In August 2021, Liya solidified her technical prowess at <strong class="text-white">Hope Enterprises University College</strong>, graduating with a <strong class="text-brand-gold">B.Sc. in Architecture with Honors</strong>. This academic milestone bridged the gap between celestial intuition and structural engineering, allowing her to design spaces that breathe with both purpose and poetry.
-            </p>
-            <div class="w-20 h-[1px] bg-brand-gold mx-auto"></div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="space-y-6 group">
-                <div class="h-96 overflow-hidden">
-                    <img src="asset/images/liyaculturephotogamo.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
-                </div>
-                <h3 class="text-2xl font-serif italic">The Ambassador</h3>
-                <p class="text-sm text-brand-grey leading-relaxed">Representing the rich tapestry of Ethiopian heritage and nations through cultural diplomacy.</p>
-                <a href="culture.html" class="inline-block text-[10px] uppercase tracking-luxury border-b border-brand-gold pb-1">Explore Culture</a>
-            </div>
-            <div class="space-y-6 group">
-                <div class="h-96 overflow-hidden">
-                    <img src="asset/images/liyamodelphoto1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
-                </div>
-                <h3 class="text-2xl font-serif italic">The Muse</h3>
-                <p class="text-sm text-brand-grey leading-relaxed">High-fashion storytelling and commercial versatility captured through a structural lens.</p>
-                <a href="modeling.html" class="inline-block text-[10px] uppercase tracking-luxury border-b border-brand-gold pb-1">View Portfolio</a>
-            </div>
-            <div class="space-y-6 group">
-                <div class="h-96 overflow-hidden">
-                    <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
-                </div>
-                <h3 class="text-2xl font-serif italic">The Acclaim</h3>
-                <p class="text-sm text-brand-grey leading-relaxed">Recognized for excellence in media, fashion, and industry influence across the continent.</p>
-                <a href="awards.html" class="inline-block text-[10px] uppercase tracking-luxury border-b border-brand-gold pb-1">View Awards</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-32 px-6 md:px-12 bg-brand-dark text-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[100px] -z-10"></div>
-        <div class="max-w-7xl mx-auto">
-             <div class="text-center mb-24">
-                <h2 class="text-5xl md:text-7xl font-serif italic reveal-text">The Evolution</h2>
-             </div>
-             <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                <div class="md:col-span-7 bg-white/5 p-8 md:p-12 hover:bg-white/10 transition duration-500 border border-white/10">
-                    <span class="text-brand-gold text-xs tracking-luxury uppercase">Current Chapter</span>
-                    <h3 class="text-3xl md:text-4xl font-serif mt-4 mb-6">The Face of "Cool"</h3>
-                    <p class="text-gray-400 font-light mb-8 max-w-md">
-                        As a TV Host on <strong class="text-white">Arts TV World</strong>, I curate conversations that matter. My program is more than entertainment; it is a platform for lifestyle, culture, and inspiration.
-                    </p>
-                    <div class="h-64 overflow-hidden relative">
-                         <img src="asset/images/liya9.jpg" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition duration-500">
-                    </div>
-                </div>
-                <div class="md:col-span-5 bg-white/5 p-8 md:p-12 hover:bg-white/10 transition duration-500 border border-white/10 flex flex-col justify-between">
-                    <div>
-                        <span class="text-brand-gold text-xs tracking-luxury uppercase">Visual Presence</span>
-                        <h3 class="text-3xl md:text-4xl font-serif mt-4 mb-6">Poise & Purpose</h3>
-                        <p class="text-gray-400 font-light">
-                            Blending architectural precision with a high-fashion background to create a unique aesthetic in both structure and media.
-                        </p>
-                    </div>
-                    <div class="mt-8 relative">
-                         <img src="asset/images/liya5.jpg" class="w-full h-auto opacity-60 hover:opacity-100 transition duration-500 block">
-                    </div>
-                </div>
-             </div>
-        </div>
-    </section>
-
-    <section class="h-[60vh] w-full relative flex items-center justify-center overflow-hidden">
-        <img src="asset/images/liya8.jpg" class="absolute inset-0 w-full h-full object-cover filter grayscale brightness-50 parallax-media">
-        <div class="relative z-10 text-center space-y-6">
-            <h2 class="text-5xl md:text-7xl text-white font-serif italic reveal-text">Building Legacy.</h2>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="architecture.html" class="px-8 py-3 border border-white text-white text-xs uppercase tracking-luxury hover:bg-white hover:text-black transition duration-500">Interiors</a>
-                <a href="branding.html" class="px-8 py-3 border border-brand-gold text-brand-gold text-xs uppercase tracking-luxury hover:bg-brand-gold hover:text-black transition duration-500">Branding</a>
-                <a href="work.html" class="px-8 py-3 border border-white text-white text-xs uppercase tracking-luxury hover:bg-white hover:text-black transition duration-500">Portfolio</a>
-            </div>
-        </div>
-    </section>
-
     <footer class="bg-brand-dark border-t border-white/10 py-12 text-center">
         <p class="text-gray-500 text-[10px] uppercase tracking-widest">
             &copy; 2026 Liya Elias &bull; <a href="private-office.html" class="hover:text-white transition">Private Office</a> &bull; Addis Ababa
@@ -179,4 +127,4 @@
 
     <script src="script.js"></script>
 </body>
-        </html>
+    </html>
