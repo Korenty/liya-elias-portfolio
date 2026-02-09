@@ -29,138 +29,140 @@
             background-color: #C0A080; color: black; border-color: #C0A080;
         }
 
-        /* Glassmorphism Dropdown */
+        /* Dynamic Dropdown Logic */
         .custom-options {
-            position: absolute;
-            top: 100%; left: 0; right: 0;
-            background: rgba(15, 15, 15, 0.98);
+            display: none;
+            width: 100%;
+            background: #0a0a0a;
             border: 1px solid rgba(192, 160, 128, 0.3);
-            z-index: 100; opacity: 0; visibility: hidden;
-            transform: translateY(-10px); transition: all 0.4s ease;
+            margin-top: 10px;
+            z-index: 50;
         }
-        .custom-options.open { opacity: 1; visibility: visible; transform: translateY(0); }
-        .option { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; }
+        .custom-options.open { display: block; }
+        .option { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; color: rgba(255,255,255,0.7); }
         .option:hover { background: #C0A080; color: black; }
 
-        /* Full Screen Menu Overlay - Updated to match Homepage */
         #mobile-menu {
             position: fixed; inset: 0; background: #050505; z-index: 300;
             display: none; opacity: 0;
         }
-        .menu-link-item { transition: all 0.5s ease; position: relative; display: inline-block; }
-        .menu-link-item:hover { transform: italic; color: #C0A080; padding-left: 20px; }
+        
+        /* Smooth transition for the submit button */
+        #submit-btn-container { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
     </style>
 </head>
 <body class="bg-brand-bg text-white overflow-hidden h-screen w-full flex flex-col md:flex-row opacity-0">
 
-    <nav id="master-header" class="fixed top-0 w-full z-[200] px-6 py-6 md:px-12 flex justify-between items-center bg-brand-bg/90 backdrop-blur-md h-[90px]">
-        <a href="index.html" class="block reveal-nav">
-            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain transition-opacity hover:opacity-80">
+    <nav id="master-header" class="fixed top-0 w-full z-[200] px-6 py-6 md:px-12 flex justify-between items-center bg-brand-bg/95 backdrop-blur-xl h-[90px] border-b border-white/5">
+        <a href="index.html" class="block">
+            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain">
         </a>
         
-        <button onclick="toggleMenu(true)" class="reveal-nav group flex items-center gap-4 cursor-pointer outline-none border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">
-            <span class="text-[10px] uppercase tracking-luxury">Menu</span>
+        <button onclick="toggleMenu(true)" class="group flex items-center gap-4 cursor-pointer outline-none border border-brand-gold/50 px-8 py-2.5 rounded-full hover:bg-brand-gold hover:text-black transition-all duration-500">
+            <span class="text-[11px] font-bold uppercase tracking-luxury text-brand-gold group-hover:text-black">Menu</span>
         </button>
     </nav>
 
     <div id="mobile-menu" class="flex flex-col justify-center items-center">
-        <button onclick="toggleMenu(false)" class="absolute top-8 right-8 text-[10px] uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-brand-gold hover:text-black transition">Close</button>
-        <div class="flex flex-col space-y-4 text-center">
-            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic">Home</a>
-            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic">Interiors</a>
-            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic">Branding</a>
-            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic">Ambassador</a>
-            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic">Modeling</a>
-            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic">Awards</a>
-            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic">Portfolio</a>
-            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic text-brand-gold">Contact</a>
+        <button onclick="toggleMenu(false)" class="absolute top-8 right-8 text-[11px] uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-brand-gold hover:text-black transition">Close</button>
+        <div class="flex flex-col space-y-5 text-center">
+            <a href="index.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Home</a>
+            <a href="architecture.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Interiors</a>
+            <a href="branding.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Branding</a>
+            <a href="culture.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Ambassador</a>
+            <a href="modeling.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Modeling</a>
+            <a href="awards.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Awards</a>
+            <a href="work.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Portfolio</a>
+            <a href="contact.html" class="text-4xl md:text-7xl font-serif italic text-brand-gold">Contact</a>
         </div>
     </div>
 
     <div id="side-image-panel" class="hidden md:block w-full md:w-[45%] h-full relative overflow-hidden bg-brand-bg">
         <img src="asset/images/liya8.jpg" class="w-full h-full object-cover filter grayscale brightness-[0.7] reveal-img scale-110" alt="Editorial">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
         <div class="absolute bottom-16 left-12 z-20">
-            <span class="text-brand-gold text-[9px] uppercase tracking-luxury block mb-4 reveal-text">Private Office</span>
-            <h2 class="text-6xl font-serif italic leading-none reveal-text text-white">Global <br> Access.</h2>
-            <div class="w-12 h-[1px] bg-brand-gold mt-8 reveal-line"></div>
+            <span class="text-brand-gold text-[10px] uppercase tracking-luxury block mb-4">Private Office</span>
+            <h2 class="text-6xl font-serif italic leading-none text-white">Global <br> Access.</h2>
+            <div class="w-16 h-[1px] bg-brand-gold mt-8"></div>
         </div>
     </div>
 
-    <div id="main-content-panel" class="relative w-full md:w-[55%] h-full flex flex-col bg-brand-bg px-6 md:px-20 overflow-y-auto no-scrollbar pt-[110px] pb-12">
+    <div id="main-content-panel" class="relative w-full md:w-[55%] h-full flex flex-col bg-brand-bg px-6 md:px-20 overflow-y-auto no-scrollbar pt-[120px] pb-12">
         
         <div id="form-container" class="max-w-xl w-full mx-auto relative z-10 flex flex-col">
-            <div class="mb-10 space-y-3 reveal-form">
-                <h1 class="text-3xl md:text-5xl font-serif italic text-white">The Correspondence.</h1>
-                <p class="text-gray-400 text-xs font-light leading-relaxed max-w-sm">
-                    Initiate a formal inquiry to route your vision to the appropriate executive desk.
+            <div class="mb-14 space-y-4">
+                <h1 class="text-4xl md:text-6xl font-serif italic text-white leading-tight">The Correspondence.</h1>
+                <p class="text-gray-400 text-sm md:text-base font-light leading-relaxed max-w-md">
+                    Initiate a formal inquiry to route your vision to the appropriate executive desk. Our office reviews all global submissions within 48 hours.
                 </p>
             </div>
 
-            <form id="inquiry-form" class="space-y-10" onsubmit="handleSubmit(event)">
+            <form id="inquiry-form" class="flex flex-col">
                 
-                <div class="reveal-form space-y-4">
-                    <label class="text-[9px] uppercase tracking-luxury text-brand-gold/80">01 / Department</label>
-                    <div class="grid grid-cols-2 gap-2 md:gap-3">
-                        <label class="cursor-pointer group"><input type="radio" name="dept" value="branding" class="peer sr-only" checked onchange="updateServices('branding')"><div class="border border-white/10 py-3 text-[9px] uppercase tracking-widest text-center transition-all duration-300">Liyu Branding</div></label>
-                        <label class="cursor-pointer group"><input type="radio" name="dept" value="interiors" class="peer sr-only" onchange="updateServices('interiors')"><div class="border border-white/10 py-3 text-[9px] uppercase tracking-widest text-center transition-all duration-300">Liyu Interiors</div></label>
-                        <label class="cursor-pointer group"><input type="radio" name="dept" value="media" class="peer sr-only" onchange="updateServices('media')"><div class="border border-white/10 py-3 text-[9px] uppercase tracking-widest text-center transition-all duration-300">Media & Consultancy</div></label>
-                        <label class="cursor-pointer group"><input type="radio" name="dept" value="modeling" class="peer sr-only" onchange="updateServices('modeling')"><div class="border border-white/10 py-3 text-[9px] uppercase tracking-widest text-center transition-all duration-300">Ambassador</div></label>
+                <div class="space-y-6 mb-12">
+                    <label class="text-[10px] uppercase tracking-luxury text-brand-gold">01 / Select Department</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer group"><input type="radio" name="dept" value="branding" class="peer sr-only" checked onchange="updateServices('branding')"><div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center transition-all duration-300">Liyu Branding</div></label>
+                        <label class="cursor-pointer group"><input type="radio" name="dept" value="interiors" class="peer sr-only" onchange="updateServices('interiors')"><div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center transition-all duration-300">Liyu Interiors</div></label>
+                        <label class="cursor-pointer group"><input type="radio" name="dept" value="media" class="peer sr-only" onchange="updateServices('media')"><div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center transition-all duration-300">Media & Consultancy</div></label>
+                        <label class="cursor-pointer group"><input type="radio" name="dept" value="modeling" class="peer sr-only" onchange="updateServices('modeling')"><div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center transition-all duration-300">Ambassador</div></label>
                     </div>
                 </div>
 
-                <div class="reveal-form grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="relative group">
-                        <input type="text" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-3 text-sm outline-none focus:border-brand-gold transition-colors text-white">
-                        <label class="absolute left-0 top-3 text-gray-500 text-[9px] uppercase tracking-widest pointer-events-none peer-focus:-top-6 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-6 transition-all">Identity / Name</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+                    <div class="relative">
+                        <input type="text" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 text-base outline-none focus:border-brand-gold transition-colors text-white">
+                        <label class="absolute left-0 top-4 text-gray-500 text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-6 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-6 transition-all">Identity / Name</label>
                     </div>
-                    <div class="relative group">
-                        <input type="email" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-3 text-sm outline-none focus:border-brand-gold transition-colors text-white">
-                        <label class="absolute left-0 top-3 text-gray-500 text-[9px] uppercase tracking-widest pointer-events-none peer-focus:-top-6 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-6 transition-all">Email Coordinate</label>
+                    <div class="relative">
+                        <input type="email" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 text-base outline-none focus:border-brand-gold transition-colors text-white">
+                        <label class="absolute left-0 top-4 text-gray-500 text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-6 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-6 transition-all">Email Coordinate</label>
                     </div>
                 </div>
 
-                <div class="reveal-form space-y-4 relative">
-                    <label class="text-[9px] uppercase tracking-luxury text-brand-gold/80">03 / Specific Vision</label>
-                    <div class="custom-select-wrapper relative">
-                        <div class="custom-select border-b border-white/20 py-4 flex justify-between items-center group" onclick="toggleDropdown()">
-                            <span id="selected-service" class="text-lg md:text-xl font-serif italic text-white/80 group-hover:text-brand-gold">Select Service...</span>
-                            <span class="text-brand-gold text-[10px]">▼</span>
+                <div class="space-y-4 relative mb-12">
+                    <label class="text-[10px] uppercase tracking-luxury text-brand-gold">02 / Specific Vision</label>
+                    <div class="custom-select-wrapper">
+                        <div class="custom-select border-b border-white/20 py-5 flex justify-between items-center cursor-pointer group" onclick="toggleDropdown()">
+                            <span id="selected-service" class="text-xl md:text-2xl font-serif italic text-white/80 group-hover:text-brand-gold transition-colors">Select Service Type...</span>
+                            <span class="text-brand-gold text-[12px]">▼</span>
                         </div>
-                        <div id="service-options" class="custom-options no-scrollbar overflow-y-auto max-h-60"></div>
+                        <div id="service-options" class="custom-options no-scrollbar overflow-y-auto max-h-80"></div>
                         <input type="hidden" name="service" id="service-input" required>
                     </div>
                 </div>
 
-                <div class="reveal-form pt-6">
-                    <button type="submit" id="submit-btn" class="w-full bg-white text-black py-5 uppercase tracking-luxury text-[10px] font-bold hover:bg-brand-gold hover:text-white transition-all duration-700">
+                <div id="submit-btn-container" class="pt-6">
+                    <button type="submit" onclick="handleSubmit(event)" id="submit-btn" class="w-full bg-white text-black py-6 uppercase tracking-luxury text-[11px] font-bold hover:bg-brand-gold hover:text-white transition-all duration-700">
                         Initiate Request
                     </button>
                 </div>
             </form>
         </div>
 
-        <div id="success-msg" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-brand-bg z-50">
-            <div class="md:hidden w-32 h-32 rounded-full overflow-hidden mb-8 border border-brand-gold">
-                <img src="asset/images/liya8.jpg" class="w-full h-full object-cover">
+        <div id="success-msg" class="hidden fixed inset-0 z-[400] bg-black overflow-hidden">
+            <img src="asset/images/liya8.jpg" class="absolute inset-0 w-full h-full object-cover opacity-40 grayscale">
+            <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+                <h3 class="text-5xl md:text-8xl font-serif italic text-white mb-6">Confirmed.</h3>
+                <p class="text-brand-gold text-lg md:text-xl font-light max-w-xl mx-auto mb-12">
+                    Your vision has been successfully transmitted to the private office.
+                </p>
+                <a href="index.html" class="px-12 py-4 border border-white text-white uppercase text-[11px] tracking-widest hover:bg-white hover:text-black transition-all">Return to Home</a>
             </div>
-            <h3 class="text-4xl md:text-6xl font-serif italic text-white mb-4">Confirmed.</h3>
-            <p class="text-gray-500 text-sm font-light max-w-xs mx-auto">Your vision has been transmitted. We will respond within 48 hours.</p>
-            <a href="index.html" class="mt-12 text-brand-gold uppercase text-[9px] tracking-widest border-b border-brand-gold">Back to Home</a>
         </div>
 
-        <div class="mt-auto pt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 reveal-form">
-            <div class="space-y-1">
-                <span class="text-[8px] text-gray-500 uppercase tracking-widest block">Direct</span>
-                <a href="tel:+251987012686" class="text-xs font-serif italic transition-colors hover:text-brand-gold">+251 987 012 686</a>
+        <div class="mt-auto pt-20 grid grid-cols-1 md:grid-cols-3 gap-10 border-t border-white/10">
+            <div class="space-y-2">
+                <span class="text-[10px] text-brand-gold uppercase tracking-widest block font-bold">Direct Line</span>
+                <a href="tel:+251987012686" class="text-base md:text-lg font-serif italic hover:text-white text-gray-300 transition-colors">+251 987 012 686</a>
             </div>
-            <div class="space-y-1">
-                <span class="text-[8px] text-gray-500 uppercase tracking-widest block">Email</span>
-                <a href="mailto:booking@liyaelias.com" class="text-xs font-serif italic transition-colors hover:text-brand-gold">booking@liyaelias.com</a>
+            <div class="space-y-2">
+                <span class="text-[10px] text-brand-gold uppercase tracking-widest block font-bold">Electronic Mail</span>
+                <a href="mailto:booking@liyaelias.com" class="text-base md:text-lg font-serif italic hover:text-white text-gray-300 transition-colors">booking@liyaelias.com</a>
             </div>
-            <div class="space-y-1">
-                <span class="text-[8px] text-gray-500 uppercase tracking-widest block">Web</span>
-                <a href="https://www.liyaelias.com" target="_blank" class="text-xs font-serif italic transition-colors hover:text-brand-gold">liyaelias.com</a>
+            <div class="space-y-2">
+                <span class="text-[10px] text-brand-gold uppercase tracking-widest block font-bold">Official Web</span>
+                <a href="https://www.liyaelias.com" target="_blank" class="text-base md:text-lg font-serif italic hover:text-white text-gray-300 transition-colors">www.liyaelias.com</a>
             </div>
         </div>
     </div>
@@ -178,7 +180,7 @@
             const label = document.getElementById('selected-service');
             const input = document.getElementById('service-input');
             container.innerHTML = ''; input.value = '';
-            label.innerText = 'Select Service...';
+            label.innerText = 'Select Service Type...';
             label.classList.remove('text-brand-gold');
             (serviceMap[deptKey] || []).forEach(service => {
                 const div = document.createElement('div');
@@ -195,36 +197,31 @@
             });
         }
 
-        function toggleDropdown() { document.getElementById('service-options').classList.toggle('open'); }
+        function toggleDropdown() { 
+            const options = document.getElementById('service-options');
+            options.classList.toggle('open');
+        }
         
         function toggleMenu(open) {
             const menu = document.getElementById('mobile-menu');
             if(open) {
                 menu.style.display = 'flex';
-                gsap.to(menu, { opacity: 1, duration: 0.5 });
+                gsap.to(menu, { opacity: 1, duration: 0.6, ease: "power2.out" });
             } else {
-                gsap.to(menu, { opacity: 0, duration: 0.5, onComplete: () => menu.style.display = 'none' });
+                gsap.to(menu, { opacity: 0, duration: 0.4, onComplete: () => menu.style.display = 'none' });
             }
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            document.getElementById('submit-btn').innerHTML = "TRANSMITTING...";
+            gsap.to("#success-msg", { display: 'block', opacity: 1, duration: 0.8, delay: 0.5 });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             updateServices('branding');
             gsap.to("body", { opacity: 1, duration: 1.2 });
-            const tl = gsap.timeline({ delay: 0.3 });
-            tl.from(".reveal-img", { scale: 1.3, opacity: 0, duration: 2, ease: "power2.out" })
-              .from(".reveal-nav", { y: -20, opacity: 0, stagger: 0.1, duration: 0.8 }, "-=1.5")
-              .from(".reveal-form", { y: 20, opacity: 0, stagger: 0.05, duration: 0.8 }, "-=0.8");
         });
-
-        function handleSubmit(e) {
-            e.preventDefault();
-            document.getElementById('submit-btn').innerHTML = "TRANSMITTING...";
-            gsap.to("#form-container", { opacity: 0, y: -20, duration: 0.6, onComplete: () => {
-                document.getElementById('form-container').classList.add('hidden');
-                document.getElementById('success-msg').classList.remove('hidden');
-                gsap.from("#success-msg", { opacity: 0, y: 30, duration: 0.8, ease: "power3.out" });
-            }});
-        }
     </script>
 </body>
-                    </html>
+    </html>
