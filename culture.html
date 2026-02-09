@@ -24,6 +24,16 @@
         .text-outline { -webkit-text-stroke: 1px rgba(192, 160, 128, 0.4); color: transparent; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .reveal-up { transform: translateY(80px); opacity: 0; }
+        
+        /* Fixed Menu Animation Logic */
+        #mobile-menu-overlay {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #mobile-menu-overlay.open {
+            transform: translateY(0%);
+        }
+
         .menu-link-item span { display: inline-block; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .menu-link-item:hover span { transform: skewX(-10deg) translateX(20px); }
     </style>
@@ -192,17 +202,18 @@
         </div>
     </section>
 
-    <section class="py-60 px-6 md:px-24 bg-white text-brand-dark relative overflow-hidden">
+    <section class="py-40 px-6 md:px-24 bg-white text-brand-dark relative overflow-hidden">
         <div class="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none">
             <h2 class="text-[30rem] font-serif italic leading-none rotate-12 -translate-y-20">LEGACY</h2>
         </div>
-        <div class="max-w-6xl mx-auto text-center relative z-10">
+        
+        <div class="max-w-6xl mx-auto text-center relative z-10 mb-32">
             <span class="text-brand-gold text-[12px] tracking-[1em] uppercase mb-12 block reveal-up">State-Level Partnership</span>
             <h2 class="text-6xl md:text-9xl font-serif italic leading-[0.9] mb-16 reveal-up">
                 Projecting the <br> <span class="text-brand-gold">National Narrative.</span>
             </h2>
             <p class="text-gray-600 text-xl md:text-2xl font-light leading-relaxed max-w-4xl mx-auto mb-20 reveal-up">
-                Liya Elias partners with <strong>Ministries of Tourism, Global Embassies, and Regional Governments</strong> to curate high-stakes visual identities that resonate across borders. We don't just showcase heritage; we engineer the cultural soft power of a nation.
+                Liya Elias partners with <strong>Ministries of Tourism, Global Embassies, and Regional Governments</strong>. We don't just showcase heritage; we engineer the cultural soft power of a nation through high-fidelity visual storytelling.
             </p>
             
             <div class="flex flex-col md:flex-row items-center justify-center gap-8 reveal-up">
@@ -210,6 +221,32 @@
                     <span class="relative z-10 text-[11px] tracking-luxury uppercase font-bold">Initiate Diplomatic Inquiry</span>
                     <div class="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                 </a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-gray-100 pt-20">
+            <div class="space-y-4 group cursor-default">
+                <span class="text-brand-gold text-xs tracking-luxury uppercase block">01 / Visual Strategy</span>
+                <h3 class="text-3xl font-serif italic text-brand-dark">National Identity <br> Architecture.</h3>
+                <p class="text-gray-500 text-sm leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                    Curating the visual language of the state for international exhibitions, expos, and global tourism campaigns.
+                </p>
+            </div>
+            
+            <div class="space-y-4 group cursor-default">
+                <span class="text-brand-gold text-xs tracking-luxury uppercase block">02 / Representation</span>
+                <h3 class="text-3xl font-serif italic text-brand-dark">Cultural <br> Ambassadorship.</h3>
+                <p class="text-gray-500 text-sm leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                    Direct representation of regional heritage at high-level diplomatic summits, galas, and cross-cultural exchanges.
+                </p>
+            </div>
+
+            <div class="space-y-4 group cursor-default">
+                <span class="text-brand-gold text-xs tracking-luxury uppercase block">03 / Production</span>
+                <h3 class="text-3xl font-serif italic text-brand-dark">Heritage <br> Documentation.</h3>
+                <p class="text-gray-500 text-sm leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                    Creating archive-quality visual assets of intangible heritage, ensuring cultural preservation meets modern luxury standards.
+                </p>
             </div>
         </div>
     </section>
@@ -235,24 +272,27 @@
             const menuOverlay = document.getElementById('mobile-menu-overlay');
             const menuLinks = document.querySelectorAll('.menu-link-item');
 
-            // Standardized Menu Interaction
+            // Fixed Menu Interaction Logic
             menuBtn.addEventListener('click', () => {
                 menuOverlay.classList.remove('hidden');
+                // Slight delay to ensure 'display:flex' applies before 'transform'
+                setTimeout(() => {
+                    menuOverlay.classList.add('open');
+                }, 10);
+
                 gsap.fromTo(menuLinks, 
                     { y: 60, opacity: 0 }, 
-                    { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power4.out" }
+                    { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, delay: 0.3, ease: "power4.out" }
                 );
             });
 
             const closeMenu = () => {
-                gsap.to(menuOverlay, {
-                    opacity: 0,
-                    duration: 0.4,
-                    onComplete: () => {
-                        menuOverlay.classList.add('hidden');
-                        gsap.set(menuOverlay, { opacity: 1 });
-                    }
-                });
+                menuOverlay.classList.remove('open');
+                
+                // Wait for transition (0.8s) to finish before hiding
+                setTimeout(() => {
+                    menuOverlay.classList.add('hidden');
+                }, 800);
             };
 
             closeBtn.addEventListener('click', closeMenu);
@@ -271,4 +311,4 @@
         });
     </script>
 </body>
-                    </html>
+</html>
