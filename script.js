@@ -1,38 +1,38 @@
-/* Liya Elias Global Interaction Script */
+/* Liya Elias Global Interaction Script 
+    Powered by GSAP & ScrollTrigger
+*/
 
 gsap.registerPlugin(ScrollTrigger);
 
-// 0. WELCOME NOTE LOGIC (Manifestation Portal)
+// 0. MANIFESTATION PORTAL LOGIC (One-time Welcome Note)
 document.addEventListener("DOMContentLoaded", () => {
     const welcomeOverlay = document.getElementById('welcome-overlay');
     const enterBtn = document.getElementById('enter-manifestation');
 
-    // Check if it's the first visit
-    if (!localStorage.getItem('liya_manifested_seen')) {
+    // Check if she has seen this world before
+    if (!localStorage.getItem('liya_manifestation_seen')) {
         welcomeOverlay.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Lock scroll
+        document.body.style.overflow = 'hidden'; // Keep scroll locked
     } else {
-        // If already seen, just show the page normally
+        // If she's seen it, reveal the site normally immediately
         gsap.to("body", { opacity: 1, duration: 1.2 });
     }
 
     if(enterBtn) {
         enterBtn.addEventListener('click', () => {
-            // Mark as seen
-            localStorage.setItem('liya_manifested_seen', 'true');
+            // Save to browser memory so it doesn't repeat
+            localStorage.setItem('liya_manifestation_seen', 'true');
             
-            // Elegant exit: Slide up and fade
+            // Magical exit animation
             welcomeOverlay.classList.add('welcome-hidden');
             
-            // Unlock scroll
+            // Restore scroll and reveal the legacy site
             document.body.style.overflow = '';
-
-            // Trigger main page reveal
             gsap.to("body", { 
                 opacity: 1, 
                 duration: 1.5,
                 onComplete: () => {
-                    welcomeOverlay.remove(); // Clean up DOM
+                    welcomeOverlay.remove(); // Remove overlay from DOM for performance
                 }
             });
         });
@@ -62,7 +62,7 @@ function closeMenu() {
 if(menuBtn) menuBtn.addEventListener('click', openMenu);
 if(closeBtn) closeBtn.addEventListener('click', closeMenu);
 
-// 2. SCROLL REVEALS
+// 2. GLOBAL SCROLL REVEALS
 gsap.utils.toArray(".reveal-text").forEach(el => {
     gsap.to(el, {
         y: 0,
@@ -77,6 +77,7 @@ gsap.utils.toArray(".reveal-text").forEach(el => {
     });
 });
 
+// Parallax for containers
 gsap.utils.toArray(".parallax-media").forEach(media => {
     gsap.to(media, {
         yPercent: 10,
@@ -90,14 +91,12 @@ gsap.utils.toArray(".parallax-media").forEach(media => {
     });
 });
 
+// Line drawing effect
 gsap.utils.toArray(".draw-line").forEach(line => {
     gsap.to(line, {
         width: "100%",
         duration: 2,
         ease: "expo.inOut",
-        scrollTrigger: {
-            trigger: line,
-            start: "top 95%"
-        }
+        scrollTrigger: { trigger: line, start: "top 95%" }
     });
 });
