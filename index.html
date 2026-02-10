@@ -32,8 +32,32 @@
             }
         }
     </script>
+    <style>
+        #disclaimer-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="opacity-0 bg-brand-bg text-brand-dark overflow-x-hidden m-0 p-0">
+
+    <div id="disclaimer-overlay" class="opacity-0 transition-opacity duration-500">
+        <div class="max-w-xl text-center">
+            <p class="text-brand-gold text-[10px] uppercase tracking-luxury mb-6 underline decoration-1 underline-offset-8">Note on Media Assets</p>
+            <p class="text-white font-serif italic text-lg md:text-xl leading-relaxed">
+                "All photography, videography, and brand logos featured in this concept remain the exclusive intellectual property of Liya Elias and their respective owners. These assets are utilized solely for demonstration purposes to showcase the structural capabilities of this system and do not imply copyright ownership or commercial endorsement."
+            </p>
+            <p class="text-gray-500 text-[9px] uppercase tracking-widest mt-12">[ Tap anywhere to close ]</p>
+        </div>
+    </div>
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
@@ -186,10 +210,24 @@
 
     <footer class="bg-brand-dark border-t border-white/10 py-12 text-center">
         <p class="text-gray-500 text-[10px] uppercase tracking-widest">
-            &copy; 2026 Liya Elias &bull; <a href="private-office.html" class="hover:text-white transition">Private Office</a> &bull; Addis Ababa
+            <span id="copyright-trigger" class="cursor-pointer hover:text-brand-gold transition-colors duration-300">&copy; 2026 Liya Elias</span> &bull; <a href="private-office.html" class="hover:text-white transition">Private Office</a> &bull; Addis Ababa
         </p>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        const trigger = document.getElementById('copyright-trigger');
+        const overlay = document.getElementById('disclaimer-overlay');
+
+        trigger.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
+        });
+
+        overlay.addEventListener('click', () => {
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.style.display = 'none', 500);
+        });
+    </script>
 </body>
 </html>
