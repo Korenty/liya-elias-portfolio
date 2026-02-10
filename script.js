@@ -34,11 +34,13 @@ function openMenu() {
 } 
 
 function closeMenu() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = ''; 
-    setTimeout(() => {
-        overlay.classList.add('hidden');
-    }, 800);
+    if (overlay) {
+        overlay.classList.remove('open');
+        document.body.style.overflow = ''; 
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 800);
+    }
 } 
 
 if(menuBtn) menuBtn.addEventListener('click', openMenu);
@@ -99,27 +101,42 @@ gsap.utils.toArray(".draw-line").forEach(line => {
     });
 });
 
-// 4. LEGAL DISCLAIMER SYSTEM (New Integration)
+// 4. LEGAL DISCLAIMER SYSTEM
 const legalTrigger = document.getElementById('copyright-trigger');
 const legalOverlay = document.getElementById('disclaimer-overlay');
 
 if (legalTrigger && legalOverlay) {
     legalTrigger.addEventListener('click', () => {
-        // Set display flex first
+        // Force the display to flex first so it's animatable
         legalOverlay.style.display = 'flex';
-        // GSAP cinematic fade in
-        gsap.to(legalOverlay, {
-            opacity: 1,
-            duration: 0.6,
-            ease: "power2.out"
-        });
-        // Subtle text pop
-        gsap.fromTo(legalOverlay.querySelector('div'), 
-            { scale: 0.9, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.8, ease: "power4.out" }
+        
+        // Animate the entire overlay fade-in
+        gsap.fromTo(legalOverlay, 
+            { opacity: 0 }, 
+            { 
+                opacity: 1, 
+                duration: 0.6, 
+                ease: "power2.out" 
+            }
         );
+
+        // Animate the inner text container (scale & fade)
+        const content = legalOverlay.querySelector('div');
+        if (content) {
+            gsap.fromTo(content, 
+                { scale: 0.9, opacity: 0 },
+                { 
+                    scale: 1, 
+                    opacity: 1, 
+                    duration: 0.8, 
+                    delay: 0.1, 
+                    ease: "power4.out" 
+                }
+            );
+        }
     });
 
+    // Close functionality when clicking anywhere on the overlay
     legalOverlay.addEventListener('click', () => {
         gsap.to(legalOverlay, {
             opacity: 0,
