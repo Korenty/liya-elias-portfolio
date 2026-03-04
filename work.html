@@ -1,240 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selected Works | Liya Elias</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 'brand-bg':'#F8F4EF','brand-dark':'#080808','brand-gold':'#C9A96E','brand-grey':'#888888','brand-white':'#F8F4EF' },
-                    fontFamily: { 'serif':['"Playfair Display"','serif'],'display':['"Cormorant Garamond"','serif'],'sans':['"Space Grotesk"','sans-serif'] },
-                    letterSpacing: { 'luxury':'0.25em','ultra':'0.5em' }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Liya Elias</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .case-study {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 85vh;
+    }
+    @media(max-width:900px){ .case-study { grid-template-columns:1fr; } }
+    .cs-media { position:relative;overflow:hidden;min-height:500px; }
+    .cs-media video, .cs-media img { width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.6s var(--ease-power); }
+    .cs-media:hover video,.cs-media:hover img { transform:scale(1.04); }
+    .cs-content {
+      display:flex;flex-direction:column;justify-content:center;
+      padding:8vh 7vw;
+    }
+    .cs-content.on-light { background:var(--cream);color:var(--grey-dk); }
+    .cs-content.on-dark  { background:var(--off-black);color:var(--cream); }
+
+    .cs-num {
+      font-family:var(--f-serif);
+      font-size:5rem;
+      font-style:italic;
+      color:var(--gold);
+      opacity:0.15;
+      line-height:1;
+      margin-bottom:1rem;
+    }
+    .cs-title {
+      font-family:var(--f-serif);
+      font-size:clamp(2.2rem,4vw,5rem);
+      font-weight:300;font-style:italic;
+      line-height:1;letter-spacing:-.02em;
+      margin-bottom:1rem;
+    }
+    .cs-category {
+      font-family:var(--f-sans);
+      font-size:9px;letter-spacing:.4em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:1.5rem;
+    }
+    .cs-desc {
+      font-family:var(--f-sans);
+      font-size:13px;font-weight:300;
+      line-height:1.85;
+      max-width:400px;
+    }
+    .cs-desc.on-dark  { color:var(--grey-mid); }
+    .cs-desc.on-light { color:var(--grey-dk); }
+
+    .cs-link {
+      display:inline-flex;align-items:center;gap:1rem;
+      margin-top:2.5rem;
+      font-family:var(--f-sans);font-size:10px;
+      letter-spacing:.35em;text-transform:uppercase;
+      color:var(--gold);
+      transition:gap .4s var(--ease-power);
+    }
+    .cs-link::after {
+      content:'';display:block;
+      width:28px;height:1px;
+      background:var(--gold);
+      transition:width .4s var(--ease-power);
+    }
+    .cs-link:hover { gap:1.6rem; }
+    .cs-link:hover::after { width:48px; }
+
+    .analytics-strip {
+      background:var(--black);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border-bottom:1px solid rgba(255,255,255,0.04);
+    }
+    @media(max-width:700px){ .analytics-strip{grid-template-columns:repeat(2,1fr);} }
+    .as-item {
+      padding:5vh 4vw;
+      border-right:1px solid rgba(255,255,255,0.04);
+    }
+    .as-item:last-child { border-right:0; }
+    .as-val {
+      font-family:var(--f-serif);
+      font-size:clamp(2.5rem,4vw,5rem);
+      font-style:italic;color:var(--gold);
+      line-height:1;margin-bottom:.5rem;
+    }
+    .as-label {
+      font-family:var(--f-sans);font-size:9px;
+      letter-spacing:.35em;text-transform:uppercase;
+      color:var(--grey-mid);
+    }
+  </style>
 </head>
-<body class="opacity-0 bg-brand-bg text-brand-dark overflow-x-hidden">
+<body>
 
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
-    <div id="scroll-progress"></div>
+<div id="cur-dot"></div><div id="cur-ring"></div><div id="cur-text"></div>
+<div id="scroll-bar"></div>
+<div id="preloader">
+  <img src="asset/images/liyalogo.png" alt="Liya Elias" class="pre-logo">
+  <div class="pre-track"><div class="pre-fill"></div></div>
+  <span class="pre-pct">0%</span>
+</div>
+<div id="site-menu">
+  <div class="menu-bg-photo"><img src="asset/images/liya1.jpg" alt=""></div>
+  <button id="menu-close-btn"><span class="close-x"></span><span>Close</span></button>
+  <nav class="menu-inner">
+    <a href="index.html" class="menu-link"><div class="menu-link-inner"><span class="ml-num">01</span><span class="ml-name">Home</span><span class="ml-arr">↗</span></div></a>
+    <a href="architecture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.06s"><span class="ml-num">02</span><span class="ml-name">Interiors</span><span class="ml-arr">↗</span></div></a>
+    <a href="branding.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.12s"><span class="ml-num">03</span><span class="ml-name">Branding</span><span class="ml-arr">↗</span></div></a>
+    <a href="culture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.18s"><span class="ml-num">04</span><span class="ml-name">Ambassador</span><span class="ml-arr">↗</span></div></a>
+    <a href="modeling.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.24s"><span class="ml-num">05</span><span class="ml-name">Modeling</span><span class="ml-arr">↗</span></div></a>
+    <a href="awards.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.30s"><span class="ml-num">06</span><span class="ml-name">Awards</span><span class="ml-arr">↗</span></div></a>
+    <a href="work.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.36s"><span class="ml-num">07</span><span class="ml-name">Portfolio</span><span class="ml-arr">↗</span></div></a>
+    <a href="contact.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.42s"><span class="ml-num">08</span><span class="ml-name">Contact</span><span class="ml-arr">↗</span></div></a>
+  </nav>
+  <div id="menu-socials">
+    <a href="https://www.instagram.com/liya_elias" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@liyaelias19" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/liyu_branding" target="_blank" rel="noopener">Agency</a>
+  </div>
+</div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="asset/images/liyalogo.png" alt="Liya Elias"></a>
+  <button id="nav-menu-btn" class="magnetic"><span></span><span></span><span></span></button>
+</nav>
 
-    <div id="page-loader">
-        <img src="asset/images/liyalogo.png" alt="Liya Elias" class="loader-logo">
-        <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
-        <span class="loader-pct">0%</span>
-    </div>
+<!-- HERO -->
+<header class="inner-hero chapter">
+  <div class="ih-media">
+    <img src="asset/images/liya2.jpg" alt="Liya Elias Portfolio">
+  </div>
+  <div class="ih-gradient"></div>
+  <div class="ih-content">
+    <p class="ih-eyebrow">Selected Work</p>
+    <h1 class="ih-title">The<br>Portfolio.</h1>
+  </div>
+</header>
 
-    <div id="mobile-menu-overlay" class="hidden">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-[10px] uppercase tracking-luxury border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-500">Close</button>
-        <div class="flex flex-col space-y-4 text-center">
-            <a href="index.html"        class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Home"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
-            <a href="branding.html"     class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Branding"><span>Branding</span></a>
-            <a href="culture.html"      class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
-            <a href="modeling.html"     class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
-            <a href="awards.html"       class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Awards"><span>Awards</span></a>
-            <a href="work.html"         class="menu-link-item text-5xl md:text-7xl font-serif italic text-brand-gold" data-text="Portfolio"><span>Portfolio</span></a>
-            <a href="contact.html"      class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Contact"><span>Contact</span></a>
-        </div>
-    </div>
+<!-- ANALYTICS STRIP -->
+<div class="analytics-strip">
+  <div class="as-item">
+    <div class="as-val" data-count="18" data-suffix="M+">0M+</div>
+    <div class="as-label">Global Impressions</div>
+  </div>
+  <div class="as-item">
+    <div class="as-val" data-count="4" data-suffix="+">0+</div>
+    <div class="as-label">Years Active</div>
+  </div>
+  <div class="as-item">
+    <div class="as-val" data-count="88" data-suffix="%">0%</div>
+    <div class="as-label">Campaign Retention</div>
+  </div>
+  <div class="as-item">
+    <div class="as-val" data-count="310" data-suffix="%" data-prefix="+">0%</div>
+    <div class="as-label">Avg. Premium Conversion</div>
+  </div>
+</div>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-5 md:px-12 flex justify-between items-center mix-blend-difference text-white">
-        <a href="index.html" class="z-50 block"><img src="asset/images/liyalogo.png" alt="Liya Elias Logo"></a>
-        <div class="hidden lg:flex space-x-8 text-[10px] tracking-luxury uppercase z-50">
-            <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
-            <a href="branding.html"     class="hover:text-brand-gold transition">Branding</a>
-            <a href="culture.html"      class="hover:text-brand-gold transition">Ambassador</a>
-            <a href="modeling.html"     class="hover:text-brand-gold transition">Modeling</a>
-            <a href="awards.html"       class="hover:text-brand-gold transition">Awards</a>
-            <a href="work.html"         class="text-brand-gold border-b border-brand-gold">Portfolio</a>
-        </div>
-        <button id="menu-btn" class="magnetic-btn text-[10px] uppercase border border-white/50 px-7 py-2.5 rounded-full hover:bg-white hover:text-black transition duration-500 z-50">Menu</button>
-    </nav>
+<!-- CASE STUDY 01 — AVOCADO SPA -->
+<section class="chapter case-study">
+  <div class="cs-media">
+    <video autoplay muted loop playsinline>
+      <source src="asset/images/liyavideo1avocado.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="cs-content on-light">
+    <div class="cs-num">01</div>
+    <p class="cs-category">Brand Identity · Campaign</p>
+    <h2 class="cs-title" style="color:var(--off-black);">Avocado<br>Spa.</h2>
+    <p class="cs-desc on-light">A premium wellness identity built around purity, ritual, and botanical luxury. The visual system draws from the geometry of nature — clean forms, warm textures, and a palette of quiet confidence.</p>
+    <a href="contact.html" class="cs-link">Inquire about this work</a>
+  </div>
+</section>
 
-    <!-- HEADER -->
-    <header class="pt-44 pb-16 px-6 md:px-16 bg-brand-bg">
-        <div class="max-w-7xl mx-auto">
-            <div class="section-label reveal-text mb-4" style="color:#C9A96E;">The Archive</div>
-            <h1 class="text-7xl md:text-[10rem] font-display italic text-brand-dark leading-[0.9] reveal-text">
-                Visual<br><span class="ml-8 md:ml-24" style="color:#C9A96E;">Impact.</span>
-            </h1>
-        </div>
-    </header>
+<!-- CASE STUDY 02 — NEEDS-24 -->
+<section class="chapter case-study">
+  <div class="cs-content on-dark">
+    <div class="cs-num">02</div>
+    <p class="cs-category">Visual Identity · Digital</p>
+    <h2 class="cs-title" style="color:var(--cream);">Needs-24.</h2>
+    <p class="cs-desc on-dark">A modern essential-goods platform identity — designed for trust, speed, and ubiquity. A brand system that functions as infrastructure: invisible when working, undeniable when not.</p>
+    <a href="contact.html" class="cs-link">Inquire about this work</a>
+  </div>
+  <div class="cs-media">
+    <video autoplay muted loop playsinline>
+      <source src="asset/images/liyavideo2needs24.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
 
-    <!-- ANALYTICS MATRIX -->
-    <section class="py-16 md:py-20 px-6 md:px-16 bg-brand-dark text-white">
-        <div class="max-w-7xl mx-auto">
-            <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-10">Performance Analytics / Core Legacy</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.06] border border-white/[0.06]">
-                <div class="p-8 md:p-10 bg-brand-dark group cursor-default hover:bg-brand-dark/50 transition">
-                    <p class="text-[9px] uppercase tracking-widest text-gray-600 mb-4 group-hover:text-brand-gold transition">Attention Capital</p>
-                    <p class="text-4xl md:text-5xl font-display italic mb-3" data-counter="18" data-suffix="M+">0M+</p>
-                    <p class="text-xs font-light text-gray-600 leading-relaxed">Cross-platform impressions through strategic visual storytelling.</p>
-                </div>
-                <div class="p-8 md:p-10 bg-brand-dark group cursor-default hover:bg-brand-dark/50 transition">
-                    <p class="text-[9px] uppercase tracking-widest text-gray-600 mb-4 group-hover:text-brand-gold transition">Visual Retention</p>
-                    <p class="text-4xl md:text-5xl font-display italic mb-3" data-counter="88" data-suffix="%">0%</p>
-                    <p class="text-xs font-light text-gray-600 leading-relaxed">Higher dwell-time on brand assets vs. industry standard.</p>
-                </div>
-                <div class="p-8 md:p-10 bg-brand-dark group cursor-default hover:bg-brand-dark/50 transition">
-                    <p class="text-[9px] uppercase tracking-widest text-gray-600 mb-4 group-hover:text-brand-gold transition">Conversion Delta</p>
-                    <p class="text-4xl md:text-5xl font-display italic mb-3" data-counter="310" data-prefix="+">0</p>
-                    <p class="text-xs font-light text-gray-600 leading-relaxed">Average increase in premium inquiries after a Leyu identity shift.</p>
-                </div>
-                <div class="p-8 md:p-10 bg-brand-dark group cursor-default hover:bg-brand-dark/50 transition">
-                    <p class="text-[9px] uppercase tracking-widest text-gray-600 mb-4 group-hover:text-brand-gold transition">Market Position</p>
-                    <p class="text-4xl md:text-5xl font-display italic mb-3 text-brand-gold">Elite</p>
-                    <p class="text-xs font-light text-gray-600 leading-relaxed">Top 1% positioning through architectural precision + media influence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- CASE STUDY 03 — BELLEVUE FIT -->
+<section class="chapter case-study">
+  <div class="cs-media">
+    <video autoplay muted loop playsinline>
+      <source src="asset/images/liyavideo3bellevue.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="cs-content on-light">
+    <div class="cs-num">03</div>
+    <p class="cs-category">Brand Identity · Fitness</p>
+    <h2 class="cs-title" style="color:var(--off-black);">Bellevue<br>Fit.</h2>
+    <p class="cs-desc on-light">Performance meets prestige. A fitness brand identity that speaks to the discipline of the elite athlete — precise, powerful, and built to endure. Architecture for the body and the brand.</p>
+    <a href="contact.html" class="cs-link">Inquire about this work</a>
+  </div>
+</section>
 
-    <!-- CASE STUDY 1: AVOCADO SPA -->
-    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-white border-t border-gray-100">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-            <div class="md:col-span-5 order-2 md:order-1 space-y-8">
-                <span class="text-[9px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full inline-block">Hospitality &amp; Lifestyle</span>
-                <h2 class="text-4xl md:text-6xl font-serif text-brand-dark reveal-text">Avocado Luxury Spa <span class="italic text-brand-gold">&amp; Bistro</span></h2>
-                <p class="text-brand-dark/65 font-light leading-loose text-base reveal-text">Inside the stunning Avocado Luxury Spa &amp; Bistro, where culinary art meets restorative wellness. A campaign captured to convey the essence of pure indulgence.</p>
-                <div class="grid grid-cols-2 gap-8 py-8 border-y border-brand-gold/15">
-                    <div>
-                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Desire Index</p>
-                        <p class="text-3xl font-display italic">Top 0.1%</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Economic ROI</p>
-                        <p class="text-3xl font-display italic">+42.8%</p>
-                    </div>
-                </div>
-                <div class="flex justify-between text-[9px] uppercase tracking-luxury text-brand-grey">
-                    <span>Host &amp; Creative</span><span>@Avocadospa</span>
-                </div>
-            </div>
-            <div class="md:col-span-7 order-1 md:order-2 h-[60vh] md:h-[80vh] overflow-hidden relative reveal-frame">
-                <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
-                    <source src="asset/images/liyavideo1avocado.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </section>
+<!-- CTA -->
+<section class="chapter finale-chapter">
+  <p class="finale-eyebrow">Start a Project</p>
+  <h2 class="finale-headline">
+    <span class="finale-line"><span class="finale-line-inner">Your legacy</span></span>
+    <span class="finale-line"><span class="finale-line-inner">begins with</span></span>
+    <span class="finale-line"><span class="finale-line-inner">a conversation.</span></span>
+  </h2>
+  <a href="contact.html" class="finale-cta magnetic">Commission Liya</a>
+</section>
 
-    <!-- CASE STUDY 2: NEEDS 24 -->
-    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-bg border-t border-gray-100">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-            <div class="md:col-span-7 h-[60vh] md:h-[80vh] overflow-hidden relative reveal-frame">
-                <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
-                    <source src="asset/images/liyavideo2needs24.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="md:col-span-5 space-y-8">
-                <span class="text-[9px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full inline-block">E-Commerce &amp; Diaspora</span>
-                <h2 class="text-4xl md:text-6xl font-serif text-brand-dark reveal-text">Needs-24: <br><span class="italic text-brand-gold">Global Connection</span></h2>
-                <p class="text-brand-dark/65 font-light leading-loose text-base reveal-text">Bridging the gap between home and the diaspora. A digital narrative highlighting the joy of sending care across borders.</p>
-                <div class="grid grid-cols-2 gap-8 py-8 border-y border-brand-gold/15">
-                    <div>
-                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Trust Quotient</p>
-                        <p class="text-3xl font-display italic">Institutional</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Viral Coefficient</p>
-                        <p class="text-3xl font-display italic">1.8×</p>
-                    </div>
-                </div>
-                <div class="flex justify-between text-[9px] uppercase tracking-luxury text-brand-grey">
-                    <span>Brand Ambassador</span><span>Fasika '24</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CASE STUDY 3: BELLEVUE -->
-    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-white border-t border-gray-100">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-            <div class="md:col-span-5 order-2 md:order-1 space-y-8">
-                <span class="text-[9px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full inline-block">Wellness &amp; Hotel</span>
-                <h2 class="text-4xl md:text-6xl font-serif text-brand-dark reveal-text">Bellevue Fit: <span class="italic text-brand-gold">Kinetic Glow</span></h2>
-                <p class="text-brand-dark/65 font-light leading-loose text-base reveal-text">Where structure meets sweat. A collaboration capturing the intersection of luxury lifestyle and peak performance.</p>
-                <div class="grid grid-cols-2 gap-8 py-8 border-y border-brand-gold/15">
-                    <div>
-                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Cultural Currency</p>
-                        <p class="text-3xl font-display italic">Prime</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Aesthetic Score</p>
-                        <p class="text-3xl font-display italic">10/10</p>
-                    </div>
-                </div>
-                <div class="flex justify-between text-[9px] uppercase tracking-luxury text-brand-grey">
-                    <span>Lead Influencer</span><span>Addis Ababa</span>
-                </div>
-            </div>
-            <div class="md:col-span-7 order-1 md:order-2 h-[60vh] md:h-[80vh] overflow-hidden relative reveal-frame">
-                <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
-                    <source src="asset/images/liyavideo3bellevue.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </section>
-
-    <!-- GLOBAL PRESENCE -->
-    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-dark text-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-20">
-            <div>
-                <h2 class="text-5xl md:text-7xl font-serif italic mb-8 reveal-text">Architecting<br>Influence.</h2>
-                <p class="text-brand-grey max-w-sm mb-12 text-base font-light">We don't just create content; we engineer legacies. Limited availability for exclusive consultations.</p>
-                <div class="space-y-4">
-                    <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-6">Global Footprint</p>
-                    <a href="https://www.instagram.com/liya_elias" target="_blank" class="group flex items-center justify-between border-b border-white/[0.08] pb-4 hover:border-brand-gold transition duration-500">
-                        <span class="text-lg font-serif italic">Personal @liya_elias</span>
-                        <span class="text-[9px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition">↗</span>
-                    </a>
-                    <a href="https://www.instagram.com/liyu_branding" target="_blank" class="group flex items-center justify-between border-b border-white/[0.08] pb-4 hover:border-brand-gold transition duration-500">
-                        <span class="text-lg font-serif italic">Agency @liyu_branding</span>
-                        <span class="text-[9px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition">↗</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@liyaelias19" target="_blank" class="group flex items-center justify-between border-b border-white/[0.08] pb-4 hover:border-brand-gold transition duration-500">
-                        <span class="text-lg font-serif italic">TikTok @liyaelias19</span>
-                        <span class="text-[9px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition">↗</span>
-                    </a>
-                </div>
-            </div>
-            <div class="glass p-8 md:p-12 rounded-sm">
-                <form action="#" class="space-y-10">
-                    <div class="relative group">
-                        <input type="text" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors duration-500 text-white text-base">
-                        <label class="absolute left-0 top-4 text-gray-600 text-[9px] uppercase tracking-widest pointer-events-none peer-focus:-top-5 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-5 transition-all">Identity / Full Name</label>
-                    </div>
-                    <div class="relative group">
-                        <input type="email" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors duration-500 text-white text-base">
-                        <label class="absolute left-0 top-4 text-gray-600 text-[9px] uppercase tracking-widest pointer-events-none peer-focus:-top-5 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-5 transition-all">Global Email</label>
-                    </div>
-                    <div class="relative group">
-                        <select class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors text-gray-400 appearance-none text-sm">
-                            <option value="">Nature of Vision</option>
-                            <option>Identity Engineering</option>
-                            <option>Structural Design</option>
-                            <option>Media Collaboration</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="magnetic-btn w-full py-5 bg-brand-gold text-black text-[10px] uppercase tracking-luxury font-bold hover:bg-brand-white transition-all duration-700">Initiate Strategy</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-brand-dark py-10 text-center border-t border-white/[0.04]">
-        <p class="text-gray-600 text-[10px] uppercase tracking-widest">&copy; 2026 Liya Elias. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
+<footer id="site-footer"><div class="footer-bottom"><p class="footer-copy">© 2026 Liya Elias · Portfolio</p><p class="footer-offices"><a href="index.html" style="color:var(--grey-mid);text-decoration:none;">← Return Home</a></p></div></footer>
+<script src="script.js"></script>
 </body>
 </html>

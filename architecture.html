@@ -1,245 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liyu Interiors | Liya Elias</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 'brand-bg':'#080808','brand-dark':'#050505','brand-gold':'#C9A96E','brand-grey':'#888888','brand-white':'#F8F4EF' },
-                    fontFamily: { 'serif':['"Playfair Display"','serif'],'display':['"Cormorant Garamond"','serif'],'sans':['"Space Grotesk"','sans-serif'] },
-                    letterSpacing: { 'luxury':'0.25em','ultra':'0.5em' }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liyu Interiors — Liya Elias</title>
+  <meta name="description" content="Liyu Interior Design by Liya Elias — Spaces that breathe with purpose and poetry.">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 3px;
+      background: var(--rich-black);
+    }
+    @media(max-width:700px){ .project-grid { grid-template-columns:1fr; } }
+    .project-cell {
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+    }
+    .project-cell img, .project-cell video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.2s var(--ease-power), opacity 0.4s;
+    }
+    .project-cell:hover img, .project-cell:hover video { transform: scale(1.04); }
+    .project-cell-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    .project-cell:hover .project-cell-overlay { opacity: 1; }
+    .pc-label {
+      font-family: var(--f-sans);
+      font-size: 9px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .philosophy-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+      background: var(--cream);
+      color: var(--grey-dk);
+    }
+    @media(max-width:900px){ .philosophy-section { grid-template-columns:1fr; } }
+    .ph-image { position:relative; overflow:hidden; min-height:500px; }
+    .ph-image img { width:100%;height:100%;object-fit:cover;transition:transform 2s var(--ease-power); }
+    .ph-image:hover img { transform:scale(1.04); }
+    .ph-text {
+      padding: 10vh 8vw;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .ph-quote {
+      font-family: var(--f-serif);
+      font-size: clamp(1.5rem,3vw,3.2rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--off-black);
+      margin-bottom: 2.5rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+    .ph-quote::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.3em;
+      width: 3px; height: calc(100% - 0.3em);
+      background: var(--gold);
+    }
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(60,54,50,0.1);
+    }
+    .service-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(60,54,50,0.08);
+      font-family: var(--f-sans);
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--grey-dk);
+      transition: color .3s;
+    }
+    .service-row:hover { color: var(--gold); }
+    .service-row span { font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);opacity:.5; }
+  </style>
 </head>
-<body class="bg-brand-dark text-brand-white opacity-0 overflow-x-hidden">
+<body>
 
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
-    <div id="scroll-progress"></div>
-    <div id="cursor-label">Expand</div>
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<div id="cur-text"></div>
+<div id="scroll-bar"></div>
 
-    <div id="page-loader">
-        <img src="asset/images/liyalogo.png" alt="Liya Elias" class="loader-logo">
-        <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
-        <span class="loader-pct">0%</span>
+<div id="preloader">
+  <img src="asset/images/liyalogo.png" alt="Liya Elias" class="pre-logo">
+  <div class="pre-track"><div class="pre-fill"></div></div>
+  <span class="pre-pct">0%</span>
+</div>
+
+<div id="site-menu">
+  <div class="menu-bg-photo"><img src="asset/images/liyadesigns1.jpg" alt=""></div>
+  <button id="menu-close-btn"><span class="close-x"></span><span>Close</span></button>
+  <nav class="menu-inner">
+    <a href="index.html" class="menu-link"><div class="menu-link-inner"><span class="ml-num">01</span><span class="ml-name">Home</span><span class="ml-arr">↗</span></div></a>
+    <a href="architecture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.06s"><span class="ml-num">02</span><span class="ml-name">Interiors</span><span class="ml-arr">↗</span></div></a>
+    <a href="branding.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.12s"><span class="ml-num">03</span><span class="ml-name">Branding</span><span class="ml-arr">↗</span></div></a>
+    <a href="culture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.18s"><span class="ml-num">04</span><span class="ml-name">Ambassador</span><span class="ml-arr">↗</span></div></a>
+    <a href="modeling.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.24s"><span class="ml-num">05</span><span class="ml-name">Modeling</span><span class="ml-arr">↗</span></div></a>
+    <a href="awards.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.30s"><span class="ml-num">06</span><span class="ml-name">Awards</span><span class="ml-arr">↗</span></div></a>
+    <a href="work.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.36s"><span class="ml-num">07</span><span class="ml-name">Portfolio</span><span class="ml-arr">↗</span></div></a>
+    <a href="contact.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.42s"><span class="ml-num">08</span><span class="ml-name">Contact</span><span class="ml-arr">↗</span></div></a>
+  </nav>
+  <div id="menu-socials">
+    <a href="https://www.instagram.com/liya_elias" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@liyaelias19" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/liyu_branding" target="_blank" rel="noopener">Agency</a>
+  </div>
+</div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="asset/images/liyalogo.png" alt="Liya Elias"></a>
+  <button id="nav-menu-btn" class="magnetic"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<header class="inner-hero chapter">
+  <div class="ih-media">
+    <video autoplay muted loop playsinline>
+      <source src="asset/images/liyadesignsluxuryhomevideo1.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="ih-gradient"></div>
+  <div class="ih-content">
+    <p class="ih-eyebrow">Liyu Interior Design</p>
+    <h1 class="ih-title">Spaces that<br>breathe.</h1>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Category</em>Residential Couture</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Category</em>Executive Offices</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Category</em>Hospitality Sanctuaries</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Founder</em>Liya Elias</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>BSc</em>Architecture with Honours</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Based</em>Addis Ababa</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section chapter">
+  <div class="ph-image img-reveal-wrap">
+    <img src="asset/images/liyadesigns1.jpg" alt="Liyu Interiors" loading="lazy">
+  </div>
+  <div class="ph-text">
+    <div class="section-eyebrow">Philosophy</div>
+    <blockquote class="ph-quote">
+      "Architecture is frozen music.<br>My interiors are composed note by note — each material chosen for its tone, each space tuned for the life lived within it."
+    </blockquote>
+    <p class="body-text" style="color:var(--grey-dk);">
+      Liya Elias approaches every interior as a structural score. With a BSc in Architecture with Honours from Hope Enterprises University College, she merges technical precision with an artist's intuition — creating environments that feel both inevitable and extraordinary.
+    </p>
+    <div class="services-list">
+      <div class="service-row">Residential Couture <span>Category 01</span></div>
+      <div class="service-row">Executive Office Environments <span>Category 02</span></div>
+      <div class="service-row">Hospitality &amp; Leisure Sanctuaries <span>Category 03</span></div>
+      <div class="service-row">Brand Identity Spaces <span>Category 04</span></div>
     </div>
+  </div>
+</section>
 
-    <div id="media-viewer">
-        <div class="close-viewer"></div>
-        <div id="viewer-content" class="w-[90%] h-[90%] flex items-center justify-center"></div>
+<!-- LUXURY HOMES GRID -->
+<section class="chapter" style="background:var(--rich-black);padding:2px 0;">
+  <div class="project-grid">
+    <div class="project-cell" style="height:520px;" data-cursor="View" data-lightbox="asset/images/liyadesignsluxuryhomes3.jpg">
+      <img src="asset/images/liyadesignsluxuryhomes3.jpg" alt="Luxury Home" loading="lazy">
+      <div class="project-cell-overlay"><span class="pc-label">Residential Couture</span></div>
     </div>
-
-    <div id="mobile-menu-overlay" class="hidden">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-[10px] uppercase tracking-luxury border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-500">Close</button>
-        <div class="flex flex-col space-y-4 text-center">
-            <a href="index.html"        class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Home"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-5xl md:text-7xl font-serif italic text-brand-gold" data-text="Interiors"><span>Interiors</span></a>
-            <a href="branding.html"     class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Branding"><span>Branding</span></a>
-            <a href="culture.html"      class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
-            <a href="modeling.html"     class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
-            <a href="awards.html"       class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Awards"><span>Awards</span></a>
-            <a href="work.html"         class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
-            <a href="contact.html"      class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Contact"><span>Contact</span></a>
-        </div>
+    <div class="project-cell" style="height:520px;" data-cursor="View" data-lightbox="asset/images/liyadesignsluxuryhomes4.jpg">
+      <img src="asset/images/liyadesignsluxuryhomes4.jpg" alt="Luxury Home" loading="lazy">
+      <div class="project-cell-overlay"><span class="pc-label">Residential Couture</span></div>
     </div>
+    <div class="project-cell" style="height:520px;" data-cursor="View" data-lightbox="asset/images/liyadesignsluxuryhomes7.jpg">
+      <img src="asset/images/liyadesignsluxuryhomes7.jpg" alt="Luxury Home" loading="lazy">
+      <div class="project-cell-overlay"><span class="pc-label">Residential Couture</span></div>
+    </div>
+  </div>
+</section>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-5 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="z-50 block"><img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="mix-blend-difference"></a>
-        <div class="hidden lg:flex space-x-8 text-[10px] tracking-luxury uppercase mix-blend-difference text-white z-50">
-            <a href="architecture.html" class="text-brand-gold border-b border-brand-gold">Interiors</a>
-            <a href="branding.html"     class="hover:text-brand-gold transition">Branding</a>
-            <a href="culture.html"      class="hover:text-brand-gold transition">Ambassador</a>
-            <a href="modeling.html"     class="hover:text-brand-gold transition">Modeling</a>
-            <a href="awards.html"       class="hover:text-brand-gold transition">Awards</a>
-            <a href="work.html"         class="hover:text-brand-gold transition">Portfolio</a>
-        </div>
-        <button id="menu-btn" class="magnetic-btn mix-blend-difference text-[10px] uppercase border border-white/50 text-white px-7 py-2.5 rounded-full hover:bg-white hover:text-black transition duration-500 z-50">Menu</button>
-    </nav>
+<!-- OFFICES -->
+<section class="chapter" style="background:var(--cream);padding:10vh 6vw;">
+  <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;max-width:1400px;margin:0 auto;align-items:start;">
+    <div>
+      <div class="section-eyebrow" style="color:var(--gold);">Office Environments</div>
+      <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,6rem);color:var(--off-black);">Executive<br>Precision.</h2>
+      <p class="body-text" style="color:var(--grey-dk);margin-top:1.5rem;">Workspaces calibrated for performance, presence, and power. Every detail serves the ambition of those who inhabit it.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;">
+      <div class="project-cell img-reveal-wrap" style="height:380px;" data-cursor="View" data-lightbox="asset/images/liyadesignsoffice2.jpg">
+        <img src="asset/images/liyadesignsoffice2.jpg" alt="Office Design" loading="lazy">
+      </div>
+      <div class="project-cell img-reveal-wrap" style="height:380px;" data-cursor="View" data-lightbox="asset/images/liyadesignsoffice5.jpg">
+        <img src="asset/images/liyadesignsoffice5.jpg" alt="Office Design" loading="lazy">
+      </div>
+      <div class="project-cell img-reveal-wrap" style="grid-column:1/-1;height:280px;" data-cursor="View" data-lightbox="asset/images/liyadesignsoffice6.jpg">
+        <img src="asset/images/liyadesignsoffice6.jpg" alt="Office Design" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- HERO -->
-    <header class="relative h-screen w-full flex items-end overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-35 scale-[1.05]">
-                <source src="asset/images/liyadesignsluxuryhomevideo1.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/40 to-brand-dark"></div>
-        </div>
-        <div class="relative z-10 px-6 md:px-16 pb-16 md:pb-24 w-full">
-            <div class="section-label reveal-text mb-6">Liyu Interior Design</div>
-            <h1 id="hero-title" class="text-6xl md:text-[9rem] lg:text-[11rem] font-display italic leading-[0.88] text-white reveal-text">
-                Sculpting<br>Atmosphere.
-            </h1>
-            <p class="text-gray-400 max-w-lg text-sm leading-loose mt-6 reveal-text">
-                Ethiopia's premier interior destination for high-profile visionaries. We don't just design rooms; we curate the legacy of your private and professional world.
-            </p>
-        </div>
-    </header>
+<!-- HOSPITALITY VIDEO -->
+<section class="chapter video-chapter">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="asset/images/liyadesignshospitalitybusinessvideo9.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay-text">
+    <p class="vot-geo">Hospitality &ensp;·&ensp; Sanctuaries</p>
+    <h2 class="vot-headline">
+      <span class="vot-line-wrap"><span class="vot-line">A room should</span></span>
+      <span class="vot-line-wrap"><span class="vot-line">feel like a</span></span>
+      <span class="vot-line-wrap"><span class="vot-line">homecoming.</span></span>
+    </h2>
+  </div>
+</section>
 
-    <!-- PHILOSOPHY -->
-    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-white text-brand-dark">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
-            <div class="relative">
-                <div class="reveal-frame h-[600px] md:h-[740px] shadow-2xl overflow-hidden">
-                    <img src="asset/images/liyadesigns1.jpg" class="reveal-img w-full h-full object-cover" alt="Liyu Design">
-                </div>
-                <div class="absolute bottom-0 right-0 bg-brand-dark text-white p-6 md:p-8 max-w-xs shadow-xl">
-                    <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">The Pedigree</p>
-                    <p class="font-serif italic text-lg">BSc Architecture, Honours — 2021</p>
-                </div>
-            </div>
-            <div class="space-y-10">
-                <div class="section-label reveal-text" style="color:#C9A96E;">Philosophy</div>
-                <h2 class="text-5xl md:text-7xl font-serif italic leading-tight reveal-text">Precision in<br>Every Detail.</h2>
-                <p class="text-xl leading-relaxed text-gray-500 font-light italic reveal-text">
-                    "Great design is the intersection of structural intelligence and sensory luxury."
-                </p>
-                <p class="leading-loose text-gray-600 font-light reveal-text">
-                    Liya's approach is rooted in her architectural foundation. Every curve, material choice, and lighting scheme is engineered to provide a seamless transition between functional space and high-art living. For the top 1%, she is the architect of peace and prestige.
-                </p>
-                <div class="pt-8 border-t border-gray-100 flex flex-col space-y-5">
-                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
-                        <span class="text-xs uppercase tracking-widest font-semibold">Residential Couture</span>
-                        <span class="text-brand-gold font-serif text-xl italic">01</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
-                        <span class="text-xs uppercase tracking-widest font-semibold">Executive Office Systems</span>
-                        <span class="text-brand-gold font-serif text-xl italic">02</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-gray-50 pb-4">
-                        <span class="text-xs uppercase tracking-widest font-semibold">Hospitality &amp; Business</span>
-                        <span class="text-brand-gold font-serif text-xl italic">03</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- DESIGNS GRID -->
+<section class="chapter" style="background:var(--rich-black);padding:2px 0;">
+  <div class="project-grid">
+    <div class="project-cell" style="height:400px;" data-cursor="View" data-lightbox="asset/images/liyadesigns2.jpg">
+      <img src="asset/images/liyadesigns2.jpg" alt="Design" loading="lazy">
+      <div class="project-cell-overlay"><span class="pc-label">Interior Study</span></div>
+    </div>
+    <div class="project-cell" style="height:400px;" data-cursor="View" data-lightbox="asset/images/liyadesigns3.jpg">
+      <img src="asset/images/liyadesigns3.jpg" alt="Design" loading="lazy">
+      <div class="project-cell-overlay"><span class="pc-label">Interior Study</span></div>
+    </div>
+    <div class="project-cell" style="height:400px;" data-cursor="View" data-lightbox="asset/images/liyadesigns4.jpg">
+      <img src="asset/images/liyadesigns4.jpg" alt="Design" loading="lazy">
+      <div class="project-cell-overlay"><span class="pc-label">Interior Study</span></div>
+    </div>
+  </div>
+</section>
 
-    <!-- GALLERY -->
-    <section class="py-20 md:py-32 px-6 md:px-16 bg-brand-dark">
-        <div class="max-w-7xl mx-auto">
-            <div class="section-label reveal-text mb-4">The Showcase</div>
-            <h2 class="text-4xl md:text-6xl font-serif italic mb-16 reveal-text">Living Portfolios.</h2>
+<!-- CTA -->
+<section class="chapter finale-chapter">
+  <div class="finale-bg"><img src="asset/images/liyadesignsluxuryhomes3.jpg" alt="" loading="lazy"></div>
+  <p class="finale-eyebrow">Commission a project</p>
+  <h2 class="finale-headline">
+    <span class="finale-line"><span class="finale-line-inner">Your space,</span></span>
+    <span class="finale-line"><span class="finale-line-inner">reimagined.</span></span>
+  </h2>
+  <a href="contact.html" class="finale-cta magnetic">Begin the Brief</a>
+</section>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <!-- Full-width video -->
-                <div class="md:col-span-7 luxury-card overflow-hidden relative h-[500px] md:h-[640px] cursor-none group">
-                    <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-55 group-hover:opacity-95 group-hover:scale-[1.02] transition-all duration-[1400ms] ease-out">
-                        <source src="asset/images/liyadesignsofficevideo8.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
-                    <div class="absolute bottom-8 left-8">
-                        <h3 class="text-2xl md:text-3xl font-serif italic">The Executive Suite</h3>
-                        <p class="text-brand-gold text-[9px] tracking-ultra uppercase mt-2">Command &amp; Comfort</p>
-                    </div>
-                </div>
+<footer id="site-footer">
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Liya Elias · Liyu Interior Design</p>
+    <p class="footer-offices"><a href="index.html" style="color:var(--grey-mid);text-decoration:none;">← Return Home</a></p>
+  </div>
+</footer>
 
-                <div class="md:col-span-5 grid grid-rows-2 gap-6">
-                    <div class="luxury-card reveal-frame overflow-hidden h-[306px] cursor-none group">
-                        <img src="asset/images/liyadesignsoffice2.jpg" class="expandable-media reveal-img w-full h-full object-cover group-hover:scale-[1.03] transition duration-1000">
-                    </div>
-                    <div class="luxury-card reveal-frame overflow-hidden h-[306px] cursor-none group">
-                        <img src="asset/images/liyadesignsluxuryhomes7.jpg" class="expandable-media reveal-img w-full h-full object-cover group-hover:scale-[1.03] transition duration-1000">
-                    </div>
-                </div>
+<div id="lightbox" role="dialog"><button class="lb-close magnetic">✕</button><div id="lightbox-content"><img id="lightbox-img" src="" alt=""></div></div>
+<div id="disclaimer-overlay" role="dialog"><div style="max-width:480px;text-align:center;padding:2rem;"><p style="font-family:var(--f-sans);font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Asset Disclaimer</p><p style="font-family:var(--f-serif);font-style:italic;font-size:1.1rem;line-height:1.7;color:var(--cream);">All assets remain the exclusive IP of Liya Elias and respective owners.</p><p style="font-family:var(--f-sans);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--grey-mid);margin-top:1.5rem;">[ Tap to close ]</p></div></div>
 
-                <!-- Hospitality Video Full Width -->
-                <div class="md:col-span-12 luxury-card overflow-hidden relative h-[460px] cursor-none group">
-                    <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-50 group-hover:opacity-85 group-hover:scale-[1.02] transition-all duration-[1400ms] ease-out">
-                        <source src="asset/images/liyadesignshospitalitybusinessvideo9.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="text-center pointer-events-none">
-                            <p class="text-brand-gold text-[9px] tracking-ultra uppercase mb-4">High-Performance Environments</p>
-                            <h3 class="text-4xl md:text-7xl font-serif italic">Hospitality &amp; Business</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bottom row -->
-                <div class="md:col-span-4 luxury-card reveal-frame overflow-hidden h-[360px] cursor-none group">
-                    <img src="asset/images/liyadesignsoffice5.jpg" class="expandable-media reveal-img w-full h-full object-cover group-hover:scale-[1.03] transition duration-1000">
-                </div>
-                <div class="md:col-span-4 luxury-card reveal-frame overflow-hidden h-[360px] cursor-none group">
-                    <img src="asset/images/liyadesignsluxuryhomes4.jpg" class="expandable-media reveal-img w-full h-full object-cover group-hover:scale-[1.03] transition duration-1000">
-                </div>
-                <div class="md:col-span-4 luxury-card reveal-frame overflow-hidden h-[360px] cursor-none group">
-                    <img src="asset/images/liyadesignsoffice6.jpg" class="expandable-media reveal-img w-full h-full object-cover group-hover:scale-[1.03] transition duration-1000">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ADDITIONAL GALLERY ROW -->
-    <section class="pb-20 md:pb-32 px-6 md:px-16 bg-brand-dark">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="luxury-card reveal-frame overflow-hidden h-[320px] cursor-none group">
-                <img src="asset/images/liyadesigns2.jpg" class="expandable-media reveal-img w-full h-full object-cover group-hover:scale-[1.03] transition duration-1000">
-            </div>
-            <div class="luxury-card reveal-frame overflow-hidden h-[320px] cursor-none group">
-                <img src="asset/images/liyadesigns3.jpg" class="expandable-media reveal-img w-full h-full object-cover group-hover:scale-[1.03] transition duration-1000">
-            </div>
-            <div class="luxury-card reveal-frame overflow-hidden h-[320px] cursor-none group">
-                <img src="asset/images/liyadesigns4.jpg" class="expandable-media reveal-img w-full h-full object-cover group-hover:scale-[1.03] transition duration-1000">
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-32 md:py-48 bg-brand-white text-brand-dark text-center">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="section-label justify-center mb-8" style="color:#C9A96E;">Inquire for 2026</div>
-            <h3 class="text-5xl md:text-8xl font-display italic leading-tight mb-12 reveal-text">Manifest your world<br>through Liyu.</h3>
-            <a href="contact.html" class="magnetic-btn inline-block bg-brand-dark text-white px-16 py-6 rounded-full text-[10px] tracking-luxury uppercase hover:bg-brand-gold hover:text-black transition-all duration-700 shadow-2xl">Secure Your Private Consultation</a>
-        </div>
-    </section>
-
-    <footer class="bg-brand-dark border-t border-white/[0.04] py-10 text-center">
-        <p class="text-gray-600 text-[10px] uppercase tracking-widest">&copy; 2026 Liya Elias. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-        const cursorLabel = document.getElementById('cursor-label');
-        const viewer = document.getElementById('media-viewer');
-        const viewerContent = document.getElementById('viewer-content');
-
-        if (cursorLabel) window.addEventListener('mousemove', e => gsap.to(cursorLabel, { x: e.clientX, y: e.clientY, duration: 0.12 }));
-
-        document.querySelectorAll('.expandable-media').forEach(item => {
-            const container = item.closest('.luxury-card,.reveal-frame,.relative') || item.parentElement;
-            if (cursorLabel) {
-                container.addEventListener('mouseenter', () => gsap.to(cursorLabel, { opacity: 1, scale: 1, duration: 0.3 }));
-                container.addEventListener('mouseleave', () => gsap.to(cursorLabel, { opacity: 0, scale: 0.5, duration: 0.3 }));
-            }
-            item.addEventListener('click', () => {
-                viewerContent.innerHTML = '';
-                let m;
-                if (item.tagName === 'VIDEO') {
-                    m = document.createElement('video');
-                    m.src = item.querySelector('source').src;
-                    m.controls = true; m.autoplay = true; m.loop = true;
-                } else { m = document.createElement('img'); m.src = item.src; }
-                m.className = 'max-w-full max-h-full object-contain shadow-2xl';
-                viewerContent.appendChild(m);
-                viewer.style.display = 'flex';
-                gsap.fromTo(viewer, { opacity: 0 }, { opacity: 1, duration: 0.5 });
-                gsap.fromTo(viewerContent, { scale: 0.85, opacity: 0, filter: 'blur(20px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'expo.out' });
-            });
-        });
-
-        if (viewer) viewer.addEventListener('click', () => {
-            gsap.to(viewer, { opacity: 0, duration: 0.5, onComplete: () => { viewer.style.display = 'none'; viewerContent.innerHTML = ''; }});
-        });
-    </script>
+<script src="script.js"></script>
 </body>
 </html>

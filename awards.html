@@ -1,318 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awards & Acclaim | Liya Elias</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-bg':   '#080808',
-                        'brand-dark': '#050505',
-                        'brand-gold': '#C9A96E',
-                        'brand-grey': '#888888',
-                        'brand-white':'#F8F4EF',
-                    },
-                    fontFamily: {
-                        'serif':   ['"Playfair Display"', 'serif'],
-                        'display': ['"Cormorant Garamond"', 'serif'],
-                        'sans':    ['"Space Grotesk"', 'sans-serif'],
-                    },
-                    letterSpacing: { 'luxury': '0.25em', 'ultra': '0.5em' }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awards &amp; Recognition — Liya Elias</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .award-moment {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 85vh;
+    }
+    @media(max-width:900px){ .award-moment { grid-template-columns:1fr; } }
+    .am-media { position:relative;overflow:hidden;min-height:500px; }
+    .am-media img, .am-media video { width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease-power); }
+    .am-media:hover img,.am-media:hover video { transform:scale(1.04); }
+    .am-text {
+      display:flex;flex-direction:column;justify-content:center;
+      padding:10vh 8vw;
+    }
+    .am-text.dark { background:var(--off-black);color:var(--cream); }
+    .am-text.light { background:var(--cream);color:var(--grey-dk); }
+    .award-trophy {
+      font-family:var(--f-serif);
+      font-size:clamp(3.5rem,7vw,9rem);
+      font-weight:300;font-style:italic;
+      line-height:0.88;letter-spacing:-.02em;
+      overflow:hidden;
+    }
+    .trophy-year { font-family:var(--f-sans);font-size:9px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem; }
+    .trophy-org { font-family:var(--f-sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--grey-mid);margin-top:1rem; }
+
+    .red-carpet-strip {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 3px;
+      background: var(--black);
+    }
+    @media(max-width:600px){ .red-carpet-strip{grid-template-columns:1fr;} }
+    .rc-cell { position:relative;overflow:hidden;cursor:none; }
+    .rc-cell video, .rc-cell img { width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s var(--ease-power); }
+    .rc-cell:hover video, .rc-cell:hover img { transform:scale(1.04); }
+    .rc-label {
+      position:absolute;bottom:1.5rem;left:1.5rem;
+      font-family:var(--f-sans);font-size:9px;letter-spacing:.35em;text-transform:uppercase;
+      color:var(--cream);opacity:.8;
+    }
+  </style>
 </head>
-<body class="bg-brand-bg text-brand-white opacity-0 overflow-x-hidden">
+<body>
 
-    <!-- CURSOR -->
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
-    <div id="scroll-progress"></div>
-    <div id="cursor-label">Expand</div>
+<div id="cur-dot"></div><div id="cur-ring"></div><div id="cur-text"></div>
+<div id="scroll-bar"></div>
+<div id="preloader">
+  <img src="asset/images/liyalogo.png" alt="Liya Elias" class="pre-logo">
+  <div class="pre-track"><div class="pre-fill"></div></div>
+  <span class="pre-pct">0%</span>
+</div>
+<div id="site-menu">
+  <div class="menu-bg-photo"><img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" alt=""></div>
+  <button id="menu-close-btn"><span class="close-x"></span><span>Close</span></button>
+  <nav class="menu-inner">
+    <a href="index.html" class="menu-link"><div class="menu-link-inner"><span class="ml-num">01</span><span class="ml-name">Home</span><span class="ml-arr">↗</span></div></a>
+    <a href="architecture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.06s"><span class="ml-num">02</span><span class="ml-name">Interiors</span><span class="ml-arr">↗</span></div></a>
+    <a href="branding.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.12s"><span class="ml-num">03</span><span class="ml-name">Branding</span><span class="ml-arr">↗</span></div></a>
+    <a href="culture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.18s"><span class="ml-num">04</span><span class="ml-name">Ambassador</span><span class="ml-arr">↗</span></div></a>
+    <a href="modeling.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.24s"><span class="ml-num">05</span><span class="ml-name">Modeling</span><span class="ml-arr">↗</span></div></a>
+    <a href="awards.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.30s"><span class="ml-num">06</span><span class="ml-name">Awards</span><span class="ml-arr">↗</span></div></a>
+    <a href="work.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.36s"><span class="ml-num">07</span><span class="ml-name">Portfolio</span><span class="ml-arr">↗</span></div></a>
+    <a href="contact.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.42s"><span class="ml-num">08</span><span class="ml-name">Contact</span><span class="ml-arr">↗</span></div></a>
+  </nav>
+  <div id="menu-socials">
+    <a href="https://www.instagram.com/liya_elias" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@liyaelias19" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/liyu_branding" target="_blank" rel="noopener">Agency</a>
+  </div>
+</div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="asset/images/liyalogo.png" alt="Liya Elias"></a>
+  <button id="nav-menu-btn" class="magnetic"><span></span><span></span><span></span></button>
+</nav>
 
-    <!-- PAGE LOADER -->
-    <div id="page-loader">
-        <img src="asset/images/liyalogo.png" alt="Liya Elias" class="loader-logo">
-        <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
-        <span class="loader-pct">0%</span>
+<!-- HERO -->
+<header class="inner-hero chapter">
+  <div class="ih-media">
+    <img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" alt="Liya Elias Red Carpet">
+  </div>
+  <div class="ih-gradient"></div>
+  <div class="ih-content">
+    <p class="ih-eyebrow">Recognition</p>
+    <h1 class="ih-title">Triumph.</h1>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-sep"></span><em>2024</em>SAA Best Model of the Year</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>2025</em>Zikomo TV Host of the Year</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>2025</em>Zikomo Best Rising Star</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>2024</em>Young Achiever · Africa Awards</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Event</em>Hub of Africa Fashion Week</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Event</em>Guma Awards Red Carpet</span>
+  </div>
+</div>
+
+<!-- SAA BEST MODEL 2024 — Trophy Moment -->
+<section class="chapter award-moment">
+  <div class="am-media">
+    <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" alt="SAA Best Model 2024" loading="lazy">
+  </div>
+  <div class="am-text light">
+    <p class="trophy-year">2024 · Winner</p>
+    <h2 class="award-trophy">
+      <span class="statement-line"><span class="statement-line-inner">SAA</span></span>
+      <span class="statement-line"><span class="statement-line-inner">Best</span></span>
+      <span class="statement-line"><span class="statement-line-inner">Model.</span></span>
+    </h2>
+    <p class="trophy-org">SAA Awards &ensp;·&ensp; Addis Ababa</p>
+    <p class="body-text" style="color:var(--grey-dk);margin-top:1.5rem;max-width:380px;">
+      Recognized as the best model of 2024 by the SAA — an affirmation of the architectural approach she brings to every image, walk, and editorial.
+    </p>
+  </div>
+</section>
+
+<!-- Second Photo -->
+<section class="chapter" style="background:var(--rich-black);">
+  <div style="max-width:800px;margin:0 auto;padding:6px;">
+    <div class="img-reveal-wrap" style="height:80vh;">
+      <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto2.jpg" alt="SAA Best Model 2024" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
     </div>
+  </div>
+</section>
 
-    <!-- MEDIA VIEWER -->
-    <div id="media-viewer">
-        <div class="close-viewer"></div>
-        <div id="viewer-content" class="w-[90%] h-[90%] flex items-center justify-center"></div>
+<!-- RECOGNITION LIST -->
+<section class="chapter recognition-chapter">
+  <div class="rec-header">
+    <h2 class="rec-title">All Recognition.</h2>
+    <span class="rec-year">2021 — 2025</span>
+  </div>
+  <div class="rec-items">
+    <div class="rec-item">
+      <span class="ri-num">01</span>
+      <div class="ri-info">
+        <div class="ri-name">Best Model of the Year</div>
+        <div class="ri-org">SAA Awards &ensp;·&ensp; 2024</div>
+      </div>
+      <div class="ri-badge">Winner</div>
     </div>
-
-    <!-- MENU -->
-    <div id="mobile-menu-overlay" class="hidden">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-[10px] uppercase tracking-luxury border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-500">Close</button>
-        <div class="flex flex-col space-y-4 text-center">
-            <a href="index.html"        class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Home"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
-            <a href="branding.html"     class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Branding"><span>Branding</span></a>
-            <a href="culture.html"      class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
-            <a href="modeling.html"     class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
-            <a href="awards.html"       class="menu-link-item text-5xl md:text-7xl font-serif italic text-brand-gold" data-text="Awards"><span>Awards</span></a>
-            <a href="work.html"         class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
-            <a href="contact.html"      class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Contact"><span>Contact</span></a>
-        </div>
+    <div class="rec-item">
+      <span class="ri-num">02</span>
+      <div class="ri-info">
+        <div class="ri-name">TV Host of the Year</div>
+        <div class="ri-org">Zikomo Awards &ensp;·&ensp; 2025</div>
+      </div>
+      <div class="ri-badge">Nominee</div>
     </div>
-
-    <!-- NAV -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-5 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="z-50 block">
-            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="mix-blend-difference">
-        </a>
-        <div class="hidden lg:flex space-x-8 text-[10px] tracking-luxury uppercase mix-blend-difference text-white z-50">
-            <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
-            <a href="branding.html"     class="hover:text-brand-gold transition">Branding</a>
-            <a href="culture.html"      class="hover:text-brand-gold transition">Ambassador</a>
-            <a href="modeling.html"     class="hover:text-brand-gold transition">Modeling</a>
-            <a href="awards.html"       class="text-brand-gold border-b border-brand-gold">Awards</a>
-            <a href="work.html"         class="hover:text-brand-gold transition">Portfolio</a>
-        </div>
-        <button id="menu-btn" class="magnetic-btn mix-blend-difference text-[10px] uppercase border border-white/50 text-white px-7 py-2.5 rounded-full hover:bg-white hover:text-black transition duration-500 z-50">Menu</button>
-    </nav>
-
-    <!-- ══ HERO ══ -->
-    <header class="relative h-[70vh] w-full overflow-hidden bg-brand-dark flex items-end">
-        <div class="absolute inset-0">
-            <img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" class="w-full h-full object-cover object-top opacity-30 parallax-media">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent"></div>
-        </div>
-        <div class="relative z-10 px-6 md:px-16 pb-16 md:pb-24 w-full">
-            <div class="section-label reveal-text mb-6">Recognition &amp; Acclaim</div>
-            <h1 class="text-6xl md:text-[9rem] font-display italic text-white leading-[0.9] reveal-text">
-                Excellence<br><span class="text-brand-gold">&amp; Glory.</span>
-            </h1>
-        </div>
-    </header>
-
-    <!-- ══ MARQUEE ══ -->
-    <div class="bg-brand-dark border-y border-white/[0.04] py-3 overflow-hidden">
-        <div class="marquee-container">
-            <div class="marquee-track">
-                <span class="marquee-item"><span class="marquee-dot"></span>SAA Best Model 2024 — Winner</span>
-                <span class="marquee-item"><span class="marquee-dot"></span>Zikomo Awards — TV Host of the Year 2025</span>
-                <span class="marquee-item"><span class="marquee-dot"></span>Zikomo Awards — Rising Star 2025</span>
-                <span class="marquee-item"><span class="marquee-dot"></span>Young Achiever — Africa Awards</span>
-                <span class="marquee-item"><span class="marquee-dot"></span>Hub of Africa Fashion Week</span>
-                <span class="marquee-item"><span class="marquee-dot"></span>Guma Awards Red Carpet</span>
-                <span class="marquee-item"><span class="marquee-dot"></span>TikTok Awards Gala</span>
-            </div>
-        </div>
+    <div class="rec-item">
+      <span class="ri-num">03</span>
+      <div class="ri-info">
+        <div class="ri-name">Best Rising Star</div>
+        <div class="ri-org">Zikomo Awards &ensp;·&ensp; 2025</div>
+      </div>
+      <div class="ri-badge">Nominee</div>
     </div>
+    <div class="rec-item">
+      <span class="ri-num">04</span>
+      <div class="ri-info">
+        <div class="ri-name">Young Achiever of the Year</div>
+        <div class="ri-org">Africa Awards &ensp;·&ensp; 2024</div>
+      </div>
+      <div class="ri-badge">Honouree</div>
+    </div>
+    <div class="rec-item">
+      <span class="ri-num">05</span>
+      <div class="ri-info">
+        <div class="ri-name">Hub of Africa Fashion Week</div>
+        <div class="ri-org">Addis Ababa &ensp;·&ensp; Featured Walk</div>
+      </div>
+      <div class="ri-badge">Featured</div>
+    </div>
+    <div class="rec-item">
+      <span class="ri-num">06</span>
+      <div class="ri-info">
+        <div class="ri-name">Guma Awards Red Carpet</div>
+        <div class="ri-org">Official Red Carpet Presence</div>
+      </div>
+      <div class="ri-badge">Official</div>
+    </div>
+    <div class="rec-item">
+      <span class="ri-num">07</span>
+      <div class="ri-info">
+        <div class="ri-name">TikTok Awards Red Carpet</div>
+        <div class="ri-org">Official Red Carpet Presence</div>
+      </div>
+      <div class="ri-badge">Official</div>
+    </div>
+  </div>
+</section>
 
-    <!-- ══ RED CARPET ══ -->
-    <section class="py-20 md:py-32 px-6 md:px-16 bg-brand-dark">
-        <div class="max-w-7xl mx-auto">
-            <div class="section-label reveal-text mb-12">The Red Carpet</div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- ZIKOMO NOMINATIONS -->
+<section class="chapter award-moment">
+  <div class="am-text dark">
+    <p class="trophy-year">2025 · Nominee</p>
+    <h2 class="award-trophy" style="color:var(--cream);">
+      <span class="statement-line"><span class="statement-line-inner">Zikomo</span></span>
+      <span class="statement-line"><span class="statement-line-inner">TV Host</span></span>
+      <span class="statement-line"><span class="statement-line-inner">of Year.</span></span>
+    </h2>
+    <p class="trophy-org">Zikomo Awards &ensp;·&ensp; 2025</p>
+    <p class="body-text" style="margin-top:1.5rem;max-width:380px;">
+      Double-nominated at the 2025 Zikomo Awards — TV Host of the Year and Best Rising Star — for her work hosting "Cool" on Arts TV World.
+    </p>
+  </div>
+  <div class="am-media">
+    <img src="asset/images/liyaachievementbestzikomotvhostoftheyear2025photo.jpg" alt="Zikomo Nomination 2025" loading="lazy">
+  </div>
+</section>
 
-                <!-- TikTok Awards -->
-                <div class="relative group overflow-hidden luxury-card rounded-sm cursor-none h-[480px]">
-                    <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.04] transition-all duration-[1200ms] ease-out">
-                        <source src="asset/images/liyaredcarpetvideotiktokaward.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
-                    <div class="absolute bottom-0 left-0 p-6 pointer-events-none">
-                        <p class="text-[9px] uppercase tracking-ultra text-brand-gold mb-2">2024 Gala Event</p>
-                        <h3 class="text-2xl md:text-3xl font-serif italic">TikTok Awards</h3>
-                    </div>
-                </div>
+<!-- RED CARPET STRIP -->
+<section class="chapter">
+  <div style="padding:10vh 6vw 4vh;background:var(--off-black);">
+    <div class="section-eyebrow">Red Carpet Presence</div>
+    <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,6rem);color:var(--cream);">The Red Carpet.</h2>
+  </div>
+  <div class="red-carpet-strip">
+    <div class="rc-cell" style="height:65vh;">
+      <video autoplay muted loop playsinline><source src="asset/images/liyaredcarpetvideotiktokaward.mp4" type="video/mp4"></video>
+      <div class="rc-label">TikTok Awards</div>
+    </div>
+    <div class="rc-cell" style="height:65vh;">
+      <img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" alt="Hub of Africa" loading="lazy">
+      <div class="rc-label">Hub of Africa Fashion Week</div>
+    </div>
+    <div class="rc-cell" style="height:65vh;">
+      <video autoplay muted loop playsinline><source src="asset/images/liyaredcarpetvideogumaawards.mp4" type="video/mp4"></video>
+      <div class="rc-label">Guma Awards</div>
+    </div>
+  </div>
+</section>
 
-                <!-- Guma Awards -->
-                <div class="relative group overflow-hidden luxury-card rounded-sm cursor-none h-[480px] md:mt-10">
-                    <video autoplay muted loop playsinline class="expandable-media w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.04] transition-all duration-[1200ms] ease-out">
-                        <source src="asset/images/liyaredcarpetvideogumaawards.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
-                    <div class="absolute bottom-0 left-0 p-6 pointer-events-none">
-                        <p class="text-[9px] uppercase tracking-ultra text-brand-gold mb-2">Cinema Excellence</p>
-                        <h3 class="text-2xl md:text-3xl font-serif italic">Guma Awards</h3>
-                    </div>
-                </div>
+<!-- YOUNG ACHIEVER -->
+<section class="chapter" style="background:var(--cream);padding:10vh 6vw;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center;max-width:1200px;margin:0 auto;">
+    <div>
+      <div class="section-eyebrow" style="color:var(--gold);">2024 · Honouree</div>
+      <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,6rem);color:var(--off-black);">Young<br>Achiever.</h2>
+      <p class="body-text" style="color:var(--grey-dk);margin-top:1.5rem;">Honoured at the Africa Awards for Young Achiever of the Year — recognizing a generation-defining trajectory across architecture, media, and cultural diplomacy.</p>
+    </div>
+    <div class="img-reveal-wrap" style="height:500px;">
+      <img src="asset/images/liyaachievmentyoungachieversafricaaward.jpg" alt="Young Achiever Africa Award" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+  </div>
+</section>
 
-                <!-- Hub of Africa -->
-                <div class="relative group overflow-hidden luxury-card rounded-sm cursor-none h-[480px]">
-                    <img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" class="expandable-media w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.04] transition-all duration-[1200ms] ease-out">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
-                    <div class="absolute bottom-0 left-0 p-6 pointer-events-none">
-                        <p class="text-[9px] uppercase tracking-ultra text-brand-gold mb-2">Fashion Week</p>
-                        <h3 class="text-2xl md:text-3xl font-serif italic">Hub of Africa</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="chapter finale-chapter">
+  <div class="finale-bg"><img src="asset/images/liyaredcarpetphotohubofafricafashionweek.jpg" alt=""></div>
+  <p class="finale-eyebrow">The story continues</p>
+  <h2 class="finale-headline">
+    <span class="finale-line"><span class="finale-line-inner">Excellence is not</span></span>
+    <span class="finale-line"><span class="finale-line-inner">a destination.</span></span>
+  </h2>
+  <a href="contact.html" class="finale-cta magnetic">Connect with Liya</a>
+</section>
 
-    <!-- ══ TROPHY CABINET — SAA WINNER ══ -->
-    <section class="py-20 md:py-32 px-6 md:px-16 bg-brand-white text-brand-dark">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <!-- Text -->
-                <div class="space-y-8">
-                    <div class="section-label" style="--brand-gold: #C9A96E; color: #C9A96E;">Victory Year 2024</div>
-                    <div class="border-l-4 border-brand-gold pl-8">
-                        <span class="text-5xl md:text-7xl font-display italic text-brand-gold leading-none">Winner</span>
-                        <h2 class="text-4xl md:text-6xl font-sans font-bold mt-2">Best Model</h2>
-                        <p class="text-xl mt-4 font-light text-gray-500 font-serif italic">SAA 2024 Awards</p>
-                    </div>
-                    <p class="text-gray-600 leading-loose text-base font-light max-w-md">
-                        Recognized for outstanding runway presence, editorial versatility, and transformative influence in the East African fashion industry. A defining moment in a stellar career.
-                    </p>
-                    <div class="grid grid-cols-2 gap-8 pt-4">
-                        <div>
-                            <p class="text-4xl md:text-5xl font-display italic text-brand-gold" data-counter="2024" data-prefix="">0</p>
-                            <p class="text-[9px] uppercase tracking-widest text-gray-400 mt-2">Year Won</p>
-                        </div>
-                        <div>
-                            <p class="text-4xl md:text-5xl font-display italic" style="color:#C9A96E;" data-counter="1" data-suffix="st">#0st</p>
-                            <p class="text-[9px] uppercase tracking-widest text-gray-400 mt-2">Category Rank</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Photos -->
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="reveal-frame rounded-sm shadow-xl overflow-hidden h-96">
-                        <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" class="expandable-media reveal-img w-full h-full object-cover cursor-none">
-                    </div>
-                    <div class="reveal-frame rounded-sm shadow-xl overflow-hidden h-96 mt-8">
-                        <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto2.jpg" class="expandable-media reveal-img w-full h-full object-cover cursor-none">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══ NOMINATIONS ══ -->
-    <section class="py-20 md:py-32 px-6 md:px-16 bg-brand-dark border-t border-white/[0.04]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="section-label justify-center reveal-text mb-4">Distinguished Nominations</div>
-                <h2 class="text-4xl md:text-5xl font-serif italic reveal-text">The Constellation.</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- TV Host -->
-                <div class="luxury-card group p-8 text-center space-y-6">
-                    <div class="relative w-44 h-44 mx-auto overflow-hidden rounded-full border border-white/10 group-hover:border-brand-gold/40 transition duration-700">
-                        <img src="asset/images/liyaachievementbestzikomotvhostoftheyear2025photo.jpg" class="expandable-media w-full h-full object-cover group-hover:scale-110 transition duration-1000 cursor-none">
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-ultra text-brand-gold mb-2">Zikomo Awards 2025</p>
-                        <h3 class="text-2xl font-serif italic">TV Host of the Year</h3>
-                        <p class="text-sm text-gray-500 mt-3 font-light">Nominated for her commanding presence and cultural relevance as host of Arts TV World.</p>
-                    </div>
-                </div>
-
-                <!-- Rising Star -->
-                <div class="luxury-card group p-8 text-center space-y-6 md:-mt-8 bg-white/[0.02]">
-                    <div class="relative w-44 h-44 mx-auto overflow-hidden rounded-full border border-brand-gold/30 group-hover:border-brand-gold transition duration-700">
-                        <img src="asset/images/liyaachievementbestzikomorisingstarof2025photo.jpg" class="expandable-media w-full h-full object-cover group-hover:scale-110 transition duration-1000 cursor-none">
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-ultra text-brand-gold mb-2">Zikomo Awards 2025</p>
-                        <h3 class="text-2xl font-serif italic">Rising Star</h3>
-                        <p class="text-sm text-gray-500 mt-3 font-light">A testament to her meteoric rise across fashion, media, and brand influence in just a few short years.</p>
-                    </div>
-                </div>
-
-                <!-- Young Achiever -->
-                <div class="luxury-card group p-8 text-center space-y-6">
-                    <div class="relative w-44 h-44 mx-auto overflow-hidden rounded-full border border-white/10 group-hover:border-brand-gold/40 transition duration-700">
-                        <img src="asset/images/liyaachievmentyoungachieversafricaaward.jpg" class="expandable-media w-full h-full object-cover group-hover:scale-110 transition duration-1000 cursor-none">
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-ultra text-brand-gold mb-2">Africa Awards</p>
-                        <h3 class="text-2xl font-serif italic">Young Achiever</h3>
-                        <p class="text-sm text-gray-500 mt-3 font-light">Honoring extraordinary achievement and continental impact from Africa's brightest young visionary.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ══ LEGACY STATEMENT ══ -->
-    <section class="relative py-32 md:py-48 overflow-hidden bg-brand-dark">
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-brand-gold/[0.05] blur-[160px]"></div>
-        </div>
-        <div class="relative z-10 text-center px-6">
-            <h2 class="text-5xl md:text-8xl lg:text-[10rem] font-display italic text-white leading-[0.9] reveal-text">Only the Beginning.</h2>
-            <a href="contact.html" class="magnetic-btn inline-block mt-16 px-12 py-5 border border-brand-gold text-brand-gold text-[10px] uppercase tracking-luxury hover:bg-brand-gold hover:text-black transition duration-700">Collaborate with Liya</a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-brand-dark border-t border-white/[0.04] py-10 text-center">
-        <p class="text-gray-600 text-[10px] uppercase tracking-widest">&copy; 2026 Liya Elias. All Rights Reserved. &bull; <a href="index.html" class="hover:text-white transition">Return Home</a></p>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-        // Cursor follow
-        const cursorLabel = document.getElementById('cursor-label');
-        if (cursorLabel) {
-            window.addEventListener('mousemove', e => {
-                gsap.to(cursorLabel, { x: e.clientX, y: e.clientY, duration: 0.12 });
-            });
-        }
-
-        // Lightbox
-        const viewer     = document.getElementById('media-viewer');
-        const viewerContent = document.getElementById('viewer-content');
-
-        document.querySelectorAll('.expandable-media').forEach(item => {
-            const container = item.closest('.luxury-card, .relative, .reveal-frame') || item.parentElement;
-            if (cursorLabel) {
-                container.addEventListener('mouseenter', () => gsap.to(cursorLabel, { opacity: 1, scale: 1, duration: 0.3 }));
-                container.addEventListener('mouseleave', () => gsap.to(cursorLabel, { opacity: 0, scale: 0.5, duration: 0.3 }));
-            }
-
-            item.addEventListener('click', () => {
-                viewerContent.innerHTML = '';
-                let clone;
-                if (item.tagName === 'VIDEO') {
-                    clone = document.createElement('video');
-                    clone.src = item.querySelector('source').src;
-                    clone.controls = true; clone.autoplay = true; clone.loop = true;
-                } else {
-                    clone = document.createElement('img');
-                    clone.src = item.src;
-                }
-                clone.className = 'max-w-full max-h-full object-contain shadow-2xl';
-                viewerContent.appendChild(clone);
-                viewer.style.display = 'flex';
-                gsap.fromTo(viewer, { opacity: 0 }, { opacity: 1, duration: 0.5 });
-                gsap.fromTo(viewerContent, { scale: 0.85, opacity: 0, filter: 'blur(20px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'expo.out' });
-            });
-        });
-
-        if (viewer) {
-            viewer.addEventListener('click', () => {
-                gsap.to(viewer, { opacity: 0, duration: 0.5, onComplete: () => {
-                    viewer.style.display = 'none';
-                    viewerContent.innerHTML = '';
-                }});
-            });
-        }
-        if (document.querySelector('.close-viewer')) {
-            document.querySelector('.close-viewer').addEventListener('click', e => {
-                e.stopPropagation();
-                gsap.to(viewer, { opacity: 0, duration: 0.5, onComplete: () => {
-                    viewer.style.display = 'none'; viewerContent.innerHTML = '';
-                }});
-            });
-        }
-    </script>
+<footer id="site-footer"><div class="footer-bottom"><p class="footer-copy">© 2026 Liya Elias · Recognition</p><p class="footer-offices"><a href="index.html" style="color:var(--grey-mid);text-decoration:none;">← Return Home</a></p></div></footer>
+<div id="lightbox"><button class="lb-close magnetic">✕</button><div id="lightbox-content"><img id="lightbox-img" src="" alt=""></div></div>
+<script src="script.js"></script>
 </body>
 </html>
