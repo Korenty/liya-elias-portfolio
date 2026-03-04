@@ -1,314 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cultural Ambassador | Liya Elias</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 'brand-bg': '#0a0a0a', 'brand-dark': '#050505', 'brand-gold': '#C0A080', 'brand-grey': '#888888' },
-                    fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
-                    letterSpacing: { 'luxury': '0.25em', 'ethereal': '0.7em' }
-                }
-            }
-        }
-    </script>
-    <style>
-        .hidden { display: none !important; }
-        .text-outline { -webkit-text-stroke: 1px rgba(192, 160, 128, 0.4); color: transparent; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .reveal-up { transform: translateY(80px); opacity: 0; }
-        
-        /* Fixed Menu Animation Logic */
-        #mobile-menu-overlay {
-            transform: translateY(-100%);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        #mobile-menu-overlay.open {
-            transform: translateY(0%);
-        }
-
-        .menu-link-item span { display: inline-block; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .menu-link-item:hover span { transform: skewX(-10deg) translateX(20px); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultural Ambassador — Liya Elias</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .culture-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+    }
+    @media(max-width:900px){ .culture-panel { grid-template-columns:1fr; } }
+    .cp-media { position:relative;overflow:hidden;min-height:500px; }
+    .cp-media img, .cp-media video { width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease-power); }
+    .cp-media:hover img,.cp-media:hover video { transform:scale(1.04); }
+    .cp-text {
+      display:flex;flex-direction:column;justify-content:center;
+      padding:10vh 8vw;
+    }
+    .cp-text.on-dark { background:var(--off-black);color:var(--cream); }
+    .cp-text.on-light { background:var(--cream);color:var(--grey-dk); }
+    .culture-quote {
+      font-family:var(--f-serif);
+      font-size:clamp(1.3rem,2.5vw,2.5rem);
+      font-style:italic;font-weight:300;
+      line-height:1.3;
+      margin-top:2rem;
+      padding-left:1.5rem;
+      border-left:2px solid var(--gold);
+    }
+    .festival-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:3px;
+      background:var(--black);
+    }
+    @media(max-width:600px){ .festival-grid{grid-template-columns:1fr;} }
+    .fg-cell {
+      position:relative;overflow:hidden;cursor:none;
+    }
+    .fg-cell img { width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s var(--ease-power); }
+    .fg-cell:hover img { transform:scale(1.05); }
+    .fg-label {
+      position:absolute;bottom:0;left:0;right:0;
+      padding:2rem 1.5rem 1.5rem;
+      background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+      font-family:var(--f-sans);font-size:9px;letter-spacing:.35em;
+      text-transform:uppercase;color:var(--cream);
+    }
+  </style>
 </head>
-<body class="bg-brand-bg text-white opacity-0 overflow-x-hidden">
+<body>
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[70] flex flex-col items-center justify-center hidden">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
-        <div class="flex flex-col space-y-6 text-center">
-            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Interiors</span></a>
-            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Branding</span></a>
-            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic text-brand-gold"><span>Ambassador</span></a>
-            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Modeling</span></a>
-            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Awards</span></a>
-            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Portfolio</span></a>
-            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic"><span>Contact</span></a>
-        </div>
+<div id="cur-dot"></div><div id="cur-ring"></div><div id="cur-text"></div>
+<div id="scroll-bar"></div>
+<div id="preloader">
+  <img src="asset/images/liyalogo.png" alt="Liya Elias" class="pre-logo">
+  <div class="pre-track"><div class="pre-fill"></div></div>
+  <span class="pre-pct">0%</span>
+</div>
+<div id="site-menu">
+  <div class="menu-bg-photo"><img src="asset/images/liyaculturephotogamo.jpg" alt=""></div>
+  <button id="menu-close-btn"><span class="close-x"></span><span>Close</span></button>
+  <nav class="menu-inner">
+    <a href="index.html" class="menu-link"><div class="menu-link-inner"><span class="ml-num">01</span><span class="ml-name">Home</span><span class="ml-arr">↗</span></div></a>
+    <a href="architecture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.06s"><span class="ml-num">02</span><span class="ml-name">Interiors</span><span class="ml-arr">↗</span></div></a>
+    <a href="branding.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.12s"><span class="ml-num">03</span><span class="ml-name">Branding</span><span class="ml-arr">↗</span></div></a>
+    <a href="culture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.18s"><span class="ml-num">04</span><span class="ml-name">Ambassador</span><span class="ml-arr">↗</span></div></a>
+    <a href="modeling.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.24s"><span class="ml-num">05</span><span class="ml-name">Modeling</span><span class="ml-arr">↗</span></div></a>
+    <a href="awards.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.30s"><span class="ml-num">06</span><span class="ml-name">Awards</span><span class="ml-arr">↗</span></div></a>
+    <a href="work.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.36s"><span class="ml-num">07</span><span class="ml-name">Portfolio</span><span class="ml-arr">↗</span></div></a>
+    <a href="contact.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.42s"><span class="ml-num">08</span><span class="ml-name">Contact</span><span class="ml-arr">↗</span></div></a>
+  </nav>
+  <div id="menu-socials">
+    <a href="https://www.instagram.com/liya_elias" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@liyaelias19" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/liyu_branding" target="_blank" rel="noopener">Agency</a>
+  </div>
+</div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="asset/images/liyalogo.png" alt="Liya Elias"></a>
+  <button id="nav-menu-btn" class="magnetic"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<header class="inner-hero chapter">
+  <div class="ih-media">
+    <video autoplay muted loop playsinline>
+      <source src="asset/images/liyaculturevideogamo.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="ih-gradient"></div>
+  <div class="ih-content">
+    <p class="ih-eyebrow">Cultural Ambassador · Horn of Africa</p>
+    <h1 class="ih-title">The Ancient<br>Future.</h1>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Highlands</em>Gamo Cultural Ceremony</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Sisterhood</em>Ashenda Festival</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Oromo</em>Irrecha Thanksgiving</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Ritual</em>Jebena Coffee Ceremony</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Faith</em>Ramadan</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Light</em>Timkat — Epiphany</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Harvest</em>Shadey Dance</span>
+  </div>
+</div>
+
+<!-- STATEMENT -->
+<section class="chapter statement-chapter">
+  <div class="statement-inner">
+    <div class="statement-kicker">The Mission</div>
+    <p class="statement-text">
+      <span class="statement-line"><span class="statement-line-inner">Culture is not</span></span>
+      <span class="statement-line"><span class="statement-line-inner">what we wear.</span></span>
+      <span class="statement-line"><span class="statement-line-inner">It is who we <em>are</em>.</span></span>
+    </p>
+  </div>
+</section>
+
+<!-- GAMO — The Highlands -->
+<section class="chapter culture-panel">
+  <div class="cp-media">
+    <img src="asset/images/liyaculturephotogamo.jpg" alt="Gamo Cultural Ceremony" loading="lazy">
+  </div>
+  <div class="cp-text on-light">
+    <div class="section-eyebrow" style="color:var(--gold);">01 · The Highlands</div>
+    <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,6rem);color:var(--off-black);">The Gamo<br>Spirit.</h2>
+    <p class="body-text" style="color:var(--grey-dk);margin-top:1.5rem;">
+      The Gamo people of southern Ethiopia are master weavers of both cloth and community. Liya represents this living cultural heritage — deeply structural, profoundly beautiful — with the same precision she applies to architecture.
+    </p>
+    <blockquote class="culture-quote" style="color:var(--off-black);">
+      "I am the voice of the highland mists and the dignity of a thousand-year weave."
+    </blockquote>
+  </div>
+</section>
+
+<!-- GAMO VIDEO -->
+<section class="chapter video-chapter">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="asset/images/liyaculturevideogamo.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay-text">
+    <p class="vot-geo">Gamo Highlands &ensp;·&ensp; Ethiopia</p>
+    <h2 class="vot-headline">
+      <span class="vot-line-wrap"><span class="vot-line">To know your</span></span>
+      <span class="vot-line-wrap"><span class="vot-line">roots is to know</span></span>
+      <span class="vot-line-wrap"><span class="vot-line">your altitude.</span></span>
+    </h2>
+  </div>
+</section>
+
+<!-- ASHENDA -->
+<section class="chapter culture-panel">
+  <div class="cp-text on-dark">
+    <div class="section-eyebrow">02 · The Sisterhood</div>
+    <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,6rem);color:var(--cream);">Ashenda<br>Festival.</h2>
+    <p class="body-text" style="margin-top:1.5rem;">
+      Celebrated in northern Ethiopia, Ashenda is a women's festival of song, dance, and decorated grass skirts. For Liya, it represents the architectural beauty of feminine strength — structured, rhythmic, and eternally resonant.
+    </p>
+    <blockquote class="culture-quote" style="color:var(--cream);">
+      "Ashenda is not a festival; it is a declaration. We announce that women are the keepers of time."
+    </blockquote>
+  </div>
+  <div class="cp-media">
+    <img src="asset/images/liyaculturephotoashenda1.jpg" alt="Ashenda Festival" loading="lazy">
+  </div>
+</section>
+
+<!-- ASHENDA FESTIVAL GRID -->
+<section class="chapter">
+  <div class="festival-grid">
+    <div class="fg-cell" style="height:50vh;" data-cursor="View" data-lightbox="asset/images/liyaculturephotoashenda2.jpg">
+      <img src="asset/images/liyaculturephotoashenda2.jpg" alt="Ashenda" loading="lazy">
+      <div class="fg-label">Ashenda</div>
     </div>
+    <div class="fg-cell" style="height:50vh;" data-cursor="View" data-lightbox="asset/images/liyaculturephotoashenda3.jpg">
+      <img src="asset/images/liyaculturephotoashenda3.jpg" alt="Ashenda" loading="lazy">
+      <div class="fg-label">Ashenda</div>
+    </div>
+    <div class="fg-cell" style="height:50vh;" data-cursor="View" data-lightbox="asset/images/liyaculturephotoadhenda3.jpg">
+      <img src="asset/images/liyaculturephotoadhenda3.jpg" alt="Ashenda" loading="lazy">
+      <div class="fg-label">Ashenda</div>
+    </div>
+  </div>
+</section>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
-        <a href="index.html" class="z-50 block">
-            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain">
-        </a>
-        
-        <div class="hidden md:flex space-x-8 text-xs tracking-luxury uppercase z-50">
-            <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
-            <a href="branding.html" class="hover:text-brand-gold transition">Branding</a>
-            <a href="culture.html" class="text-brand-gold border-b border-brand-gold">Ambassador</a>
-            <a href="modeling.html" class="hover:text-brand-gold transition">Modeling</a>
-            <a href="awards.html" class="hover:text-brand-gold transition">Awards</a>
-            <a href="work.html" class="hover:text-brand-gold transition">Portfolio</a>
-        </div>
+<!-- IRRECHA -->
+<section class="chapter culture-panel">
+  <div class="cp-media">
+    <img src="asset/images/liyaculturephotoirrecha.jpg" alt="Irrecha" loading="lazy">
+  </div>
+  <div class="cp-text on-light">
+    <div class="section-eyebrow" style="color:var(--gold);">03 · Oromo Thanksgiving</div>
+    <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,6rem);color:var(--off-black);">Irrecha.</h2>
+    <p class="body-text" style="color:var(--grey-dk);margin-top:1.5rem;">
+      The greatest Oromo thanksgiving ceremony — a celebration of survival, gratitude, and the turning of seasons. Liya honors this tradition as a living bridge between heritage and contemporary expression.
+    </p>
+    <p class="body-text" style="color:var(--grey-dk);margin-top:1rem;font-style:italic;">
+      Thousands gather at the shores of Lake Hora to offer prayers, flowers, and thanks. It is the largest annual gathering on the African continent.
+    </p>
+  </div>
+</section>
 
-        <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition z-50">Menu</button>
-    </nav>
+<!-- IRRECHA + RAMADAN VIDEOS -->
+<section class="chapter" style="display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--black);">
+  <div style="height:65vh;overflow:hidden;cursor:none;">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-power);">
+      <source src="asset/images/liyaculturevideoirrecha.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div style="height:65vh;overflow:hidden;cursor:none;">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-power);">
+      <source src="asset/images/liyaculturevideoramadan.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
 
-    <header class="relative w-full h-screen flex items-center justify-center bg-black overflow-hidden">
-        <div class="absolute inset-0">
-             <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40 scale-105">
-                <source src="asset/images/liyaculturevideogamo.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/40 via-transparent to-brand-dark"></div>
-        </div>
-        <div class="relative z-10 text-center space-y-8">
-            <span class="text-brand-gold tracking-ethereal text-[10px] uppercase block reveal-up">The Sovereign Identity</span>
-            <h1 class="text-7xl md:text-[13rem] font-serif italic leading-none reveal-up">
-                Cultural <br> <span class="text-outline">Diplomacy.</span>
-            </h1>
-            <p class="text-brand-grey text-[10px] tracking-widest uppercase max-w-lg mx-auto leading-loose reveal-up">
-                Representing the ancient future of the Horn of Africa through visual storytelling and heritage preservation.
-            </p>
-        </div>
-    </header>
+<!-- COFFEE + EPIPHANY -->
+<section class="chapter" style="background:var(--cream);padding:10vh 6vw;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6vw;max-width:1400px;margin:0 auto;align-items:start;">
+    <div>
+      <div class="section-eyebrow" style="color:var(--gold);">04 · The Sacred Ritual</div>
+      <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,5.5rem);color:var(--off-black);">Coffee<br>Ceremony.</h2>
+      <p class="body-text" style="color:var(--grey-dk);margin-top:1.5rem;">The Ethiopian coffee ceremony is a meditation on hospitality, connection, and time. Three rounds, three intentions: Abol, Tona, Baraka — peace, respect, and blessing.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:2rem;">
+        <div class="img-reveal-wrap" style="height:280px;"><img src="asset/images/liyaculturephotocoffee1.jpg" alt="Coffee Ceremony" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="img-reveal-wrap" style="height:280px;"><img src="asset/images/liyaculturephotocoffee2.jpg" alt="Coffee Ceremony" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      </div>
+    </div>
+    <div style="margin-top:10vh;">
+      <div class="section-eyebrow" style="color:var(--gold);">05 · Sacred Light</div>
+      <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,5.5rem);color:var(--off-black);">Timkat —<br>Epiphany.</h2>
+      <p class="body-text" style="color:var(--grey-dk);margin-top:1.5rem;">The most sacred of Ethiopian Orthodox celebrations — a profound act of communal renewal, forgiveness, and light emerging from darkness.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:2rem;">
+        <div class="img-reveal-wrap" style="height:280px;"><img src="asset/images/liyaculturephotoepiphany.jpg" alt="Timkat Epiphany" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="img-reveal-wrap" style="height:280px;"><img src="asset/images/liyaculturephotoepiphany2.jpg" alt="Timkat Epiphany" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="py-60 px-6 md:px-24 bg-white text-brand-dark relative">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            <div class="md:col-span-5 space-y-12">
-                <div class="space-y-4">
-                    <span class="text-brand-gold text-[10px] tracking-luxury uppercase">01 / The Highlands</span>
-                    <h2 class="text-6xl md:text-9xl font-serif italic leading-[0.8]">The Gamo <br> Spirit.</h2>
-                </div>
-                <p class="text-gray-500 text-xl font-light leading-relaxed max-w-md italic">
-                    "I am the voice of the highland mists and the dignity of a thousand-year weave. To represent the Gamo is to wear the geometry of our ancestors—a silent language of resilience and artistic purity."
-                </p>
-            </div>
-            <div class="md:col-span-7 h-[85vh] overflow-hidden relative group">
-                <img src="asset/images/liyaculturephotogamo.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 scale-110 group-hover:scale-100">
-            </div>
-        </div>
-    </section>
+<!-- SHADEY VIDEO -->
+<section class="chapter video-chapter">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="asset/images/liyaculturevideoshadey.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay-text">
+    <p class="vot-geo">06 · The Harvest</p>
+    <h2 class="vot-headline">
+      <span class="vot-line-wrap"><span class="vot-line">Shadey</span></span>
+      <span class="vot-line-wrap"><span class="vot-line">Dance.</span></span>
+    </h2>
+  </div>
+</section>
 
-    <section class="py-32 bg-brand-dark relative overflow-hidden">
-        <div class="px-6 md:px-24 mb-24">
-            <span class="text-brand-gold text-[10px] tracking-luxury uppercase">02 / Divine Feminine</span>
-            <h2 class="text-6xl md:text-8xl font-serif italic text-white mt-4">Shadey & Ashenda</h2>
-            <p class="text-brand-grey text-sm font-light mt-8 max-w-2xl leading-relaxed">
-                A celebration of the feminine ascent. In the bells of the Ashenda and the movement of the Shadey, I embody the transition of seasons and the sacred empowerment of women across the Northern peaks—where culture becomes a dance of freedom.
-            </p>
-        </div>
-        <div class="flex overflow-x-auto gap-8 px-6 md:px-24 pb-12 snap-x snap-mandatory hide-scrollbar">
-            <div class="min-w-[85vw] md:min-w-[55vw] h-[80vh] snap-center relative group overflow-hidden">
-                <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-1000">
-                    <source src="asset/images/liyaculturevideoshadey.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center"><img src="asset/images/liyaculturephotoashenda1.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"></div>
-            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center"><img src="asset/images/liyaculturephotoashenda2.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"></div>
-            <div class="min-w-[65vw] md:min-w-[30vw] h-[80vh] snap-center"><img src="asset/images/liyaculturephotoashenda3.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"></div>
-        </div>
-    </section>
+<!-- RAMADAN -->
+<section class="chapter culture-panel">
+  <div class="cp-media">
+    <img src="asset/images/liyaculturephotoramadan.jpg" alt="Ramadan" loading="lazy">
+  </div>
+  <div class="cp-text on-light">
+    <div class="section-eyebrow" style="color:var(--gold);">07 · Faith &amp; Reflection</div>
+    <h2 class="section-headline" style="font-size:clamp(2.5rem,5vw,6rem);color:var(--off-black);">Ramadan.</h2>
+    <p class="body-text" style="color:var(--grey-dk);margin-top:1.5rem;">
+      A month of profound reflection, spiritual discipline, and communal generosity. Ramadan in Ethiopia is a tapestry of tradition, prayer, and the breaking of bread in unity.
+    </p>
+  </div>
+</section>
 
-    <section class="bg-brand-bg py-0 overflow-hidden">
-        <div class="flex flex-col md:flex-row h-screen border-b border-white/5">
-            <div class="w-full md:w-1/2 h-full relative group overflow-hidden">
-                <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30 group-hover:opacity-60 transition duration-1000">
-                    <source src="asset/images/liyaculturevideoramadan.mp4" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 flex items-center justify-center pointer-events-none px-12 text-center">
-                    <div class="space-y-6">
-                        <h3 class="text-white text-7xl md:text-9xl font-serif italic opacity-20 group-hover:opacity-100 transition-all duration-700">Ramadan</h3>
-                        <p class="text-brand-gold text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all delay-300 duration-700">The Grace of Silence</p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 h-full relative overflow-hidden flex flex-col justify-center px-12 md:px-24">
-                <img src="asset/images/liyaculturephotoramadan.jpg" class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 opacity-20">
-                <div class="relative z-10 space-y-8">
-                    <h4 class="text-4xl font-serif italic text-brand-gold">Reflections of Modesty.</h4>
-                    <p class="text-white/60 text-lg font-light leading-relaxed italic">
-                        "Spirituality is the ultimate luxury. In the stillness of Ramadan, I find the intersection of faith and high-fashion modesty—showcasing the architectural soul of our Islamic heritage with quiet, powerful elegance."
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="flex flex-col md:flex-row-reverse h-screen">
-            <div class="w-full md:w-1/2 h-full relative group overflow-hidden">
-                <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30 group-hover:opacity-60 transition duration-1000">
-                    <source src="asset/images/liyaculturevideoirrecha.mp4" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 flex items-center justify-center pointer-events-none px-12 text-center">
-                    <div class="space-y-6">
-                        <h3 class="text-white text-7xl md:text-9xl font-serif italic opacity-20 group-hover:opacity-100 transition-all duration-700">Irrecha</h3>
-                        <p class="text-brand-gold text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all delay-300 duration-700">The Pulse of Life</p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 h-full relative overflow-hidden flex flex-col justify-center px-12 md:px-24 text-right">
-                <img src="asset/images/liyaculturephotoirrecha.jpg" class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 opacity-20">
-                <div class="relative z-10 space-y-8">
-                    <h4 class="text-4xl font-serif italic text-brand-gold">Gratitude at the Source.</h4>
-                    <p class="text-white/60 text-lg font-light leading-relaxed italic">
-                        "Holding the green grass at the water's edge, I become a vessel for the Oromo soul. Irrecha is our heartbeat of thanksgiving—a primordial connection between the people, the earth, and the divine provider."
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- FINALE -->
+<section class="chapter finale-chapter">
+  <p class="finale-eyebrow">The Identity</p>
+  <h2 class="finale-headline">
+    <span class="finale-line"><span class="finale-line-inner">The bridge between</span></span>
+    <span class="finale-line"><span class="finale-line-inner">the ancient and</span></span>
+    <span class="finale-line"><span class="finale-line-inner">the avant-garde.</span></span>
+  </h2>
+  <a href="contact.html" class="finale-cta magnetic">Connect with Liya</a>
+</section>
 
-    <section class="py-40 bg-white px-6 md:px-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="order-2 md:order-1 flex gap-4 h-[80vh]">
-                <div class="w-1/2 overflow-hidden h-full"><img src="asset/images/liyaculturephotoepiphany.jpg" class="w-full h-full object-cover"></div>
-                <div class="w-1/2 overflow-hidden h-full mt-12 md:mt-24"><img src="asset/images/liyaculturephotoepiphany2.jpg" class="w-full h-full object-cover"></div>
-            </div>
-            <div class="order-1 md:order-2 space-y-8">
-                <span class="text-brand-gold text-[10px] tracking-luxury uppercase">03 / Sacred Ceremony</span>
-                <h2 class="text-6xl md:text-8xl font-serif italic text-brand-dark leading-none">The <br> Epiphany.</h2>
-                <p class="text-gray-500 text-lg font-light leading-relaxed max-sm">
-                    Timket: A visual tapestry of spirituality and ancient Orthodoxy. I stand as a witness to the timeless rituals that define our national character, where the sacred meets the monumental.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-40 bg-brand-dark px-6 md:px-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-center md:text-left">
-            <img src="asset/images/liyaculturephotocoffee1.jpg" class="w-full h-[60vh] object-cover opacity-60">
-            <img src="asset/images/liyaculturephotocoffee2.jpg" class="w-full h-[60vh] object-cover opacity-60">
-        </div>
-        <div class="mt-20 max-w-4xl mx-auto text-center space-y-8">
-            <h2 class="text-white text-7xl md:text-[8rem] font-serif italic leading-none">The Ritual.</h2>
-            <p class="text-brand-grey text-xl font-light italic leading-loose">
-                "In the scent of the frankincense and the slow pour of the Buna, time dissolves. The coffee ritual is not a drink; it is our social fabric—a meditative ceremony of hospitality, conversation, and the warmth of home that I carry to the world."
-            </p>
-        </div>
-    </section>
-
-    <section class="py-40 px-6 md:px-24 bg-white text-brand-dark relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none">
-            <h2 class="text-[30rem] font-serif italic leading-none rotate-12 -translate-y-20">LEGACY</h2>
-        </div>
-        
-        <div class="max-w-6xl mx-auto text-center relative z-10 mb-32">
-            <span class="text-brand-gold text-[12px] tracking-[1em] uppercase mb-12 block reveal-up">State-Level Partnership</span>
-            <h2 class="text-6xl md:text-9xl font-serif italic leading-[0.9] mb-16 reveal-up">
-                Projecting the <br> <span class="text-brand-gold">National Narrative.</span>
-            </h2>
-            <p class="text-gray-600 text-xl md:text-2xl font-light leading-relaxed max-w-4xl mx-auto mb-20 reveal-up">
-                Liya Elias partners with <strong>Ministries of Tourism, Global Embassies, and Regional Governments</strong>. We don't just showcase heritage; we engineer the cultural soft power of a nation through high-fidelity visual storytelling.
-            </p>
-            
-            <div class="flex flex-col md:flex-row items-center justify-center gap-8 reveal-up">
-                <a href="contact.html" class="group relative px-20 py-8 bg-brand-dark text-white rounded-full overflow-hidden transition-all duration-700 hover:scale-105 hover:shadow-2xl">
-                    <span class="relative z-10 text-[11px] tracking-luxury uppercase font-bold">Initiate Diplomatic Inquiry</span>
-                    <div class="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                </a>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-gray-100 pt-20">
-            <div class="space-y-4 group cursor-default">
-                <span class="text-brand-gold text-xs tracking-luxury uppercase block">01 / Visual Strategy</span>
-                <h3 class="text-3xl font-serif italic text-brand-dark">National Identity <br> Architecture.</h3>
-                <p class="text-gray-500 text-sm leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
-                    Curating the visual language of the state for international exhibitions, expos, and global tourism campaigns.
-                </p>
-            </div>
-            
-            <div class="space-y-4 group cursor-default">
-                <span class="text-brand-gold text-xs tracking-luxury uppercase block">02 / Representation</span>
-                <h3 class="text-3xl font-serif italic text-brand-dark">Cultural <br> Ambassadorship.</h3>
-                <p class="text-gray-500 text-sm leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
-                    Direct representation of regional heritage at high-level diplomatic summits, galas, and cross-cultural exchanges.
-                </p>
-            </div>
-
-            <div class="space-y-4 group cursor-default">
-                <span class="text-brand-gold text-xs tracking-luxury uppercase block">03 / Production</span>
-                <h3 class="text-3xl font-serif italic text-brand-dark">Heritage <br> Documentation.</h3>
-                <p class="text-gray-500 text-sm leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
-                    Creating archive-quality visual assets of intangible heritage, ensuring cultural preservation meets modern luxury standards.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-brand-dark py-20 px-6 md:px-24 border-t border-white/5">
-        <div class="flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.4em] text-brand-grey">
-            <p>&copy; 2026 Liya Elias. Cultural Ambassador & Identity Architect.</p>
-            <div class="flex space-x-8 mt-6 md:mt-0">
-                <span>Addis Ababa</span>
-                <span>London</span>
-                <span>Dubai</span>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.to("body", { opacity: 1, duration: 1.5 });
-            gsap.registerPlugin(ScrollTrigger);
-
-            const menuBtn = document.getElementById('menu-btn');
-            const closeBtn = document.getElementById('close-menu-btn');
-            const menuOverlay = document.getElementById('mobile-menu-overlay');
-            const menuLinks = document.querySelectorAll('.menu-link-item');
-
-            // Fixed Menu Interaction Logic
-            menuBtn.addEventListener('click', () => {
-                menuOverlay.classList.remove('hidden');
-                // Slight delay to ensure 'display:flex' applies before 'transform'
-                setTimeout(() => {
-                    menuOverlay.classList.add('open');
-                }, 10);
-
-                gsap.fromTo(menuLinks, 
-                    { y: 60, opacity: 0 }, 
-                    { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, delay: 0.3, ease: "power4.out" }
-                );
-            });
-
-            const closeMenu = () => {
-                menuOverlay.classList.remove('open');
-                
-                // Wait for transition (0.8s) to finish before hiding
-                setTimeout(() => {
-                    menuOverlay.classList.add('hidden');
-                }, 800);
-            };
-
-            closeBtn.addEventListener('click', closeMenu);
-            menuLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-            // Elements Reveal
-            gsap.utils.toArray('.reveal-up').forEach(elem => {
-                gsap.to(elem, {
-                    scrollTrigger: { trigger: elem, start: "top 90%" },
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.5,
-                    ease: "power4.out"
-                });
-            });
-        });
-    </script>
+<footer id="site-footer"><div class="footer-bottom"><p class="footer-copy">© 2026 Liya Elias · Cultural Ambassador</p><p class="footer-offices"><a href="index.html" style="color:var(--grey-mid);text-decoration:none;">← Return Home</a></p></div></footer>
+<div id="lightbox"><button class="lb-close magnetic">✕</button><div id="lightbox-content"><img id="lightbox-img" src="" alt=""></div></div>
+<script src="script.js"></script>
 </body>
 </html>

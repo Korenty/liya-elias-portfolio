@@ -1,219 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liya Elias | The Architect & The Muse</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liya Elias</title>
+  <meta name="description" content="Liya Elias — Architect, Cultural Ambassador, TV Host, Brand Founder. Addis Ababa · Global.">
+  <meta property="og:title"       content="Liya Elias">
+  <meta property="og:description" content="The ancient future. Architect of spaces, cultures, and brands.">
+  <meta property="og:image"       content="asset/images/liya1.jpg">
+  <meta property="og:type"        content="website">
+  <meta name="twitter:card"       content="summary_large_image">
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://korenty.github.io/liya-elias-portfolio/">
-    <meta property="og:title" content="Liya Elias | The Architect & The Muse">
-    <meta property="og:description" content="A monumental digital ecosystem unifying architectural legacy with high-fashion media prominence.">
-    <meta property="og:image" content="asset/images/liya1.jpg">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://korenty.github.io/liya-elias-portfolio/">
-    <meta property="twitter:title" content="Liya Elias | The Architect & The Muse">
-    <meta property="twitter:description" content="A bespoke websystem engineered for the next era of the Liya Elias brand.">
-    <meta property="twitter:image" content="asset/images/liya1.jpg">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#111111', 'brand-gold': '#C0A080', 'brand-grey': '#6B7280' },
-                    fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
-                    letterSpacing: { 'luxury': '0.25em' }
-                }
-            }
-        }
-    </script>
-    <style>
-        #disclaimer-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(17, 17, 17, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            cursor: pointer;
-        }
-    </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="opacity-0 bg-brand-bg text-brand-dark overflow-x-hidden m-0 p-0">
+<body>
 
-    <div id="disclaimer-overlay" class="opacity-0">
-        <div class="max-w-xl text-center px-6">
-            <p class="text-brand-gold text-[10px] uppercase tracking-luxury mb-6 underline decoration-1 underline-offset-8">Note on Media Assets</p>
-            <p class="text-white font-serif italic text-lg md:text-xl leading-relaxed">
-                "All photography, videography, and brand logos featured in this concept remain the exclusive intellectual property of Liya Elias and their respective owners. These assets are utilized solely for demonstration purposes to showcase the structural capabilities of this system and do not imply copyright ownership or commercial endorsement."
-            </p>
-            <p class="text-gray-500 text-[9px] uppercase tracking-widest mt-12">[ Tap anywhere to close ]</p>
+<!-- ─── CURSOR ──────────────────────────────────────────────────── -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<div id="cur-text"></div>
+
+<!-- ─── SCROLL PROGRESS ─────────────────────────────────────────── -->
+<div id="scroll-bar"></div>
+
+<!-- ─── PRELOADER ───────────────────────────────────────────────── -->
+<div id="preloader">
+  <img src="asset/images/liyalogo.png" alt="Liya Elias" class="pre-logo">
+  <div class="pre-track"><div class="pre-fill"></div></div>
+  <span class="pre-pct">0%</span>
+</div>
+
+<!-- ─── FULLSCREEN MENU ──────────────────────────────────────────── -->
+<div id="site-menu">
+  <div class="menu-bg-photo"><img src="asset/images/liya4.jpg" alt=""></div>
+  <button id="menu-close-btn" aria-label="Close menu">
+    <span class="close-x"></span>
+    <span>Close</span>
+  </button>
+  <nav class="menu-inner" role="navigation">
+    <a href="index.html" class="menu-link">
+      <div class="menu-link-inner">
+        <span class="ml-num">01</span>
+        <span class="ml-name">Home</span>
+        <span class="ml-arr">↗</span>
+      </div>
+    </a>
+    <a href="architecture.html" class="menu-link">
+      <div class="menu-link-inner" style="transition-delay:.06s">
+        <span class="ml-num">02</span>
+        <span class="ml-name">Interiors</span>
+        <span class="ml-arr">↗</span>
+      </div>
+    </a>
+    <a href="branding.html" class="menu-link">
+      <div class="menu-link-inner" style="transition-delay:.12s">
+        <span class="ml-num">03</span>
+        <span class="ml-name">Branding</span>
+        <span class="ml-arr">↗</span>
+      </div>
+    </a>
+    <a href="culture.html" class="menu-link">
+      <div class="menu-link-inner" style="transition-delay:.18s">
+        <span class="ml-num">04</span>
+        <span class="ml-name">Ambassador</span>
+        <span class="ml-arr">↗</span>
+      </div>
+    </a>
+    <a href="modeling.html" class="menu-link">
+      <div class="menu-link-inner" style="transition-delay:.24s">
+        <span class="ml-num">05</span>
+        <span class="ml-name">Modeling</span>
+        <span class="ml-arr">↗</span>
+      </div>
+    </a>
+    <a href="awards.html" class="menu-link">
+      <div class="menu-link-inner" style="transition-delay:.30s">
+        <span class="ml-num">06</span>
+        <span class="ml-name">Awards</span>
+        <span class="ml-arr">↗</span>
+      </div>
+    </a>
+    <a href="work.html" class="menu-link">
+      <div class="menu-link-inner" style="transition-delay:.36s">
+        <span class="ml-num">07</span>
+        <span class="ml-name">Portfolio</span>
+        <span class="ml-arr">↗</span>
+      </div>
+    </a>
+    <a href="contact.html" class="menu-link">
+      <div class="menu-link-inner" style="transition-delay:.42s">
+        <span class="ml-num">08</span>
+        <span class="ml-name">Contact</span>
+        <span class="ml-arr">↗</span>
+      </div>
+    </a>
+  </nav>
+  <div id="menu-socials">
+    <a href="https://www.instagram.com/liya_elias" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@liyaelias19" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/liyu_branding" target="_blank" rel="noopener">Agency</a>
+  </div>
+</div>
+
+<!-- ─── NAV ──────────────────────────────────────────────────────── -->
+<nav id="nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo"><img src="asset/images/liyalogo.png" alt="Liya Elias"></a>
+  <button id="nav-menu-btn" aria-label="Open menu" class="magnetic">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CHAPTER I — HERO
+════════════════════════════════════════════════════════════════ -->
+<section class="chapter hero-chapter">
+  <div class="hero-media">
+    <img src="asset/images/liya1.jpg" alt="Liya Elias" fetchpriority="high">
+  </div>
+  <div class="hero-vignette"></div>
+  <div class="hero-top-right">
+    <span>Addis Ababa</span>
+    <span class="year">©&nbsp;2026</span>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Architect &ensp;·&ensp; Cultural Ambassador &ensp;·&ensp; Founder</p>
+    <h1 class="hero-name">
+      <span class="hero-name-inner">Liya<br>Elias</span>
+    </h1>
+    <div class="hero-meta">
+      <p class="hero-descriptor">
+        <b>Architect of the Ancient Future.</b><br>
+        Interior design · Brand identity · Television · Cultural diplomacy.<br>
+        Addis Ababa — Global.
+      </p>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MARQUEE STRIP
+════════════════════════════════════════════════════════════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Award</em>SAA Best Model 2024</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Nominee</em>Zikomo TV Host of the Year</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Education</em>BSc Architecture with Honours</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>TV Host</em>Arts TV World · Cool Programme</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Diplomat</em>Cultural Ambassador · Horn of Africa</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Fashion</em>Hub of Africa Fashion Week</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Red Carpet</em>Guma Awards</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Honour</em>Young Achiever · Africa Awards</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Founder</em>Liyu Interior Design</span>
+    <span class="marquee-item"><span class="marquee-sep"></span><em>Director</em>Leyu Branding Agency</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CHAPTER II — IDENTITY STATEMENT
+════════════════════════════════════════════════════════════════ -->
+<section class="chapter statement-chapter">
+  <div class="statement-inner">
+    <div class="statement-kicker">October 29 &ensp;·&ensp; Saint Gabriel's Child</div>
+    <p class="statement-text" aria-label="Identity statement">
+      <span class="statement-line"><span class="statement-line-inner">She doesn't follow</span></span>
+      <span class="statement-line"><span class="statement-line-inner">the age. She</span></span>
+      <span class="statement-line"><span class="statement-line-inner"><em>architects</em> it.</span></span>
+    </p>
+    <p class="statement-sub">Addis Ababa &ensp;·&ensp; London &ensp;·&ensp; Dubai</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CHAPTER III — THE THREE WORLDS (horizontal scroll)
+════════════════════════════════════════════════════════════════ -->
+<div class="worlds-wrapper chapter">
+  <div class="worlds-sticky">
+    <div class="worlds-track">
+
+      <!-- World 1: The Muse -->
+      <div class="world-panel">
+        <div class="wp-media">
+          <img src="asset/images/liyamodelphoto17.jpg" alt="Liya Elias — The Muse" loading="lazy">
         </div>
+        <div class="wp-overlay"></div>
+        <div class="wp-content">
+          <p class="wp-num">01 &ensp;/&ensp; 03</p>
+          <h2 class="wp-title">The<br>Muse.</h2>
+          <p class="wp-desc">High-fashion storytelling through a structural, architectural lens. Campaigns, editorials, and red carpet — each appearance a composed statement.</p>
+          <a href="modeling.html" class="wp-cta" data-cursor="View">Explore</a>
+        </div>
+      </div>
+
+      <!-- World 2: The Architect -->
+      <div class="world-panel">
+        <div class="wp-media">
+          <img src="asset/images/liyadesigns1.jpg" alt="Liya Elias — The Architect" loading="lazy">
+        </div>
+        <div class="wp-overlay"></div>
+        <div class="wp-content">
+          <p class="wp-num">02 &ensp;/&ensp; 03</p>
+          <h2 class="wp-title">The<br>Architect.</h2>
+          <p class="wp-desc">Spaces that breathe. Interior environments conceived as living narratives — residential couture, executive offices, and hospitality sanctuaries.</p>
+          <a href="architecture.html" class="wp-cta" data-cursor="View">Explore</a>
+        </div>
+      </div>
+
+      <!-- World 3: The Ambassador -->
+      <div class="world-panel">
+        <div class="wp-media">
+          <img src="asset/images/liyaculturephotogamo.jpg" alt="Liya Elias — The Ambassador" loading="lazy">
+        </div>
+        <div class="wp-overlay"></div>
+        <div class="wp-content">
+          <p class="wp-num">03 &ensp;/&ensp; 03</p>
+          <h2 class="wp-title">The<br>Ambassador.</h2>
+          <p class="wp-desc">Born from the highlands and shaped by the Horn of Africa. She bridges ancient traditions with a contemporary global platform.</p>
+          <a href="culture.html" class="wp-cta" data-cursor="View">Explore</a>
+        </div>
+      </div>
+
+    </div>
+    <!-- Progress dots -->
+    <div class="worlds-dots" aria-hidden="true">
+      <div class="worlds-dot active"></div>
+      <div class="worlds-dot"></div>
+      <div class="worlds-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CHAPTER IV — ORIGIN (split layout)
+════════════════════════════════════════════════════════════════ -->
+<section class="chapter origin-chapter">
+
+  <!-- LEFT: Portrait -->
+  <div class="origin-photo img-reveal-wrap">
+    <img src="asset/images/liyamanifested.jpg" alt="Liya Elias portrait" loading="lazy">
+    <div class="origin-photo-overlay"></div>
+  </div>
+
+  <!-- RIGHT: Text -->
+  <div class="origin-text">
+    <div class="origin-eyebrow">The Origin</div>
+    <h2 class="origin-headline section-headline" style="font-size:clamp(2.8rem,5vw,6rem);">
+      <span class="statement-line"><span class="statement-line-inner">October 29 —</span></span>
+      <span class="statement-line"><span class="statement-line-inner">Saint Gabriel's</span></span>
+      <span class="statement-line"><span class="statement-line-inner">Child.</span></span>
+    </h2>
+    <p class="origin-body">
+      Born on <strong>October 29 (ጥቅምት 19)</strong>, Liya embodies the protective and monumental spirit of her namesake. Her existence is a Scorpionic masterclass — unwavering loyalty, magnetic depth, and a transformative vision that turns every project into a legacy.<br><br>
+      Guided by the moral compass of her parents, <strong>Elias Negede</strong> and <strong>Birhane Haile</strong>, and sharing her path with her twin soul <strong>Lidya Elias</strong>, family is her ultimate blueprint. She graduated with a <strong>BSc in Architecture with Honours</strong> from Hope Enterprises University College in 2021.
+    </p>
+    <div class="origin-stats">
+      <div class="stat-item">
+        <div class="s-val" data-count="4" data-suffix="+">0+</div>
+        <div class="s-label">Years Active</div>
+      </div>
+      <div class="stat-item">
+        <div class="s-val" data-count="18" data-suffix="M+">0M+</div>
+        <div class="s-label">Impressions</div>
+      </div>
+      <div class="stat-item">
+        <div class="s-val" data-count="7">0</div>
+        <div class="s-label">Awards &amp; Noms</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CHAPTER V — VIDEO MOMENT
+════════════════════════════════════════════════════════════════ -->
+<section class="chapter video-chapter">
+  <div class="video-bg">
+    <video autoplay muted loop playsinline aria-hidden="true">
+      <source src="asset/images/liyamodelvideo1.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay-text">
+    <p class="vot-geo">Ethiopia &ensp;·&ensp; London &ensp;·&ensp; Dubai</p>
+    <h2 class="vot-headline">
+      <span class="vot-line-wrap"><span class="vot-line">"Structure</span></span>
+      <span class="vot-line-wrap"><span class="vot-line">is the soul's</span></span>
+      <span class="vot-line-wrap"><span class="vot-line">geography."</span></span>
+    </h2>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CHAPTER VI — RECOGNITION
+════════════════════════════════════════════════════════════════ -->
+<section class="chapter recognition-chapter">
+  <div class="rec-header">
+    <h2 class="rec-title">Recognition.</h2>
+    <span class="rec-year">2021 — 2025</span>
+  </div>
+  <div class="rec-items">
+
+    <div class="rec-item">
+      <span class="ri-num">01</span>
+      <div class="ri-info">
+        <div class="ri-name">SAA Best Model of the Year</div>
+        <div class="ri-org">SAA &ensp;·&ensp; 2024</div>
+      </div>
+      <div class="ri-badge">Winner</div>
     </div>
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
-        <div class="flex flex-col space-y-6 text-center">
-            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Home"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
-            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Branding"><span>Branding</span></a>
-            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
-            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
-            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Awards"><span>Awards</span></a>
-            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
-            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Contact"><span>Contact</span></a>
-        </div>
+    <div class="rec-item">
+      <span class="ri-num">02</span>
+      <div class="ri-info">
+        <div class="ri-name">Zikomo TV Host of the Year</div>
+        <div class="ri-org">Zikomo Awards &ensp;·&ensp; 2025</div>
+      </div>
+      <div class="ri-badge">Nominee</div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
-        <a href="index.html" class="z-50 block">
-            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain transition-opacity hover:opacity-80">
-        </a>
-        <div class="hidden lg:flex space-x-8 text-xs tracking-luxury uppercase z-50">
-            <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
-            <a href="branding.html" class="hover:text-brand-gold transition">Branding</a>
-            <a href="culture.html" class="hover:text-brand-gold transition">Ambassador</a>
-            <a href="modeling.html" class="hover:text-brand-gold transition">Modeling</a>
-            <a href="awards.html" class="hover:text-brand-gold transition">Awards</a>
-            <a href="work.html" class="hover:text-brand-gold transition">Portfolio</a>
-        </div>
-        <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition z-50">Menu</button>
-    </nav>
+    <div class="rec-item">
+      <span class="ri-num">03</span>
+      <div class="ri-info">
+        <div class="ri-name">Best Rising Star</div>
+        <div class="ri-org">Zikomo Awards &ensp;·&ensp; 2025</div>
+      </div>
+      <div class="ri-badge">Nominee</div>
+    </div>
 
-    <header class="relative w-full h-screen overflow-hidden bg-brand-dark">
-        <div class="absolute inset-0 w-full h-full top-0 left-0">
-            <img src="asset/images/liya1.jpg" class="parallax-media w-full h-full object-cover object-center filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70"></div>
-        </div>
-        <div class="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-20 px-6 md:px-12 items-start">
-            <p class="reveal-text text-brand-gold text-xs md:text-sm tracking-luxury uppercase mb-2">Architect &bull; Muse &bull; Founder</p>
-            <h1 class="reveal-text text-white text-7xl md:text-[9.5rem] font-serif italic leading-[0.85] mix-blend-overlay opacity-90">Liya Elias</h1>
-        </div>
-    </header>
+    <div class="rec-item">
+      <span class="ri-num">04</span>
+      <div class="ri-info">
+        <div class="ri-name">Young Achiever of the Year</div>
+        <div class="ri-org">Africa Awards &ensp;·&ensp; 2024</div>
+      </div>
+      <div class="ri-badge">Honouree</div>
+    </div>
 
-    <section class="py-32 px-6 md:px-24 bg-white relative">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-            <div class="space-y-8">
-                <span class="text-brand-gold text-xs tracking-luxury uppercase reveal-text">The Origin</span>
-                <h2 class="reveal-text text-4xl md:text-5xl font-serif leading-tight">
-                    Oct 29 &bull; <span class="italic text-brand-grey">Saint Gabriel's Child.</span>
-                </h2>
-                <div class="draw-line w-full h-[1px] bg-brand-dark/10"></div>
-                <p class="reveal-text text-brand-dark/70 font-light leading-relaxed text-lg">
-                    Born on October 29 (ጥቅምት 19), Liya embodies the protective and monumental spirit of her namesake, proudly referring to herself as <strong class="text-brand-dark">Saint Gabriel's Child</strong>. Her existence is a Scorpionic masterclass: an intense fusion of unwavering loyalty, magnetic depth, and a transformative vision that turns every project into a legacy.
-                </p>
-                <p class="reveal-text text-brand-dark/70 font-light leading-relaxed text-lg">
-                    Guided by the moral compass forged by her ever loving parents, her Dad <strong class="text-brand-dark">Elias Negede</strong> and her Mom <strong class="text-brand-dark">Birhane Haile</strong>, and shared with her twin soul, <strong class="text-brand-dark">Lidya Elias</strong>, she views family as the ultimate blueprint of life—where ethics and honor are the foundation of every structure she builds.
-                </p>
-            </div>
-            <div class="relative h-[600px] w-full overflow-hidden group">
-                <img src="asset/images/liya6.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 parallax-media">
-                <div class="absolute bottom-0 left-0 bg-white p-6 md:p-8 max-w-xs">
-                    <p class="font-serif italic text-2xl">"Structure is the soul’s geography."</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="rec-item">
+      <span class="ri-num">05</span>
+      <div class="ri-info">
+        <div class="ri-name">Hub of Africa Fashion Week</div>
+        <div class="ri-org">Addis Ababa &ensp;·&ensp; Featured Walk</div>
+      </div>
+      <div class="ri-badge">Featured</div>
+    </div>
 
-    <section class="py-32 px-6 md:px-12 bg-brand-dark text-white">
-        <div class="max-w-5xl mx-auto text-center">
-            <span class="text-brand-gold text-xs tracking-luxury uppercase reveal-text mb-6 block">The Scholarly Blueprint</span>
-            <h2 class="text-4xl md:text-6xl font-serif italic mb-12">Honors in Architecture.</h2>
-            <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-12">
-                In August 2021, Liya solidified her technical prowess at <strong class="text-white">Hope Enterprises University College</strong>, graduating with a <strong class="text-brand-gold">B.Sc. in Architecture with Honors</strong>. This academic milestone bridged the gap between celestial intuition and structural engineering, allowing her to design spaces that breathe with both purpose and poetry.
-            </p>
-            <div class="w-20 h-[1px] bg-brand-gold mx-auto"></div>
-        </div>
-    </section>
+    <div class="rec-item">
+      <span class="ri-num">06</span>
+      <div class="ri-info">
+        <div class="ri-name">Guma Awards Red Carpet</div>
+        <div class="ri-org">Guma Awards &ensp;·&ensp; Official Presence</div>
+      </div>
+      <div class="ri-badge">Official</div>
+    </div>
 
-    <section class="py-24 px-6 md:px-12 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="space-y-6 group">
-                <div class="h-96 overflow-hidden">
-                    <img src="asset/images/liyaculturephotogamo.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
-                </div>
-                <h3 class="text-2xl font-serif italic">The Ambassador</h3>
-                <p class="text-sm text-brand-grey leading-relaxed">Representing the rich tapestry of Ethiopian heritage and nations through cultural diplomacy.</p>
-                <a href="culture.html" class="inline-block text-[10px] uppercase tracking-luxury border-b border-brand-gold pb-1">Explore Culture</a>
-            </div>
-            <div class="space-y-6 group">
-                <div class="h-96 overflow-hidden">
-                    <img src="asset/images/liyamodelphoto1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
-                </div>
-                <h3 class="text-2xl font-serif italic">The Muse</h3>
-                <p class="text-sm text-brand-grey leading-relaxed">High-fashion storytelling and commercial versatility captured through a structural lens.</p>
-                <a href="modeling.html" class="inline-block text-[10px] uppercase tracking-luxury border-b border-brand-gold pb-1">View Portfolio</a>
-            </div>
-            <div class="space-y-6 group">
-                <div class="h-96 overflow-hidden">
-                    <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
-                </div>
-                <h3 class="text-2xl font-serif italic">The Acclaim</h3>
-                <p class="text-sm text-brand-grey leading-relaxed">Recognized for excellence in media, fashion, and industry influence across the continent.</p>
-                <a href="awards.html" class="inline-block text-[10px] uppercase tracking-luxury border-b border-brand-gold pb-1">View Awards</a>
-            </div>
-        </div>
-    </section>
+  </div>
+</section>
 
-    <section class="py-32 px-6 md:px-12 bg-brand-dark text-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-[100px] -z-10"></div>
-        <div class="max-w-7xl mx-auto">
-             <div class="text-center mb-24">
-                <h2 class="text-5xl md:text-7xl font-serif italic reveal-text">The Evolution</h2>
-             </div>
-             <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                <div class="md:col-span-7 bg-white/5 p-8 md:p-12 hover:bg-white/10 transition duration-500 border border-white/10">
-                    <span class="text-brand-gold text-xs tracking-luxury uppercase">Current Chapter</span>
-                    <h3 class="text-3xl md:text-4xl font-serif mt-4 mb-6">The Face of "Cool"</h3>
-                    <p class="text-gray-400 font-light mb-8 max-w-md">
-                        As a TV Host on <strong class="text-white">Arts TV World</strong>, I curate conversations that matter. My program is more than entertainment; it is a platform for lifestyle, culture, and inspiration.
-                    </p>
-                    <div class="h-64 overflow-hidden relative">
-                         <img src="asset/images/liya9.jpg" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition duration-500">
-                    </div>
-                </div>
-                <div class="md:col-span-5 bg-white/5 p-8 md:p-12 hover:bg-white/10 transition duration-500 border border-white/10 flex flex-col justify-between">
-                    <div>
-                        <span class="text-brand-gold text-xs tracking-luxury uppercase">Visual Presence</span>
-                        <h3 class="text-3xl md:text-4xl font-serif mt-4 mb-6">Poise & Purpose</h3>
-                        <p class="text-gray-400 font-light">
-                            Blending architectural precision with a high-fashion background to create a unique aesthetic in both structure and media.
-                        </p>
-                    </div>
-                    <div class="mt-8 relative">
-                         <img src="asset/images/liya5.jpg" class="w-full h-auto opacity-60 hover:opacity-100 transition duration-500 block">
-                    </div>
-                </div>
-             </div>
-        </div>
-    </section>
+<!-- ═══════════════════════════════════════════════════════════════
+     CHAPTER VII — PHOTO ARCHIVE
+════════════════════════════════════════════════════════════════ -->
+<section class="chapter grid-chapter">
+  <div class="grid-header">
+    <h2 class="grid-title">The Archive.</h2>
+    <a href="work.html" class="grid-all-link" data-cursor="View all">Portfolio</a>
+  </div>
+  <div class="photo-grid">
+    <div class="pg-item pg-tall" data-cursor="View" data-lightbox="asset/images/liyamodelphoto4.jpg" style="min-height:600px;">
+      <img src="asset/images/liyamodelphoto4.jpg" alt="Liya Elias" loading="lazy">
+      <div class="pg-caption"><span class="pg-caption-text">Liya Elias · Editorial</span></div>
+    </div>
+    <div class="pg-item" data-cursor="View" data-lightbox="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" style="height:296px;">
+      <img src="asset/images/liyaachievmentssaa24bestmodelwinnerphoto1.jpg" alt="SAA Best Model 2024" loading="lazy">
+      <div class="pg-caption"><span class="pg-caption-text">SAA Best Model 2024</span></div>
+    </div>
+    <div class="pg-item" data-cursor="View" data-lightbox="asset/images/liya2.jpg" style="height:296px;">
+      <img src="asset/images/liya2.jpg" alt="Liya Elias" loading="lazy">
+      <div class="pg-caption"><span class="pg-caption-text">Liya Elias · Portrait</span></div>
+    </div>
+    <div class="pg-item" data-cursor="View" data-lightbox="asset/images/liyadesigns2.jpg" style="height:296px;">
+      <img src="asset/images/liyadesigns2.jpg" alt="Liyu Interiors" loading="lazy">
+      <div class="pg-caption"><span class="pg-caption-text">Liyu Interiors</span></div>
+    </div>
+    <div class="pg-item" data-cursor="View" data-lightbox="asset/images/liyaculturephotoashenda1.jpg" style="height:296px;">
+      <img src="asset/images/liyaculturephotoashenda1.jpg" alt="Cultural" loading="lazy">
+      <div class="pg-caption"><span class="pg-caption-text">Cultural Ambassador</span></div>
+    </div>
+  </div>
+</section>
 
-    <section class="h-[60vh] w-full relative flex items-center justify-center overflow-hidden">
-        <img src="asset/images/liya8.jpg" class="absolute inset-0 w-full h-full object-cover filter grayscale brightness-50 parallax-media">
-        <div class="relative z-10 text-center space-y-6">
-            <h2 class="text-5xl md:text-7xl text-white font-serif italic reveal-text">Building Legacy.</h2>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="architecture.html" class="px-8 py-3 border border-white text-white text-xs uppercase tracking-luxury hover:bg-white hover:text-black transition duration-500">Interiors</a>
-                <a href="branding.html" class="px-8 py-3 border border-brand-gold text-brand-gold text-xs uppercase tracking-luxury hover:bg-brand-gold hover:text-black transition duration-500">Branding</a>
-                <a href="work.html" class="px-8 py-3 border border-white text-white text-xs uppercase tracking-luxury hover:bg-white hover:text-black transition duration-500">Portfolio</a>
-            </div>
-        </div>
-    </section>
+<!-- ═══════════════════════════════════════════════════════════════
+     CHAPTER VIII — FINALE CTA
+════════════════════════════════════════════════════════════════ -->
+<section class="chapter finale-chapter">
+  <div class="finale-bg"><img src="asset/images/liya3.jpg" alt="" loading="lazy"></div>
+  <p class="finale-eyebrow">Begin the conversation</p>
+  <h2 class="finale-headline">
+    <span class="finale-line"><span class="finale-line-inner">Every great</span></span>
+    <span class="finale-line"><span class="finale-line-inner">structure begins</span></span>
+    <span class="finale-line"><span class="finale-line-inner">with a vision.</span></span>
+  </h2>
+  <a href="contact.html" class="finale-cta magnetic">Inquire Now</a>
+</section>
 
-    <footer class="bg-brand-dark border-t border-white/10 py-12 text-center">
-        <p class="text-gray-500 text-[10px] uppercase tracking-widest">
-            <span id="copyright-trigger" class="cursor-pointer hover:text-brand-gold transition-colors duration-300">&copy; 2026 Liya Elias</span> &bull; <a href="private-office.html" class="hover:text-white transition">Private Office</a> &bull; Addis Ababa
-        </p>
-    </footer>
+<!-- ─── FOOTER ────────────────────────────────────────────────────── -->
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-logo"><img src="asset/images/liyalogo.png" alt="Liya Elias Logo"></div>
+      <p>Architect. Media Personality. Brand Founder.<br>Building legacies from Addis Ababa — reaching the world.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Pages</p>
+      <nav class="footer-col-links">
+        <a href="architecture.html">Interiors</a>
+        <a href="branding.html">Branding</a>
+        <a href="culture.html">Ambassador</a>
+        <a href="modeling.html">Modeling</a>
+        <a href="awards.html">Awards</a>
+        <a href="work.html">Portfolio</a>
+      </nav>
+    </div>
+    <div>
+      <p class="footer-col-title">Social</p>
+      <nav class="footer-col-links">
+        <a href="https://www.instagram.com/liya_elias" target="_blank" rel="noopener">Instagram @liya_elias</a>
+        <a href="https://www.tiktok.com/@liyaelias19" target="_blank" rel="noopener">TikTok @liyaelias19</a>
+        <a href="https://www.instagram.com/liyu_branding" target="_blank" rel="noopener">Agency @liyu_branding</a>
+      </nav>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <a href="tel:+251987012686" class="footer-contact-link">+251 987 012 686</a>
+      <a href="mailto:booking@liyaelias.com" class="footer-contact-link">booking@liyaelias.com</a>
+      <a href="contact.html" class="footer-cta-link">Inquire Now</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">
+      ©&nbsp;2026 Liya Elias. All rights reserved.
+      &ensp;·&ensp;
+      <span id="copyright-trigger" title="Asset disclaimer">Media assets &amp; IP notice</span>
+    </p>
+    <p class="footer-offices">Addis Ababa &ensp;·&ensp; <a href="private-office.html" style="color:inherit;text-decoration:none;opacity:0.5;">Private Office</a></p>
+  </div>
+</footer>
 
-    <script src="script.js"></script>
+<!-- ─── DISCLAIMER OVERLAY ───────────────────────────────────────── -->
+<div id="disclaimer-overlay" role="dialog" aria-modal="true" aria-label="Media asset disclaimer">
+  <div style="max-width:520px;text-align:center;padding:2rem;">
+    <p style="font-family:var(--f-sans);font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Note on Assets</p>
+    <p style="font-family:var(--f-serif);font-style:italic;font-size:1.2rem;line-height:1.7;color:var(--cream);">
+      All photography, videography, and brand assets featured remain the exclusive intellectual property of Liya Elias and their respective owners. Presented for demonstration purposes only.
+    </p>
+    <p style="font-family:var(--f-sans);font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--grey-mid);margin-top:2rem;">[ Tap anywhere to close ]</p>
+  </div>
+</div>
+
+<!-- ─── LIGHTBOX ─────────────────────────────────────────────────── -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close magnetic" aria-label="Close lightbox">✕</button>
+  <div id="lightbox-content"><img id="lightbox-img" src="" alt="Lightbox image"></div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

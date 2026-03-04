@@ -1,227 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inquire | Liya Elias</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Liya Elias</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+    @media(max-width:900px){ .contact-layout { grid-template-columns:1fr; } }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 'brand-bg': '#050505', 'brand-gold': '#C0A080' },
-                    fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
-                    letterSpacing: { 'luxury': '0.25em', 'widest': '0.15em' }
-                }
-            }
-        }
-    </script>
-    <style>
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        input[type="radio"]:checked + div {
-            background-color: #C0A080; color: black; border-color: #C0A080;
-        }
+    .contact-image {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    @media(max-width:900px){ .contact-image { height:60vw;position:relative; } }
+    .contact-image img {
+      width:100%;height:100%;
+      object-fit:cover;object-position:center top;
+      transition:transform 2s var(--ease-power);
+    }
+    .contact-image:hover img { transform:scale(1.03); }
+    .contact-image-overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to right, transparent 60%, rgba(10,9,5,0.95) 100%);
+    }
+    @media(max-width:900px){ .contact-image-overlay { background:linear-gradient(to top, rgba(10,9,5,0.95) 0%,transparent 60%); } }
 
-        /* Dynamic Dropdown Logic */
-        .custom-options {
-            display: none;
-            width: 100%;
-            background: #0a0a0a;
-            border: 1px solid rgba(192, 160, 128, 0.3);
-            margin-top: 10px;
-            z-index: 50;
-        }
-        .custom-options.open { display: block; }
-        .option { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; color: rgba(255,255,255,0.7); }
-        .option:hover { background: #C0A080; color: black; }
+    .contact-form-side {
+      background: var(--rich-black);
+      padding: 12vh 7vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-        #mobile-menu {
-            position: fixed; inset: 0; background: #050505; z-index: 300;
-            display: none; opacity: 0;
-        }
-        
-        /* Smooth transition for the submit button */
-        #submit-btn-container { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-    </style>
+    .contact-info-list {
+      display:flex;flex-direction:column;gap:1.5rem;
+      margin:3rem 0;
+      border-top:1px solid rgba(255,255,255,0.05);
+      padding-top:2.5rem;
+    }
+    .ci-item {
+      display:flex;flex-direction:column;gap:.3rem;
+    }
+    .ci-label {
+      font-family:var(--f-sans);font-size:9px;
+      letter-spacing:.4em;text-transform:uppercase;
+      color:var(--gold);
+    }
+    .ci-value {
+      font-family:var(--f-serif);font-style:italic;
+      font-size:1.1rem;color:var(--grey-lt);
+      transition:color .3s;
+    }
+    .ci-value:hover { color:var(--cream); }
+    a.ci-value { text-decoration:none; }
+
+    /* Form */
+    .form-group {
+      position:relative;
+      margin-bottom:2rem;
+    }
+    .form-input, .form-textarea, .form-select {
+      width:100%;
+      background:transparent;
+      border:none;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      color:var(--cream);
+      font-family:var(--f-sans);font-size:14px;font-weight:300;
+      padding:1.2rem 0 0.8rem;
+      outline:none;
+      transition:border-color .4s;
+      cursor:none;
+    }
+    .form-input:focus,.form-textarea:focus,.form-select:focus {
+      border-color:var(--gold);
+    }
+    .form-textarea { resize:vertical;min-height:100px; }
+    .form-select { cursor:none; }
+    .form-select option { background:var(--off-black);color:var(--cream); }
+    .form-label {
+      position:absolute;
+      top:1.2rem;left:0;
+      font-family:var(--f-sans);font-size:11px;
+      letter-spacing:.2em;text-transform:uppercase;
+      color:var(--grey-mid);
+      transition:top .3s,font-size .3s,color .3s;
+      pointer-events:none;
+    }
+    .form-input:focus ~ .form-label,
+    .form-input:not(:placeholder-shown) ~ .form-label,
+    .form-textarea:focus ~ .form-label,
+    .form-textarea:not(:placeholder-shown) ~ .form-label {
+      top:-0.6rem;font-size:9px;color:var(--gold);
+    }
+
+    .form-submit {
+      width:100%;
+      padding:1.4rem 2rem;
+      background:var(--gold);
+      border:none;
+      font-family:var(--f-sans);font-size:11px;
+      font-weight:500;letter-spacing:.4em;
+      text-transform:uppercase;color:var(--black);
+      cursor:none;
+      position:relative;overflow:hidden;
+      transition:background .5s,color .4s;
+      margin-top:1rem;
+    }
+    .form-submit::before {
+      content:'';position:absolute;inset:0;
+      background:var(--cream);transform:translateX(-101%);
+      transition:transform .6s var(--ease-expo);z-index:0;
+    }
+    .form-submit:hover { color:var(--black); }
+    .form-submit:hover::before { transform:translateX(0); }
+    .form-submit span { position:relative;z-index:1; }
+
+    #success-overlay {
+      display:none;position:fixed;inset:0;
+      background:var(--black);
+      z-index:9990;
+      align-items:center;justify-content:center;
+      flex-direction:column;
+      text-align:center;padding:2rem;
+    }
+    .success-check {
+      width:64px;height:64px;
+      border:1px solid var(--gold);
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 2rem;
+      font-size:1.5rem;color:var(--gold);
+    }
+  </style>
 </head>
-<body class="bg-brand-bg text-white overflow-hidden h-screen w-full flex flex-col md:flex-row opacity-0">
+<body>
 
-    <nav id="master-header" class="fixed top-0 w-full z-[200] px-6 py-6 md:px-12 flex justify-between items-center bg-brand-bg/95 backdrop-blur-xl h-[90px] border-b border-white/5">
-        <a href="index.html" class="block">
-            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-8 md:h-10 w-auto object-contain">
-        </a>
-        
-        <button onclick="toggleMenu(true)" class="group flex items-center gap-4 cursor-pointer outline-none border border-brand-gold/50 px-8 py-2.5 rounded-full hover:bg-brand-gold hover:text-black transition-all duration-500">
-            <span class="text-[11px] font-bold uppercase tracking-luxury text-brand-gold group-hover:text-black">Menu</span>
-        </button>
-    </nav>
+<div id="cur-dot"></div><div id="cur-ring"></div><div id="cur-text"></div>
+<div id="scroll-bar"></div>
+<div id="preloader">
+  <img src="asset/images/liyalogo.png" alt="Liya Elias" class="pre-logo">
+  <div class="pre-track"><div class="pre-fill"></div></div>
+  <span class="pre-pct">0%</span>
+</div>
+<div id="site-menu">
+  <div class="menu-bg-photo"><img src="asset/images/liya1.jpg" alt=""></div>
+  <button id="menu-close-btn"><span class="close-x"></span><span>Close</span></button>
+  <nav class="menu-inner">
+    <a href="index.html" class="menu-link"><div class="menu-link-inner"><span class="ml-num">01</span><span class="ml-name">Home</span><span class="ml-arr">↗</span></div></a>
+    <a href="architecture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.06s"><span class="ml-num">02</span><span class="ml-name">Interiors</span><span class="ml-arr">↗</span></div></a>
+    <a href="branding.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.12s"><span class="ml-num">03</span><span class="ml-name">Branding</span><span class="ml-arr">↗</span></div></a>
+    <a href="culture.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.18s"><span class="ml-num">04</span><span class="ml-name">Ambassador</span><span class="ml-arr">↗</span></div></a>
+    <a href="modeling.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.24s"><span class="ml-num">05</span><span class="ml-name">Modeling</span><span class="ml-arr">↗</span></div></a>
+    <a href="awards.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.30s"><span class="ml-num">06</span><span class="ml-name">Awards</span><span class="ml-arr">↗</span></div></a>
+    <a href="work.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.36s"><span class="ml-num">07</span><span class="ml-name">Portfolio</span><span class="ml-arr">↗</span></div></a>
+    <a href="contact.html" class="menu-link"><div class="menu-link-inner" style="transition-delay:.42s"><span class="ml-num">08</span><span class="ml-name">Contact</span><span class="ml-arr">↗</span></div></a>
+  </nav>
+  <div id="menu-socials">
+    <a href="https://www.instagram.com/liya_elias" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@liyaelias19" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/liyu_branding" target="_blank" rel="noopener">Agency</a>
+  </div>
+</div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="asset/images/liyalogo.png" alt="Liya Elias"></a>
+  <button id="nav-menu-btn" class="magnetic"><span></span><span></span><span></span></button>
+</nav>
 
-    <div id="mobile-menu" class="flex flex-col justify-center items-center">
-        <button onclick="toggleMenu(false)" class="absolute top-8 right-8 text-[11px] uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-brand-gold hover:text-black transition">Close</button>
-        <div class="flex flex-col space-y-5 text-center">
-            <a href="index.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Home</a>
-            <a href="architecture.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Interiors</a>
-            <a href="branding.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Branding</a>
-            <a href="culture.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Ambassador</a>
-            <a href="modeling.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Modeling</a>
-            <a href="awards.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Awards</a>
-            <a href="work.html" class="text-4xl md:text-7xl font-serif italic hover:text-brand-gold transition-colors">Portfolio</a>
-            <a href="contact.html" class="text-4xl md:text-7xl font-serif italic text-brand-gold">Contact</a>
-        </div>
+<!-- CONTACT LAYOUT -->
+<main class="contact-layout" style="background:var(--rich-black);">
+
+  <!-- LEFT: Image -->
+  <div class="contact-image">
+    <img src="asset/images/liya3.jpg" alt="Liya Elias" loading="lazy">
+    <div class="contact-image-overlay"></div>
+  </div>
+
+  <!-- RIGHT: Form -->
+  <div class="contact-form-side">
+    <div class="section-eyebrow">Private Correspondence</div>
+    <h1 style="font-family:var(--f-serif);font-size:clamp(3rem,5vw,6rem);font-weight:300;font-style:italic;color:var(--cream);line-height:.9;letter-spacing:-.02em;margin-bottom:1rem;">
+      Begin the<br>Conversation.
+    </h1>
+    <p class="body-text" style="max-width:400px;">
+      Inquiries for modeling, interior design, branding commissions, media appearances, and cultural partnerships are welcomed. Every message is read personally.
+    </p>
+
+    <div class="contact-info-list">
+      <div class="ci-item">
+        <span class="ci-label">Direct Line</span>
+        <a href="tel:+251987012686" class="ci-value">+251 987 012 686</a>
+      </div>
+      <div class="ci-item">
+        <span class="ci-label">Bookings</span>
+        <a href="mailto:booking@liyaelias.com" class="ci-value">booking@liyaelias.com</a>
+      </div>
+      <div class="ci-item">
+        <span class="ci-label">Based In</span>
+        <span class="ci-value">Addis Ababa, Ethiopia</span>
+      </div>
     </div>
 
-    <div id="side-image-panel" class="hidden md:block w-full md:w-[45%] h-full relative overflow-hidden bg-brand-bg">
-        <img src="asset/images/liya8.jpg" class="w-full h-full object-cover filter grayscale brightness-[0.7] reveal-img scale-110" alt="Editorial">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-        <div class="absolute bottom-16 left-12 z-20">
-            <span class="text-brand-gold text-[10px] uppercase tracking-luxury block mb-4">Private Office</span>
-            <h2 class="text-6xl font-serif italic leading-none text-white">Global <br> Access.</h2>
-            <div class="w-16 h-[1px] bg-brand-gold mt-8"></div>
-        </div>
-    </div>
+    <form id="contact-form" novalidate>
+      <div class="form-group">
+        <input type="text" class="form-input" id="f-name" name="name" placeholder=" " autocomplete="name" required>
+        <label class="form-label" for="f-name">Full Name</label>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-input" id="f-email" name="email" placeholder=" " autocomplete="email" required>
+        <label class="form-label" for="f-email">Email Address</label>
+      </div>
+      <div class="form-group">
+        <select class="form-select" id="f-service" name="service" required>
+          <option value="" disabled selected>— Select an inquiry type —</option>
+          <option value="modeling">Modeling &amp; Campaigns</option>
+          <option value="interiors">Interior Design Commission</option>
+          <option value="branding">Branding &amp; Identity</option>
+          <option value="media">Media &amp; TV Appearances</option>
+          <option value="culture">Cultural &amp; Diplomatic Events</option>
+          <option value="other">Other Inquiries</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <textarea class="form-textarea" id="f-message" name="message" placeholder=" " rows="4" required></textarea>
+        <label class="form-label" for="f-message">Your Message</label>
+      </div>
+      <button type="submit" class="form-submit magnetic"><span>Send Inquiry</span></button>
+    </form>
+  </div>
 
-    <div id="main-content-panel" class="relative w-full md:w-[55%] h-full flex flex-col bg-brand-bg px-6 md:px-20 overflow-y-auto no-scrollbar pt-[120px] pb-12">
-        
-        <div id="form-container" class="max-w-xl w-full mx-auto relative z-10 flex flex-col">
-            <div class="mb-14 space-y-4">
-                <h1 class="text-4xl md:text-6xl font-serif italic text-white leading-tight">The Correspondence.</h1>
-                <p class="text-gray-400 text-sm md:text-base font-light leading-relaxed max-w-md">
-                    Initiate a formal inquiry to route your vision to the appropriate executive desk. Our office reviews all global submissions within 48 hours.
-                </p>
-            </div>
+</main>
 
-            <form id="inquiry-form" class="flex flex-col">
-                
-                <div class="space-y-6 mb-12">
-                    <label class="text-[10px] uppercase tracking-luxury text-brand-gold">01 / Select Department</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="cursor-pointer group"><input type="radio" name="dept" value="branding" class="peer sr-only" checked onchange="updateServices('branding')"><div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center transition-all duration-300">Liyu Branding</div></label>
-                        <label class="cursor-pointer group"><input type="radio" name="dept" value="interiors" class="peer sr-only" onchange="updateServices('interiors')"><div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center transition-all duration-300">Liyu Interiors</div></label>
-                        <label class="cursor-pointer group"><input type="radio" name="dept" value="media" class="peer sr-only" onchange="updateServices('media')"><div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center transition-all duration-300">Media & Consultancy</div></label>
-                        <label class="cursor-pointer group"><input type="radio" name="dept" value="modeling" class="peer sr-only" onchange="updateServices('modeling')"><div class="border border-white/10 py-4 text-[10px] uppercase tracking-widest text-center transition-all duration-300">Ambassador</div></label>
-                    </div>
-                </div>
+<!-- SUCCESS OVERLAY -->
+<div id="success-overlay" role="dialog" aria-modal="true" aria-live="polite">
+  <div class="success-check" aria-hidden="true">✓</div>
+  <p style="font-family:var(--f-serif);font-style:italic;font-size:2rem;color:var(--cream);margin-bottom:1rem;">Message Received.</p>
+  <p class="body-text" style="max-width:360px;text-align:center;">Liya will respond to your inquiry personally within 48 hours.</p>
+  <button onclick="document.getElementById('success-overlay').style.display='none'" style="margin-top:3rem;font-family:var(--f-sans);font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);background:none;border:none;cursor:none;">Close</button>
+</div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-                    <div class="relative">
-                        <input type="text" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 text-base outline-none focus:border-brand-gold transition-colors text-white">
-                        <label class="absolute left-0 top-4 text-gray-500 text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-6 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-6 transition-all">Identity / Name</label>
-                    </div>
-                    <div class="relative">
-                        <input type="email" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 text-base outline-none focus:border-brand-gold transition-colors text-white">
-                        <label class="absolute left-0 top-4 text-gray-500 text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-6 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-6 transition-all">Email Coordinate</label>
-                    </div>
-                </div>
+<footer id="site-footer" style="background:var(--black);">
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Liya Elias. All rights reserved.</p>
+    <p class="footer-offices"><a href="index.html" style="color:var(--grey-mid);text-decoration:none;">← Return Home</a></p>
+  </div>
+</footer>
 
-                <div class="space-y-4 relative mb-12">
-                    <label class="text-[10px] uppercase tracking-luxury text-brand-gold">02 / Specific Vision</label>
-                    <div class="custom-select-wrapper">
-                        <div class="custom-select border-b border-white/20 py-5 flex justify-between items-center cursor-pointer group" onclick="toggleDropdown()">
-                            <span id="selected-service" class="text-xl md:text-2xl font-serif italic text-white/80 group-hover:text-brand-gold transition-colors">Select Service Type...</span>
-                            <span class="text-brand-gold text-[12px]">▼</span>
-                        </div>
-                        <div id="service-options" class="custom-options no-scrollbar overflow-y-auto max-h-80"></div>
-                        <input type="hidden" name="service" id="service-input" required>
-                    </div>
-                </div>
-
-                <div id="submit-btn-container" class="pt-6">
-                    <button type="submit" onclick="handleSubmit(event)" id="submit-btn" class="w-full bg-white text-black py-6 uppercase tracking-luxury text-[11px] font-bold hover:bg-brand-gold hover:text-white transition-all duration-700">
-                        Initiate Request
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div id="success-msg" class="hidden fixed inset-0 z-[400] bg-black overflow-hidden">
-            <img src="asset/images/liya8.jpg" class="absolute inset-0 w-full h-full object-cover opacity-40 grayscale">
-            <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-                <h3 class="text-5xl md:text-8xl font-serif italic text-white mb-6">Confirmed.</h3>
-                <p class="text-brand-gold text-lg md:text-xl font-light max-w-xl mx-auto mb-12">
-                    Your vision has been successfully transmitted to the private office.
-                </p>
-                <a href="index.html" class="px-12 py-4 border border-white text-white uppercase text-[11px] tracking-widest hover:bg-white hover:text-black transition-all">Return to Home</a>
-            </div>
-        </div>
-
-        <div class="mt-auto pt-20 grid grid-cols-1 md:grid-cols-3 gap-10 border-t border-white/10">
-            <div class="space-y-2">
-                <span class="text-[10px] text-brand-gold uppercase tracking-widest block font-bold">Direct Line</span>
-                <a href="tel:+251987012686" class="text-base md:text-lg font-serif italic hover:text-white text-gray-300 transition-colors">+251 987 012 686</a>
-            </div>
-            <div class="space-y-2">
-                <span class="text-[10px] text-brand-gold uppercase tracking-widest block font-bold">Electronic Mail</span>
-                <a href="mailto:booking@liyaelias.com" class="text-base md:text-lg font-serif italic hover:text-white text-gray-300 transition-colors">booking@liyaelias.com</a>
-            </div>
-            <div class="space-y-2">
-                <span class="text-[10px] text-brand-gold uppercase tracking-widest block font-bold">Official Web</span>
-                <a href="https://www.liyaelias.com" target="_blank" class="text-base md:text-lg font-serif italic hover:text-white text-gray-300 transition-colors">www.liyaelias.com</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const serviceMap = {
-            'branding': ['Brand Identity System', 'Visual Strategy', 'Luxury Packaging', 'Campaign Direction'],
-            'interiors': ['Commercial Spatial Design', 'Private Residence', 'Hospitality Concept', 'Art Direction'],
-            'media': ['TV Production', 'Public Relations Strategy', 'Event Curation', 'Consultancy'],
-            'modeling': ['Brand Ambassadorship', 'Editorial Campaign', 'Runway', 'Speaking Engagement']
-        };
-
-        function updateServices(deptKey) {
-            const container = document.getElementById('service-options');
-            const label = document.getElementById('selected-service');
-            const input = document.getElementById('service-input');
-            container.innerHTML = ''; input.value = '';
-            label.innerText = 'Select Service Type...';
-            label.classList.remove('text-brand-gold');
-            (serviceMap[deptKey] || []).forEach(service => {
-                const div = document.createElement('div');
-                div.className = 'option';
-                div.innerText = service;
-                div.onclick = (e) => {
-                    e.stopPropagation();
-                    label.innerText = service;
-                    label.classList.add('text-brand-gold');
-                    input.value = service;
-                    toggleDropdown();
-                };
-                container.appendChild(div);
-            });
-        }
-
-        function toggleDropdown() { 
-            const options = document.getElementById('service-options');
-            options.classList.toggle('open');
-        }
-        
-        function toggleMenu(open) {
-            const menu = document.getElementById('mobile-menu');
-            if(open) {
-                menu.style.display = 'flex';
-                gsap.to(menu, { opacity: 1, duration: 0.6, ease: "power2.out" });
-            } else {
-                gsap.to(menu, { opacity: 0, duration: 0.4, onComplete: () => menu.style.display = 'none' });
-            }
-        }
-
-        function handleSubmit(e) {
-            e.preventDefault();
-            document.getElementById('submit-btn').innerHTML = "TRANSMITTING...";
-            gsap.to("#success-msg", { display: 'block', opacity: 1, duration: 0.8, delay: 0.5 });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateServices('branding');
-            gsap.to("body", { opacity: 1, duration: 1.2 });
-        });
-    </script>
+<script src="script.js"></script>
+<script>
+document.getElementById('contact-form')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const overlay = document.getElementById('success-overlay');
+  overlay.style.display = 'flex';
+});
+</script>
 </body>
-    </html>
+</html>
