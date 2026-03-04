@@ -4,125 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selected Works | Liya Elias</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'brand-bg': '#FAFAFA', 'brand-dark': '#111111', 'brand-gold': '#C0A080', 'brand-grey': '#6B7280' },
-                    fontFamily: { 'serif': ['"Playfair Display"', 'serif'], 'sans': ['"Space Grotesk"', 'sans-serif'] },
-                    letterSpacing: { 'luxury': '0.25em' }
+                    colors: { 'brand-bg':'#F8F4EF','brand-dark':'#080808','brand-gold':'#C9A96E','brand-grey':'#888888','brand-white':'#F8F4EF' },
+                    fontFamily: { 'serif':['"Playfair Display"','serif'],'display':['"Cormorant Garamond"','serif'],'sans':['"Space Grotesk"','sans-serif'] },
+                    letterSpacing: { 'luxury':'0.25em','ultra':'0.5em' }
                 }
             }
         }
     </script>
-    <style>
-        .matrix-card:hover .matrix-detail { opacity: 1; transform: translateY(0); }
-        .matrix-detail { opacity: 0; transform: translateY(10px); transition: all 0.5s ease; }
-    </style>
 </head>
 <body class="opacity-0 bg-brand-bg text-brand-dark overflow-x-hidden">
 
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-dark z-[60] flex flex-col items-center justify-center text-white hidden">
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-xs uppercase tracking-luxury border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">Close</button>
-        <div class="flex flex-col space-y-6 text-center">
-            <a href="index.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Home"><span>Home</span></a>
-            <a href="architecture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
-            <a href="branding.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Branding"><span>Branding</span></a>
-            <a href="culture.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
-            <a href="modeling.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
-            <a href="awards.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Awards"><span>Awards</span></a>
-            <a href="work.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Portfolio"><span>Portfolio</span></a>
-            <a href="contact.html" class="menu-link-item text-4xl md:text-6xl font-serif italic" data-text="Contact"><span>Contact</span></a>
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+    <div id="scroll-progress"></div>
+
+    <div id="page-loader">
+        <img src="asset/images/liyalogo.png" alt="Liya Elias" class="loader-logo">
+        <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
+        <span class="loader-pct">0%</span>
+    </div>
+
+    <div id="mobile-menu-overlay" class="hidden">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-[10px] uppercase tracking-luxury border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-500">Close</button>
+        <div class="flex flex-col space-y-4 text-center">
+            <a href="index.html"        class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Home"><span>Home</span></a>
+            <a href="architecture.html" class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Interiors"><span>Interiors</span></a>
+            <a href="branding.html"     class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Branding"><span>Branding</span></a>
+            <a href="culture.html"      class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Ambassador"><span>Ambassador</span></a>
+            <a href="modeling.html"     class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Modeling"><span>Modeling</span></a>
+            <a href="awards.html"       class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Awards"><span>Awards</span></a>
+            <a href="work.html"         class="menu-link-item text-5xl md:text-7xl font-serif italic text-brand-gold" data-text="Portfolio"><span>Portfolio</span></a>
+            <a href="contact.html"      class="menu-link-item text-5xl md:text-7xl font-serif italic" data-text="Contact"><span>Contact</span></a>
         </div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
-        <a href="index.html" class="z-50 block">
-            <img src="asset/images/liyalogo.png" alt="Liya Elias Logo" class="h-auto object-contain">
-        </a>
-        <div class="hidden md:flex space-x-8 text-xs tracking-luxury uppercase z-50">
+    <nav class="fixed top-0 w-full z-50 px-6 py-5 md:px-12 flex justify-between items-center mix-blend-difference text-white">
+        <a href="index.html" class="z-50 block"><img src="asset/images/liyalogo.png" alt="Liya Elias Logo"></a>
+        <div class="hidden lg:flex space-x-8 text-[10px] tracking-luxury uppercase z-50">
             <a href="architecture.html" class="hover:text-brand-gold transition">Interiors</a>
-            <a href="branding.html" class="hover:text-brand-gold transition">Branding</a>
-            <a href="culture.html" class="hover:text-brand-gold transition">Ambassador</a>
-            <a href="modeling.html" class="hover:text-brand-gold transition">Modeling</a>
-            <a href="awards.html" class="hover:text-brand-gold transition">Awards</a>
-            <a href="work.html" class="text-brand-gold border-b border-brand-gold">Portfolio</a>
+            <a href="branding.html"     class="hover:text-brand-gold transition">Branding</a>
+            <a href="culture.html"      class="hover:text-brand-gold transition">Ambassador</a>
+            <a href="modeling.html"     class="hover:text-brand-gold transition">Modeling</a>
+            <a href="awards.html"       class="hover:text-brand-gold transition">Awards</a>
+            <a href="work.html"         class="text-brand-gold border-b border-brand-gold">Portfolio</a>
         </div>
-        <button id="menu-btn" class="text-xs uppercase border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition z-50">Menu</button>
+        <button id="menu-btn" class="magnetic-btn text-[10px] uppercase border border-white/50 px-7 py-2.5 rounded-full hover:bg-white hover:text-black transition duration-500 z-50">Menu</button>
     </nav>
 
-    <header class="pt-48 pb-20 px-6 md:px-12 bg-brand-bg">
+    <!-- HEADER -->
+    <header class="pt-44 pb-16 px-6 md:px-16 bg-brand-bg">
         <div class="max-w-7xl mx-auto">
-            <p class="text-brand-gold text-xs tracking-luxury uppercase mb-4 reveal-text">The Archive</p>
-            <h1 class="text-7xl md:text-[9rem] font-serif italic text-brand-dark leading-[0.9] reveal-text">
-                Visual <br> <span class="ml-12 md:ml-32 text-brand-gold">Impact.</span>
+            <div class="section-label reveal-text mb-4" style="color:#C9A96E;">The Archive</div>
+            <h1 class="text-7xl md:text-[10rem] font-display italic text-brand-dark leading-[0.9] reveal-text">
+                Visual<br><span class="ml-8 md:ml-24" style="color:#C9A96E;">Impact.</span>
             </h1>
         </div>
     </header>
 
-    <section class="py-20 px-6 md:px-12 bg-brand-dark text-white">
+    <!-- ANALYTICS MATRIX -->
+    <section class="py-16 md:py-20 px-6 md:px-16 bg-brand-dark text-white">
         <div class="max-w-7xl mx-auto">
-            <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-12">Performance Analytics / Core Legacy</p>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-white/10 border border-white/10">
-                
-                <div class="matrix-card p-10 bg-brand-dark group cursor-crosshair">
-                    <p class="text-[10px] uppercase tracking-widest text-brand-grey mb-4 group-hover:text-brand-gold transition">Attention Capital</p>
-                    <h3 class="text-5xl font-serif italic mb-4">18.4M+</h3>
-                    <p class="matrix-detail text-xs font-light text-brand-grey leading-relaxed">Cross-platform impressions engineered through strategic visual storytelling and psychological branding.</p>
+            <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-10">Performance Analytics / Core Legacy</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.06] border border-white/[0.06]">
+                <div class="p-8 md:p-10 bg-brand-dark group cursor-default hover:bg-brand-dark/50 transition">
+                    <p class="text-[9px] uppercase tracking-widest text-gray-600 mb-4 group-hover:text-brand-gold transition">Attention Capital</p>
+                    <p class="text-4xl md:text-5xl font-display italic mb-3" data-counter="18" data-suffix="M+">0M+</p>
+                    <p class="text-xs font-light text-gray-600 leading-relaxed">Cross-platform impressions through strategic visual storytelling.</p>
                 </div>
-
-                <div class="matrix-card p-10 bg-brand-dark group cursor-crosshair">
-                    <p class="text-[10px] uppercase tracking-widest text-brand-grey mb-4 group-hover:text-brand-gold transition">Visual Retention</p>
-                    <h3 class="text-5xl font-serif italic mb-4">88%</h3>
-                    <p class="matrix-detail text-xs font-light text-brand-grey leading-relaxed">Higher dwell-time on brand assets compared to industry standard. We design for the "Unforgettable Pause."</p>
+                <div class="p-8 md:p-10 bg-brand-dark group cursor-default hover:bg-brand-dark/50 transition">
+                    <p class="text-[9px] uppercase tracking-widest text-gray-600 mb-4 group-hover:text-brand-gold transition">Visual Retention</p>
+                    <p class="text-4xl md:text-5xl font-display italic mb-3" data-counter="88" data-suffix="%">0%</p>
+                    <p class="text-xs font-light text-gray-600 leading-relaxed">Higher dwell-time on brand assets vs. industry standard.</p>
                 </div>
-
-                <div class="matrix-card p-10 bg-brand-dark group cursor-crosshair">
-                    <p class="text-[10px] uppercase tracking-widest text-brand-grey mb-4 group-hover:text-brand-gold transition">Conversion Delta</p>
-                    <h3 class="text-5xl font-serif italic mb-4">+310%</h3>
-                    <p class="matrix-detail text-xs font-light text-brand-grey leading-relaxed">Average increase in premium inquiries for lifestyle brands following a Liyu structural identity shift.</p>
+                <div class="p-8 md:p-10 bg-brand-dark group cursor-default hover:bg-brand-dark/50 transition">
+                    <p class="text-[9px] uppercase tracking-widest text-gray-600 mb-4 group-hover:text-brand-gold transition">Conversion Delta</p>
+                    <p class="text-4xl md:text-5xl font-display italic mb-3" data-counter="310" data-prefix="+">+0</p>
+                    <p class="text-xs font-light text-gray-600 leading-relaxed">Average increase in premium inquiries after a Leyu identity shift.</p>
                 </div>
-
-                <div class="matrix-card p-10 bg-brand-dark group cursor-crosshair">
-                    <p class="text-[10px] uppercase tracking-widest text-brand-grey mb-4 group-hover:text-brand-gold transition">Market Dominance</p>
-                    <h3 class="text-5xl font-serif italic mb-4">Elite</h3>
-                    <p class="matrix-detail text-xs font-light text-brand-grey leading-relaxed">Positioning brands in the 'Top 1%' of their niche by blending Architectural precision with Media influence.</p>
+                <div class="p-8 md:p-10 bg-brand-dark group cursor-default hover:bg-brand-dark/50 transition">
+                    <p class="text-[9px] uppercase tracking-widest text-gray-600 mb-4 group-hover:text-brand-gold transition">Market Position</p>
+                    <p class="text-4xl md:text-5xl font-display italic mb-3 text-brand-gold">Elite</p>
+                    <p class="text-xs font-light text-gray-600 leading-relaxed">Top 1% positioning through architectural precision + media influence.</p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section class="py-32 px-6 md:px-12 bg-white border-t border-gray-100">
+    <!-- CASE STUDY 1: AVOCADO SPA -->
+    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-            <div class="md:col-span-5 order-2 md:order-1 space-y-10">
-                <span class="text-[10px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full">Hospitality & Lifestyle</span>
-                <h2 class="text-5xl md:text-6xl font-serif text-brand-dark reveal-text">Avocado Luxury Spa <span class="italic text-brand-gold">& Bistro</span></h2>
-                <p class="text-brand-dark/70 font-light leading-relaxed text-lg reveal-text">Inside the stunning Avocado Luxury Spa & Bistro, where culinary art meets restorative wellness. A campaign captured to convey the essence of pure indulgence.</p>
-                
-                <div class="grid grid-cols-2 gap-8 py-10 border-y border-brand-gold/20">
-                    <div class="group cursor-default">
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Desire Index</p>
-                        <p class="text-3xl font-serif italic">Top 0.1%</p>
+            <div class="md:col-span-5 order-2 md:order-1 space-y-8">
+                <span class="text-[9px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full inline-block">Hospitality &amp; Lifestyle</span>
+                <h2 class="text-4xl md:text-6xl font-serif text-brand-dark reveal-text">Avocado Luxury Spa <span class="italic text-brand-gold">&amp; Bistro</span></h2>
+                <p class="text-brand-dark/65 font-light leading-loose text-base reveal-text">Inside the stunning Avocado Luxury Spa &amp; Bistro, where culinary art meets restorative wellness. A campaign captured to convey the essence of pure indulgence.</p>
+                <div class="grid grid-cols-2 gap-8 py-8 border-y border-brand-gold/15">
+                    <div>
+                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Desire Index</p>
+                        <p class="text-3xl font-display italic">Top 0.1%</p>
                     </div>
-                    <div class="group cursor-default">
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Economic ROI</p>
-                        <p class="text-3xl font-serif italic">+42.8%</p>
+                    <div>
+                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Economic ROI</p>
+                        <p class="text-3xl font-display italic">+42.8%</p>
                     </div>
                 </div>
-
-                <div class="flex justify-between text-[10px] uppercase tracking-luxury text-brand-grey">
-                    <span>Host & Creative</span>
-                    <span>@Avocadospa</span>
+                <div class="flex justify-between text-[9px] uppercase tracking-luxury text-brand-grey">
+                    <span>Host &amp; Creative</span><span>@Avocadospa</span>
                 </div>
             </div>
-            <div class="md:col-span-7 order-1 md:order-2 h-[70vh] md:h-[85vh] overflow-hidden relative group">
+            <div class="md:col-span-7 order-1 md:order-2 h-[60vh] md:h-[80vh] overflow-hidden relative reveal-frame">
                 <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
                     <source src="asset/images/liyavideo1avocado.mp4" type="video/mp4">
                 </video>
@@ -130,61 +127,57 @@
         </div>
     </section>
 
-    <section class="py-32 px-6 md:px-12 bg-brand-bg">
+    <!-- CASE STUDY 2: NEEDS 24 -->
+    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-bg border-t border-gray-100">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-            <div class="md:col-span-7 h-[70vh] md:h-[85vh] overflow-hidden relative group">
+            <div class="md:col-span-7 h-[60vh] md:h-[80vh] overflow-hidden relative reveal-frame">
                 <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
                     <source src="asset/images/liyavideo2needs24.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="md:col-span-5 space-y-10">
-                <span class="text-[10px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full">E-Commerce & Diaspora</span>
-                <h2 class="text-5xl md:text-6xl font-serif text-brand-dark reveal-text">Needs-24: <br><span class="italic text-brand-gold">Global Connection</span></h2>
-                <p class="text-brand-dark/70 font-light leading-relaxed text-lg reveal-text">Bridging the gap between home and the diaspora. A digital narrative highlighting the joy of sending care across borders.</p>
-                
-                <div class="grid grid-cols-2 gap-8 py-10 border-y border-brand-gold/20">
-                    <div class="group cursor-default">
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Trust Quotient</p>
-                        <p class="text-3xl font-serif italic">Institutional</p>
+            <div class="md:col-span-5 space-y-8">
+                <span class="text-[9px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full inline-block">E-Commerce &amp; Diaspora</span>
+                <h2 class="text-4xl md:text-6xl font-serif text-brand-dark reveal-text">Needs-24: <br><span class="italic text-brand-gold">Global Connection</span></h2>
+                <p class="text-brand-dark/65 font-light leading-loose text-base reveal-text">Bridging the gap between home and the diaspora. A digital narrative highlighting the joy of sending care across borders.</p>
+                <div class="grid grid-cols-2 gap-8 py-8 border-y border-brand-gold/15">
+                    <div>
+                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Trust Quotient</p>
+                        <p class="text-3xl font-display italic">Institutional</p>
                     </div>
-                    <div class="group cursor-default">
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Viral Coefficient</p>
-                        <p class="text-3xl font-serif italic">1.8x</p>
+                    <div>
+                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Viral Coefficient</p>
+                        <p class="text-3xl font-display italic">1.8×</p>
                     </div>
                 </div>
-
-                <div class="flex justify-between text-[10px] uppercase tracking-luxury text-brand-grey">
-                    <span>Brand Ambassador</span>
-                    <span>Fasika '24</span>
+                <div class="flex justify-between text-[9px] uppercase tracking-luxury text-brand-grey">
+                    <span>Brand Ambassador</span><span>Fasika '24</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 px-6 md:px-12 bg-white">
+    <!-- CASE STUDY 3: BELLEVUE -->
+    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-            <div class="md:col-span-5 order-2 md:order-1 space-y-10">
-                <span class="text-[10px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full">Wellness & Hotel</span>
-                <h2 class="text-5xl md:text-6xl font-serif text-brand-dark reveal-text">Bellevue Fit: <span class="italic text-brand-gold">Kinetic Glow</span></h2>
-                <p class="text-brand-dark/70 font-light leading-relaxed text-lg reveal-text">Where structure meets sweat. A collaboration capturing the intersection of luxury lifestyle and peak performance.</p>
-                
-                <div class="grid grid-cols-2 gap-8 py-10 border-y border-brand-gold/20">
-                    <div class="group cursor-default">
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Cultural Currency</p>
-                        <p class="text-3xl font-serif italic">Prime</p>
+            <div class="md:col-span-5 order-2 md:order-1 space-y-8">
+                <span class="text-[9px] font-sans text-brand-grey uppercase tracking-widest border border-brand-grey/30 px-4 py-2 rounded-full inline-block">Wellness &amp; Hotel</span>
+                <h2 class="text-4xl md:text-6xl font-serif text-brand-dark reveal-text">Bellevue Fit: <span class="italic text-brand-gold">Kinetic Glow</span></h2>
+                <p class="text-brand-dark/65 font-light leading-loose text-base reveal-text">Where structure meets sweat. A collaboration capturing the intersection of luxury lifestyle and peak performance.</p>
+                <div class="grid grid-cols-2 gap-8 py-8 border-y border-brand-gold/15">
+                    <div>
+                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Cultural Currency</p>
+                        <p class="text-3xl font-display italic">Prime</p>
                     </div>
-                    <div class="group cursor-default">
-                        <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-2 group-hover:translate-x-2 transition-transform">Aesthetic Score</p>
-                        <p class="text-3xl font-serif italic">10/10</p>
+                    <div>
+                        <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-2">Aesthetic Score</p>
+                        <p class="text-3xl font-display italic">10/10</p>
                     </div>
                 </div>
-
-                <div class="flex justify-between text-[10px] uppercase tracking-luxury text-brand-grey">
-                    <span>Lead Influencer</span>
-                    <span>Addis Ababa</span>
+                <div class="flex justify-between text-[9px] uppercase tracking-luxury text-brand-grey">
+                    <span>Lead Influencer</span><span>Addis Ababa</span>
                 </div>
             </div>
-            <div class="md:col-span-7 order-1 md:order-2 h-[70vh] md:h-[85vh] overflow-hidden relative group">
+            <div class="md:col-span-7 order-1 md:order-2 h-[60vh] md:h-[80vh] overflow-hidden relative reveal-frame">
                 <video autoplay muted loop playsinline class="parallax-media w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
                     <source src="asset/images/liyavideo3bellevue.mp4" type="video/mp4">
                 </video>
@@ -192,64 +185,56 @@
         </div>
     </section>
 
-    <section class="py-32 px-6 md:px-12 bg-brand-dark text-white relative overflow-hidden">
+    <!-- GLOBAL PRESENCE -->
+    <section class="py-24 md:py-36 px-6 md:px-16 bg-brand-dark text-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-20">
             <div>
-                <h2 class="text-5xl md:text-8xl font-serif italic mb-8 reveal-text">Architecting <br> Influence.</h2>
-                <p class="text-brand-grey max-w-sm mb-12 text-lg">We don't just create content; we engineer legacies. Limited availability for exclusive consultations.</p>
-                
-                <div class="space-y-6 mt-12">
-                    <p class="text-[10px] uppercase tracking-luxury text-brand-gold mb-8">Global Footprint</p>
-                    <div class="flex flex-col space-y-4">
-                        <a href="https://www.instagram.com/liya_elias" target="_blank" class="group flex items-center justify-between border-b border-white/10 pb-4 hover:border-brand-gold transition duration-500">
-                            <span class="text-lg font-serif italic">Personal @liya_elias</span>
-                            <span class="text-[10px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition-all">Explore</span>
-                        </a>
-                        <a href="https://www.instagram.com/liyu_branding" target="_blank" class="group flex items-center justify-between border-b border-white/10 pb-4 hover:border-brand-gold transition duration-500">
-                            <span class="text-lg font-serif italic">Agency @liyu_branding</span>
-                            <span class="text-[10px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition-all">Connect</span>
-                        </a>
-                        <a href="https://www.tiktok.com/@liyaelias19" target="_blank" class="group flex items-center justify-between border-b border-white/10 pb-4 hover:border-brand-gold transition duration-500">
-                            <span class="text-lg font-serif italic">Tiktok @liyaelias19</span>
-                            <span class="text-[10px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition-all">Watch</span>
-                        </a>
-                    </div>
+                <h2 class="text-5xl md:text-7xl font-serif italic mb-8 reveal-text">Architecting<br>Influence.</h2>
+                <p class="text-brand-grey max-w-sm mb-12 text-base font-light">We don't just create content; we engineer legacies. Limited availability for exclusive consultations.</p>
+                <div class="space-y-4">
+                    <p class="text-[9px] uppercase tracking-luxury text-brand-gold mb-6">Global Footprint</p>
+                    <a href="https://www.instagram.com/liya_elias" target="_blank" class="group flex items-center justify-between border-b border-white/[0.08] pb-4 hover:border-brand-gold transition duration-500">
+                        <span class="text-lg font-serif italic">Personal @liya_elias</span>
+                        <span class="text-[9px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition">↗</span>
+                    </a>
+                    <a href="https://www.instagram.com/liyu_branding" target="_blank" class="group flex items-center justify-between border-b border-white/[0.08] pb-4 hover:border-brand-gold transition duration-500">
+                        <span class="text-lg font-serif italic">Agency @liyu_branding</span>
+                        <span class="text-[9px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition">↗</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@liyaelias19" target="_blank" class="group flex items-center justify-between border-b border-white/[0.08] pb-4 hover:border-brand-gold transition duration-500">
+                        <span class="text-lg font-serif italic">TikTok @liyaelias19</span>
+                        <span class="text-[9px] uppercase tracking-luxury opacity-0 group-hover:opacity-100 transition">↗</span>
+                    </a>
                 </div>
             </div>
-
-            <div class="bg-white/5 backdrop-blur-xl p-8 md:p-12 border border-white/10 rounded-sm shadow-2xl">
-                <form action="#" class="space-y-12">
+            <div class="glass p-8 md:p-12 rounded-sm">
+                <form action="#" class="space-y-10">
                     <div class="relative group">
-                        <input type="text" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors duration-500">
-                        <label class="absolute left-0 top-4 text-brand-grey text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-4 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-4 transition-all">Identity / Full Name</label>
+                        <input type="text" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors duration-500 text-white text-base">
+                        <label class="absolute left-0 top-4 text-gray-600 text-[9px] uppercase tracking-widest pointer-events-none peer-focus:-top-5 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-5 transition-all">Identity / Full Name</label>
                     </div>
                     <div class="relative group">
-                        <input type="email" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors duration-500">
-                        <label class="absolute left-0 top-4 text-brand-grey text-[10px] uppercase tracking-widest pointer-events-none peer-focus:-top-4 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-4 transition-all">Global Email</label>
+                        <input type="email" required placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors duration-500 text-white text-base">
+                        <label class="absolute left-0 top-4 text-gray-600 text-[9px] uppercase tracking-widest pointer-events-none peer-focus:-top-5 peer-focus:text-brand-gold peer-[:not(:placeholder-shown)]:-top-5 transition-all">Global Email</label>
                     </div>
                     <div class="relative group">
-                        <select class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors duration-500 text-brand-grey appearance-none">
+                        <select class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-brand-gold transition-colors text-gray-400 appearance-none text-sm">
                             <option value="">Nature of Vision</option>
-                            <option value="branding">Identity Engineering</option>
-                            <option value="interiors">Structural Design</option>
-                            <option value="media">Media Collaboration</option>
+                            <option>Identity Engineering</option>
+                            <option>Structural Design</option>
+                            <option>Media Collaboration</option>
                         </select>
                     </div>
-                    <button type="submit" class="w-full py-6 bg-brand-gold text-black text-[10px] uppercase tracking-luxury font-bold hover:bg-white transition-all duration-700">
-                        Initiate Strategy
-                    </button>
+                    <button type="submit" class="magnetic-btn w-full py-5 bg-brand-gold text-black text-[10px] uppercase tracking-luxury font-bold hover:bg-brand-white transition-all duration-700">Initiate Strategy</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="bg-brand-dark py-12 text-center">
-        <p class="text-brand-grey text-[10px] uppercase tracking-widest opacity-40">&copy; 2026 Liya Elias. All Rights Reserved.</p>
+    <footer class="bg-brand-dark py-10 text-center border-t border-white/[0.04]">
+        <p class="text-gray-600 text-[10px] uppercase tracking-widest">&copy; 2026 Liya Elias. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        gsap.to("body", { opacity: 1, duration: 1.2 });
-    </script>
 </body>
 </html>

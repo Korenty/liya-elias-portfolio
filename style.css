@@ -1,41 +1,165 @@
-/* Liya Elias Global Stylesheet 
-    Vogue-Grade Luxury Branding 
-*/
+/* ============================================================
+   LIYA ELIAS — GLOBAL STYLESHEET
+   World-Class Luxury Brand Identity System
+   Version 3.0 — Elite Edition
+   ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Space+Grotesk:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&display=swap');
 
+/* ============================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================ */
 :root {
-    --brand-bg: #0a0a0a;
-    --brand-dark: #050505;
-    --brand-gold: #C0A080;
-    --brand-grey: #888888;
+    --brand-bg:       #080808;
+    --brand-dark:     #050505;
+    --brand-off-dark: #0d0d0d;
+    --brand-white:    #F8F4EF;
+    --brand-off-white:#F0EBE3;
+    --brand-gold:     #C9A96E;
+    --brand-gold-alt: #E5C99A;
+    --brand-grey:     #888888;
+    --brand-grey-lt:  #AAAAAA;
+    --font-serif:     'Playfair Display', serif;
+    --font-display:   'Cormorant Garamond', serif;
+    --font-sans:      'Space Grotesk', sans-serif;
+    --transition-base: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --shadow-gold:    0 0 60px rgba(201, 169, 110, 0.15);
 }
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
     background-color: var(--brand-bg);
-    color: white;
-    font-family: 'Space Grotesk', sans-serif;
+    color: var(--brand-white);
+    font-family: var(--font-sans);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none;
 }
 
-.font-serif { font-family: 'Playfair Display', serif; }
+a, button { cursor: none; }
+img { display: block; max-width: 100%; }
 
-/* --- LOGO GLOBAL SIZING (High Resolution Display) --- */
+/* ============================================================
+   GRAIN / FILM TEXTURE OVERLAY
+   ============================================================ */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.032;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+#cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 6px; height: 6px;
+    background: var(--brand-gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    mix-blend-mode: normal;
+}
+
+#cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 40px; height: 40px;
+    border: 1px solid rgba(201, 169, 110, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s var(--transition-base), height 0.5s var(--transition-base), border-color 0.3s ease, opacity 0.3s ease;
+}
+
+body.cursor-hover #cursor-dot  { width: 12px; height: 12px; background: var(--brand-gold-alt); }
+body.cursor-hover #cursor-ring { width: 64px; height: 64px; border-color: rgba(201, 169, 110, 0.8); }
+
+body.cursor-press #cursor-dot  { width: 4px; height: 4px; }
+body.cursor-press #cursor-ring { width: 28px; height: 28px; border-color: var(--brand-gold); }
+
+/* ============================================================
+   PAGE LOADER
+   ============================================================ */
+#page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: var(--brand-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    pointer-events: all;
+}
+
+#page-loader .loader-logo {
+    height: 48px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+#page-loader .loader-bar-track {
+    width: 200px;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+#page-loader .loader-bar-fill {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, var(--brand-gold), var(--brand-gold-alt));
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#page-loader .loader-pct {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--brand-gold);
+    text-transform: uppercase;
+    opacity: 0;
+}
+
+/* ============================================================
+   LOGO — GLOBAL SIZING
+   ============================================================ */
 nav a img {
-    height: 64px !important; 
+    height: 52px !important;
     width: auto;
-    transition: transform 0.5s ease;
+    transition: opacity 0.4s ease, transform 0.5s ease;
 }
+nav a img:hover { opacity: 0.75; transform: scale(0.97); }
 
 @media (min-width: 768px) {
-    nav a img {
-        height: 80px !important; 
-    }
+    nav a img { height: 68px !important; }
 }
 
-/* --- NAVIGATION & MENU SYSTEM --- */
-
-/* Full Screen Menu Overlay */
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
 #mobile-menu-overlay {
     position: fixed;
     inset: 0;
@@ -46,77 +170,437 @@ nav a img {
     align-items: center;
     justify-content: center;
     transform: translateY(-100%);
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
-    visibility: hidden;      
-    pointer-events: none;    
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 #mobile-menu-overlay.open {
     transform: translateY(0%);
-    visibility: visible;     
-    pointer-events: auto;    
+    visibility: visible;
+    pointer-events: auto;
 }
 
-/* Menu Link Hover Effect (The Vogue Slide) */
+/* Menu Link Hover Effect — Luxury Slide */
 .menu-link-item {
     position: relative;
     overflow: hidden;
     display: block;
-    cursor: pointer;
+    cursor: none;
     text-decoration: none;
     color: white;
+    line-height: 1;
 }
 
 .menu-link-item span {
     display: inline-block;
-    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.menu-link-item:hover span {
-    transform: translateY(-100%);
-}
+.menu-link-item:hover span { transform: translateY(-100%); }
 
 .menu-link-item::after {
     content: attr(data-text);
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     transform: translateY(100%);
-    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    color: var(--brand-gold); 
+    transition: transform 0.65s cubic-bezier(0.19, 1, 0.22, 1);
+    color: var(--brand-gold);
+    font-style: italic;
 }
 
-.menu-link-item:hover::after {
-    transform: translateY(0%);
+.menu-link-item:hover::after { transform: translateY(0%); }
+
+/* Menu counter lines */
+.menu-count {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(201, 169, 110, 0.4);
+    display: block;
+    margin-bottom: 0.25rem;
 }
 
-/* --- LAYOUT UTILITIES --- */
-
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    gap: 1rem;
+/* ============================================================
+   MARQUEE TICKER
+   ============================================================ */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
 }
+
+.marquee-track {
+    display: inline-flex;
+    animation: marqueeScroll 35s linear infinite;
+    will-change: transform;
+}
+
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes marqueeScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--brand-grey-lt);
+    white-space: nowrap;
+}
+
+.marquee-dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    background: var(--brand-gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.font-serif   { font-family: var(--font-serif); }
+.font-display { font-family: var(--font-display); }
+.font-sans    { font-family: var(--font-sans); }
 
 .text-outline {
-    -webkit-text-stroke: 1px rgba(192, 160, 128, 0.4);
+    -webkit-text-stroke: 1px rgba(201, 169, 110, 0.35);
     color: transparent;
 }
 
-.hide-scrollbar::-webkit-scrollbar {
+.text-outline-white {
+    -webkit-text-stroke: 1px rgba(248, 244, 239, 0.25);
+    color: transparent;
+}
+
+.gold-gradient {
+    background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-alt) 50%, var(--brand-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.hidden { display: none !important; }
+
+/* ============================================================
+   MAGNETIC BUTTON
+   ============================================================ */
+.magnetic-btn {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   REVEAL ANIMATION SYSTEM
+   ============================================================ */
+.reveal-text  { opacity: 0; transform: translateY(40px); }
+.reveal-up    { opacity: 0; transform: translateY(60px); }
+.reveal-left  { opacity: 0; transform: translateX(-40px); }
+.reveal-right { opacity: 0; transform: translateX(40px); }
+.reveal-scale { opacity: 0; transform: scale(0.92); }
+
+.draw-line {
+    background: linear-gradient(to right, var(--brand-gold), var(--brand-gold-alt));
+    height: 1px;
+    width: 0;
+}
+
+/* ============================================================
+   IMAGE REVEAL FRAMES
+   ============================================================ */
+.reveal-frame {
+    overflow: hidden;
+    position: relative;
+}
+
+.reveal-img {
+    transform: scale(1.12);
+    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.reveal-frame:hover .reveal-img,
+.reveal-frame.is-visible .reveal-img {
+    transform: scale(1);
+}
+
+/* ============================================================
+   LUXURY CARD SYSTEM
+   ============================================================ */
+.luxury-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: border-color 0.5s ease, transform 0.5s ease;
+}
+
+.luxury-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,169,110,0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.luxury-card:hover { border-color: rgba(201, 169, 110, 0.2); }
+.luxury-card:hover::after { opacity: 1; }
+
+/* ============================================================
+   CINEMATIC LIGHTBOX / MEDIA VIEWER
+   ============================================================ */
+#media-viewer {
     display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(5, 5, 5, 0.97);
+    backdrop-filter: blur(30px);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    cursor: none;
 }
 
-.hidden {
-    display: none !important;
+.close-viewer {
+    position: absolute;
+    top: 2.5rem; right: 2.5rem;
+    width: 56px; height: 56px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 110;
+    transition: background 0.4s ease, transform 0.5s ease, border-color 0.4s ease;
+    cursor: none;
 }
 
-/* --- GLOBAL ANIMATION CLASSES --- */
-.reveal-text { opacity: 0; }
-.draw-line { background-color: var(--brand-gold); height: 1px; width: 0; }
+.close-viewer:hover {
+    background: var(--brand-gold);
+    border-color: var(--brand-gold);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.close-viewer::before, .close-viewer::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 1px;
+    background: white;
+    transition: background 0.3s ease;
+}
+.close-viewer::before { transform: rotate(45deg); }
+.close-viewer::after  { transform: rotate(-45deg); }
+.close-viewer:hover::before, .close-viewer:hover::after { background: black; }
+
+/* ============================================================
+   MEDIA CURSOR TOOLTIP
+   ============================================================ */
+#cursor-label {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9997;
+    padding: 8px 20px;
+    background: var(--brand-gold);
+    color: black;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    border-radius: 20px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: opacity 0.3s ease;
+}
+
+/* ============================================================
+   COUNTER NUMBERS
+   ============================================================ */
+.counter-number {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+#scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 1px;
+    width: 0%;
+    background: linear-gradient(to right, var(--brand-gold), var(--brand-gold-alt));
+    z-index: 10001;
+    transform-origin: left;
+    transition: width 0.1s linear;
+}
+
+/* ============================================================
+   BENTO GRID
+   ============================================================ */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+/* ============================================================
+   DISCLAIMER OVERLAY
+   ============================================================ */
+#disclaimer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 8, 8, 0.96);
+    backdrop-filter: blur(12px);
+    z-index: 9998;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: none;
+}
+
+/* ============================================================
+   HORIZONTAL SCROLL SECTION
+   ============================================================ */
+.h-scroll-wrapper {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.h-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+.h-scroll-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+}
+
+.h-scroll-item {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   SPLIT LINE TEXT ANIMATION
+   ============================================================ */
+.split-line-wrapper {
+    overflow: hidden;
+    display: block;
+}
+
+.split-line-inner {
+    display: block;
+    transform: translateY(105%);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split-line-inner.revealed {
+    transform: translateY(0%);
+}
+
+/* ============================================================
+   SECTION LABEL SYSTEM
+   ============================================================ */
+.section-label {
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--brand-gold);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.section-label::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--brand-gold);
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   GLASS CARD
+   ============================================================ */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: border-color 0.5s ease, background 0.5s ease;
+}
+
+.glass:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(201, 169, 110, 0.2);
+}
+
+/* ============================================================
+   VAULT / PRIVATE OFFICE
+   ============================================================ */
+.hidden-vault { display: none; }
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+.option { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: none; color: rgba(255,255,255,0.7); }
+.option:hover { background: var(--brand-gold); color: black; }
+.custom-options { display: none; width: 100%; background: #0a0a0a; border: 1px solid rgba(201, 169, 110, 0.25); margin-top: 10px; z-index: 50; }
+.custom-options.open { display: block; }
+
+input[type="radio"]:checked + div {
+    background-color: var(--brand-gold);
+    color: black;
+    border-color: var(--brand-gold);
+}
+
+/* ============================================================
+   FOOTER SOCIAL LINKS
+   ============================================================ */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--brand-grey);
+    text-decoration: none;
+    transition: color 0.3s ease, letter-spacing 0.4s ease;
+}
+
+.social-link:hover {
+    color: var(--brand-gold);
+    letter-spacing: 0.4em;
+}
+
+/* ============================================================
+   RESPONSIVE UTILITIES
+   ============================================================ */
+@media (max-width: 768px) {
+    .marquee-track { animation-duration: 22s; }
+    nav a img { height: 44px !important; }
+}
