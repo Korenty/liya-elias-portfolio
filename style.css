@@ -34,6 +34,10 @@
 
 html { scroll-behavior: smooth; }
 
+/* CSS fallback: reveal body if GSAP never fires (e.g. CDN blocked) */
+@keyframes bodyReveal  { to { opacity: 1; } }
+@keyframes loaderExit  { to { transform: translateY(-100%); pointer-events: none; visibility: hidden; } }
+
 body {
     background-color: var(--brand-bg);
     color: var(--brand-white);
@@ -42,6 +46,12 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     cursor: none;
+    /* fallback: show after 2.5s if JS animations don't fire */
+    animation: bodyReveal 0.001s 2.5s forwards;
+}
+
+#page-loader {
+    animation: loaderExit 0.6s 2.5s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
 a, button { cursor: none; }
@@ -109,12 +119,15 @@ body.cursor-press #cursor-ring { width: 28px; height: 28px; border-color: var(--
     justify-content: center;
     gap: 2rem;
     pointer-events: all;
+    /* animation declared in reset section above */
 }
 
 #page-loader .loader-logo {
     height: 48px;
     opacity: 0;
     transform: translateY(20px);
+    /* Fallback: show logo via CSS if GSAP doesn't run */
+    animation: bodyReveal 0.3s 0.3s ease-out forwards;
 }
 
 #page-loader .loader-bar-track {
@@ -132,7 +145,11 @@ body.cursor-press #cursor-ring { width: 28px; height: 28px; border-color: var(--
     width: 0%;
     background: linear-gradient(to right, var(--brand-gold), var(--brand-gold-alt));
     transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* CSS fallback fill animation */
+    animation: loaderBarFill 1.4s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
 }
+
+@keyframes loaderBarFill { to { width: 100%; } }
 
 #page-loader .loader-pct {
     font-family: var(--font-sans);

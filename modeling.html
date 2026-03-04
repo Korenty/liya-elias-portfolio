@@ -23,9 +23,7 @@
         .masonry-item { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .masonry-item:hover { transform: translateY(-8px); }
         .stats-bar { height: 1px; background: rgba(201,169,110,0.15); position: relative; overflow: hidden; }
-        .stats-bar::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; background: var(--brand-gold); animation: barFill 2s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-play-state: paused; }
-        .stats-bar.animate::after { animation-play-state: running; }
-        @keyframes barFill { from { width: 0; } to { width: var(--fill, 80%); } }
+        .stats-bar-inner { position: absolute; top: 0; left: 0; height: 100%; width: 0; background: #C9A96E; transition: width 2s cubic-bezier(0.16,1,0.3,1); }
     </style>
 </head>
 <body class="bg-brand-white opacity-0 overflow-x-hidden">
@@ -95,22 +93,22 @@
                     <div>
                         <p class="text-[9px] uppercase tracking-widest text-brand-gold mb-1">Height</p>
                         <p class="font-serif italic text-2xl">1.76 m</p>
-                        <div class="stats-bar mt-3" style="--fill: 88%;"><div></div></div>
+                        <div class="stats-bar mt-3"><div class="stats-bar-inner" data-fill="88"></div></div>
                     </div>
                     <div>
                         <p class="text-[9px] uppercase tracking-widest text-brand-gold mb-1">Bust</p>
                         <p class="font-serif italic text-2xl">84 cm</p>
-                        <div class="stats-bar mt-3" style="--fill: 70%;"><div></div></div>
+                        <div class="stats-bar mt-3"><div class="stats-bar-inner" data-fill="70"></div></div>
                     </div>
                     <div>
                         <p class="text-[9px] uppercase tracking-widest text-brand-gold mb-1">Waist</p>
                         <p class="font-serif italic text-2xl">60 cm</p>
-                        <div class="stats-bar mt-3" style="--fill: 60%;"><div></div></div>
+                        <div class="stats-bar mt-3"><div class="stats-bar-inner" data-fill="60"></div></div>
                     </div>
                     <div>
                         <p class="text-[9px] uppercase tracking-widest text-brand-gold mb-1">Eyes</p>
                         <p class="font-serif italic text-2xl">Amber-Brown</p>
-                        <div class="stats-bar mt-3" style="--fill: 100%;"><div></div></div>
+                        <div class="stats-bar mt-3"><div class="stats-bar-inner" data-fill="100"></div></div>
                     </div>
                 </div>
 
@@ -214,11 +212,12 @@
 
     <script src="script.js"></script>
     <script>
-        // Animate stat bars when scrolled into view
-        gsap.utils.toArray('.stats-bar').forEach(bar => {
+        // Animate stat bars with JS when scrolled into view
+        document.querySelectorAll('.stats-bar-inner').forEach(inner => {
+            const fill = inner.getAttribute('data-fill') || '80';
             ScrollTrigger.create({
-                trigger: bar, start: 'top 90%',
-                onEnter: () => bar.classList.add('animate')
+                trigger: inner.closest('.stats-bar'), start: 'top 90%', once: true,
+                onEnter: () => { inner.style.width = fill + '%'; }
             });
         });
 

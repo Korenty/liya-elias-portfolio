@@ -52,10 +52,15 @@ gsap.registerPlugin(ScrollTrigger);
    2. ENTRANCE ANIMATIONS (runs after loader exits)
    ============================================================ */
 function animateEntrance() {
-    // Hero elements
+    // Hero text slides in from below
+    gsap.fromTo('.split-line-inner',
+        { y: '105%' },
+        { y: '0%', stagger: 0.2, duration: 1.6, ease: 'power4.out', delay: 0.1 }
+    );
+    // Hero wrapper containers
     gsap.fromTo('.hero-entrance',
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.18, duration: 1.4, ease: 'power3.out', delay: 0.1 }
+        { opacity: 0 },
+        { opacity: 1, stagger: 0.18, duration: 0.01, delay: 0.1 }
     );
 
     // Reveal body
@@ -218,13 +223,15 @@ function initCounters() {
         const suffix  = el.getAttribute('data-suffix') || '';
         const prefix  = el.getAttribute('data-prefix') || '';
         const decimal = el.getAttribute('data-decimal') === 'true';
+        const proxy   = { val: 0 };
 
-        gsap.fromTo({ val: 0 }, { val: target,
+        gsap.to(proxy, {
+            val: target,
             duration: 2.4,
             ease: 'power2.out',
             scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-            onUpdate: function () {
-                el.textContent = prefix + (decimal ? this._targets[0].val.toFixed(1) : Math.round(this._targets[0].val)) + suffix;
+            onUpdate: () => {
+                el.textContent = prefix + (decimal ? proxy.val.toFixed(1) : Math.round(proxy.val)) + suffix;
             }
         });
     });
